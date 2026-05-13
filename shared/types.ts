@@ -13,14 +13,14 @@ export interface Question {
   content: string;
   options: string[];
   correctAnswer: number;
-  explanation: string;
+  explanation?: string | null;
   createdAt: Date;
 }
 
 export interface Category {
   id: number;
   name: string;
-  description: string;
+  description?: string | null;
 }
 
 export interface StudyRecord {
@@ -29,7 +29,7 @@ export interface StudyRecord {
   questionId: number;
   memoryStrength: number;
   nextReviewAt: Date;
-  lastReviewedAt: Date;
+  lastReviewedAt?: Date | null;
   reviewCount: number;
   correctCount: number;
 }

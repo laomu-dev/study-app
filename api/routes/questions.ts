@@ -7,7 +7,7 @@ const questionService = new QuestionService();
 const userService = new UserService();
 
 async function checkAuth(req: any, res: any) {
-  const userId = req.session?.userId;
+  const userId = (req.session as any)?.userId;
   if (!userId) {
     res.status(401).json({ error: 'Unauthorized' });
     return null;

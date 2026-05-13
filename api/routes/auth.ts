@@ -7,7 +7,6 @@ const userService = new UserService();
 router.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log('Login attempt:', username);
 
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' });
@@ -24,10 +23,9 @@ router.post('/login', async (req, res) => {
     }
 
     if (req.session) {
-      req.session.userId = user.id;
+      (req.session as any).userId = user.id;
     }
 
-    console.log('Login successful:', username);
     res.json({ user });
   } catch (error) {
     console.error('Login error:', error);
@@ -46,7 +44,7 @@ router.post('/logout', (req, res) => {
 
 router.get('/me', async (req, res) => {
   try {
-    const userId = req.session?.userId;
+    const userId = (req.session as any)?.userId;
     if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
