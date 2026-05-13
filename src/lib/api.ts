@@ -1,5 +1,5 @@
 
-const API_BASE = 'https://study-app-production-ccd3.up.railway.app/api';
+const API_BASE = 'http://115.190.22.21:3001/api';
 
 class ApiClient {
   private baseUrl: string;
