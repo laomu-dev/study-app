@@ -1,5 +1,5 @@
 
-const API_BASE = '/api';
+const API_BASE = 'https://study-app-production-ccd3.up.railway.app/api';
 
 async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE}${url}`, {
@@ -11,7 +11,12 @@ async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
     ...options,
   });
 
-  const data = await response.json();
+  const text = await response.text();
+  if (!text) {
+    throw new Error('Empty response');
+  }
+
+  const data = JSON.parse(text);
 
   if (!response.ok) {
     throw new Error(data.error || 'Request failed');
