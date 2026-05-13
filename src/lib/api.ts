@@ -1,5 +1,5 @@
 
-const API_BASE = 'https://study-app-production-ccd3.up.railway.app/api';
+const API_BASE = '/api';
 
 async function request<T>(url: string, options: RequestInit = {}): Promise<T> {
   const response = await fetch(`${API_BASE}${url}`, {
