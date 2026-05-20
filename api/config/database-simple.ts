@@ -16,12 +16,16 @@ export interface Category {
   description?: string;
 }
 
+export type QuestionType = 'single' | 'multiple' | 'judge';
+
 export interface Question {
   id: number;
   categoryId: number;
   content: string;
   options: string[];
-  correctAnswer: number;
+  correctAnswer: number | number[];
+  isMultiple?: boolean;
+  type?: QuestionType;
   explanation?: string;
   createdAt: Date;
 }

@@ -15,6 +15,7 @@ import session from 'express-session'
 import authRoutes from './routes/auth.js'
 import questionRoutes from './routes/questions.js'
 import studyRoutes from './routes/study.js'
+import importRoutes from './routes/import.js'
 
 // for esm mode
 const __filename = fileURLToPath(import.meta.url)
@@ -34,12 +35,13 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }))
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'your-secret-key-change-this-in-production',
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000
+    sameSite: 'lax',
+    maxAge: 7 * 24 * 60 * 60 * 1000 // 7天有效期
   }
 }))
 
@@ -49,6 +51,7 @@ app.use(session({
 app.use('/api/auth', authRoutes)
 app.use('/api/questions', questionRoutes)
 app.use('/api/study', studyRoutes)
+app.use('/api/import', importRoutes)
 
 /**
  * health

@@ -1,0 +1,7 @@
+{
+  "notebook_url": "https://notebooklm.google.com/notebook/YOUR_NOTEBOOK_ID",
+  "browser_profile": "./chrome_profile_notebooklm",
+  "log_level": "INFO",
+  "auto_reconnect": true,
+  "max_reconnect_attempts": 5
+}

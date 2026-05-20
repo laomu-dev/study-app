@@ -5,7 +5,8 @@ export interface CreateQuestionData {
   categoryId: number;
   content: string;
   options: string[];
-  correctAnswer: number;
+  correctAnswer: number | number[];
+  isMultiple?: boolean;
   explanation?: string;
 }
 

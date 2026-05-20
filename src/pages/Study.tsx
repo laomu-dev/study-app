@@ -10,13 +10,16 @@ export function Study() {
   const navigate = useNavigate();
   const { user, todayTasks, setTodayTasks } = useAppStore();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | number[] | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [completed, setCompleted] = useState(false);
 
   const currentTask: DailyTask | null = todayTasks[currentIndex] || null;
+  
+  const isMultiple = currentTask?.question.isMultiple || Array.isArray(currentTask?.question.correctAnswer);
+  const isJudge = currentTask?.question.type === 'judge';
 
   useEffect(() => {
     if (user) {
@@ -38,7 +41,23 @@ export function Study() {
 
   const handleSelectAnswer = (index: number) => {
     if (showResult) return;
-    setSelectedAnswer(index);
+    
+    if (isMultiple) {
+      // 多选模式：切换选中状态
+      setSelectedAnswer(prev => {
+        const current = Array.isArray(prev) ? [...prev] : [];
+        const indexPos = current.indexOf(index);
+        if (indexPos > -1) {
+          current.splice(indexPos, 1);
+        } else {
+          current.push(index);
+        }
+        return current.length > 0 ? current : null;
+      });
+    } else {
+      // 单选模式
+      setSelectedAnswer(index);
+    }
   };
 
   const handleSubmit = async () => {
@@ -168,22 +187,40 @@ export function Study() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-3 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-medium text-gray-700">
+                  {isJudge ? '（判断题）' : isMultiple ? '（多选，可选择多个答案）' : '（单选）'}
+                </h3>
+              </div>
+              
+              <div className={`space-y-3 mb-6 ${isJudge ? 'flex gap-4' : ''}`}>
                 {currentTask.question.options.map((option, index) => {
-                  let buttonClass =
-                    'w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ';
+                  let buttonClass = isJudge
+                    ? 'flex-1 text-center p-4 rounded-lg border-2 transition-all duration-200 text-lg font-semibold '
+                    : 'w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ';
+
+                  const isSelected = isMultiple
+                    ? (Array.isArray(selectedAnswer) && selectedAnswer.includes(index))
+                    : index === selectedAnswer;
+                  
+                  const correctAnswer = currentTask.question.correctAnswer;
+                  const isCorrectAnswer = Array.isArray(correctAnswer)
+                    ? correctAnswer.includes(index)
+                    : index === correctAnswer;
+                  
+                  const isWrongSelected = showResult && isSelected && !isCorrectAnswer;
 
                   if (showResult) {
-                    if (index === currentTask.question.correctAnswer) {
+                    if (isCorrectAnswer) {
                       buttonClass += 'border-green-500 bg-green-50 text-green-800';
-                    } else if (index === selectedAnswer) {
+                    } else if (isWrongSelected) {
                       buttonClass += 'border-red-500 bg-red-50 text-red-800';
                     } else {
                       buttonClass += 'border-gray-200 bg-gray-50 text-gray-500';
                     }
                   } else {
                     buttonClass +=
-                      index === selectedAnswer
+                      isSelected
                         ? 'border-blue-500 bg-blue-50 text-blue-800 ring-2 ring-blue-200'
                         : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50';
                   }
@@ -195,18 +232,16 @@ export function Study() {
                       disabled={showResult}
                       className={buttonClass}
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-center">
                         <span className="font-medium">
-                          {String.fromCharCode(65 + index)}. {option}
+                          {isJudge ? option : `${String.fromCharCode(65 + index)}. ${option}`}
                         </span>
-                        {showResult && index === currentTask.question.correctAnswer && (
-                          <CheckCircle className="h-6 w-6 text-green-500" />
+                        {showResult && isCorrectAnswer && (
+                          <CheckCircle className="h-6 w-6 text-green-500 ml-2" />
                         )}
-                        {showResult &&
-                          index === selectedAnswer &&
-                          index !== currentTask.question.correctAnswer && (
-                            <XCircle className="h-6 w-6 text-red-500" />
-                          )}
+                        {showResult && isWrongSelected && (
+                          <XCircle className="h-6 w-6 text-red-500 ml-2" />
+                        )}
                       </div>
                     </button>
                   );

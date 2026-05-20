@@ -1,5 +1,5 @@
 
-const API_BASE = 'http://115.190.22.21:3001/api';
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 class ApiClient {
   private baseUrl: string;
@@ -74,7 +74,7 @@ class ApiClient {
   study = {
     getTodayTasks: (limit?: number) => 
       this.request(`/study/today${limit ? `?limit=${limit}` : ''}`),
-    submitAnswer: (questionId: number, selectedAnswer: number) => 
+    submitAnswer: (questionId: number, selectedAnswer: number | number[]) => 
       this.request('/study/answer', {
         method: 'POST',
         body: JSON.stringify({ questionId, selectedAnswer }),
@@ -83,6 +83,32 @@ class ApiClient {
       this.request('/study/progress'),
     getStats: () => 
       this.request('/study/stats'),
+  };
+
+  import = {
+    parseFile: async (file: File, categoryId: number) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('categoryId', categoryId.toString());
+
+      const response = await fetch(`${this.baseUrl}/import/parse`, {
+        method: 'POST',
+        credentials: 'include',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP ${response.status}`);
+      }
+
+      return await response.json();
+    },
+    batchImport: (questions: any[]) => 
+      this.request('/import/batch', {
+        method: 'POST',
+        body: JSON.stringify({ questions }),
+      }),
   };
 }
 

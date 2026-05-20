@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
 import { Question, Category } from '../../shared/types';
-import { Plus, Edit, Trash2, BookOpen, Save, X } from 'lucide-react';
+import { Plus, Edit, Trash2, BookOpen, Save, X, Upload } from 'lucide-react';
+import { ImportModal } from '../components/ImportModal';
 
 export function Questions() {
   const { user } = useAppStore();
@@ -11,6 +12,7 @@ export function Questions() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [formData, setFormData] = useState({
@@ -122,13 +124,22 @@ export function Questions() {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">题库管理</h1>
             <p className="text-gray-600">管理和维护学习题目</p>
           </div>
-          <button
-            onClick={handleCreate}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center space-x-2"
-          >
-            <Plus className="h-5 w-5" />
-            <span>添加题目</span>
-          </button>
+          <div className="flex space-x-3">
+            <button
+              onClick={() => setShowImportModal(true)}
+              className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center space-x-2"
+            >
+              <Upload className="h-5 w-5" />
+              <span>批量导入</span>
+            </button>
+            <button
+              onClick={handleCreate}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center space-x-2"
+            >
+              <Plus className="h-5 w-5" />
+              <span>添加题目</span>
+            </button>
+          </div>
         </div>
 
         <div className="mb-6">
@@ -336,6 +347,17 @@ export function Questions() {
               </form>
             </div>
           </div>
+        )}
+
+        {showImportModal && (
+          <ImportModal
+            categories={categories}
+            onClose={() => setShowImportModal(false)}
+            onImportComplete={() => {
+              setShowImportModal(false);
+              loadData();
+            }}
+          />
         )}
       </div>
     </div>

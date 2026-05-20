@@ -4,7 +4,7 @@ import { calculateNextReview, updateMemoryStrength } from '../utils/spacedRepeti
 
 export interface AnswerSubmission {
   questionId: number;
-  selectedAnswer: number;
+  selectedAnswer: number | number[];
 }
 
 export class StudyService {
@@ -39,11 +39,23 @@ export class StudyService {
     return tasks;
   }
 
+  private checkAnswerCorrect(correct: number | number[], selected: number | number[]): boolean {
+    if (Array.isArray(correct) && Array.isArray(selected)) {
+      if (correct.length !== selected.length) return false;
+      const sortedCorrect = [...correct].sort();
+      const sortedSelected = [...selected].sort();
+      return sortedCorrect.every((val, idx) => val === sortedSelected[idx]);
+    } else if (!Array.isArray(correct) && !Array.isArray(selected)) {
+      return correct === selected;
+    }
+    return false;
+  }
+
   async submitAnswer(userId: number, submission: AnswerSubmission): Promise<{ isCorrect: boolean; studyRecord: StudyRecord }> {
     const question = db.questions.findById(submission.questionId);
     if (!question) throw new Error('Question not found');
 
-    const isCorrect = question.correctAnswer === submission.selectedAnswer;
+    const isCorrect = this.checkAnswerCorrect(question.correctAnswer, submission.selectedAnswer);
 
     let studyRecord = db.studyRecords.getByUserAndQuestion(userId, submission.questionId);
 

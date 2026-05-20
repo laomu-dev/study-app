@@ -22,19 +22,18 @@
     "noFallthroughCasesInSwitch": false,
     "noUncheckedSideEffectImports": false,
     "forceConsistentCasingInFileNames": false,
+    "ignoreDeprecations": "5.0",
     "baseUrl": "./",
     "paths": {
       "@/*": [
         "./src/*"
       ]
-    },
-    "types": [
-      "node",
-      "express"
-    ]
+    }
   },
+  "references": [
+    { "path": "./tsconfig.node.json" }
+  ],
   "include": [
-    "src",
-    "api"
+    "src"
   ]
 }

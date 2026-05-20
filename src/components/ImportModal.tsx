@@ -1,0 +1,306 @@
+import { useState, useRef } from 'react';
+import { Upload, X, FileText, Check, AlertCircle, ChevronDown } from 'lucide-react';
+import { api } from '../lib/api';
+import { Category } from '../../shared/types';
+
+interface ParsedQuestion {
+  content: string;
+  options: string[];
+  correctAnswer: number;
+  explanation?: string;
+  categoryId: number;
+}
+
+interface ImportModalProps {
+  categories: Category[];
+  onClose: () => void;
+  onImportComplete: () => void;
+}
+
+export function ImportModal({ categories, onClose, onImportComplete }: ImportModalProps) {
+  const [selectedCategory, setSelectedCategory] = useState<number>(categories[0]?.id || 0);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [parsedQuestions, setParsedQuestions] = useState<ParsedQuestion[]>([]);
+  const [errors, setErrors] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
+  const [importResult, setImportResult] = useState<{ success: number; failed: number } | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      setParsedQuestions([]);
+      setErrors([]);
+      setImportResult(null);
+      setShowPreview(false);
+    }
+  };
+
+  const handleParse = async () => {
+    console.log('handleParse 被调用');
+    console.log('selectedFile:', selectedFile);
+    console.log('selectedCategory:', selectedCategory);
+    
+    if (!selectedFile || !selectedCategory) {
+      console.log('文件或分类未选择');
+      if (!selectedFile) setErrors(['请先选择文件']);
+      if (!selectedCategory) setErrors(['请先选择分类']);
+      return;
+    }
+
+    setIsLoading(true);
+    setErrors([]);
+    setParsedQuestions([]);
+
+    try {
+      console.log('开始调用 API');
+      const result = await api.import.parseFile(selectedFile, selectedCategory);
+      console.log('API 响应:', result);
+      
+      if (result.success && result.questions.length > 0) {
+        setParsedQuestions(result.questions);
+        setErrors(result.errors || []);
+        setShowPreview(true);
+      } else {
+        setErrors(['未能解析出题目，请检查文件格式']);
+      }
+    } catch (error: any) {
+      console.error('解析错误:', error);
+      setErrors([error.message || '解析文件失败']);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleImport = async () => {
+    if (parsedQuestions.length === 0) return;
+
+    setIsImporting(true);
+    try {
+      const result: any = await api.import.batchImport(parsedQuestions);
+      setImportResult({ success: result.success, failed: result.failed });
+      
+      if (result.success > 0) {
+        setTimeout(() => {
+          onImportComplete();
+          onClose();
+        }, 1500);
+      }
+    } catch (error: any) {
+      setErrors([error.message || '导入失败']);
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+        <div className="p-6 border-b flex justify-between items-center bg-gradient-to-r from-green-500 to-teal-500">
+          <div className="flex items-center space-x-3">
+            <Upload className="h-6 w-6 text-white" />
+            <h2 className="text-2xl font-bold text-white">批量导入题目</h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-white hover:bg-opacity-20 rounded-lg transition-colors"
+          >
+            <X className="h-6 w-6 text-white" />
+          </button>
+        </div>
+
+        <div className="p-6 overflow-y-auto flex-1">
+          {!showPreview ? (
+            <div className="space-y-6">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h3 className="font-semibold text-blue-800 mb-2">支持的文件格式：</h3>
+                <ul className="text-sm text-blue-700 space-y-1">
+                  <li>• <strong>Word文档 (.docx)</strong> - 推荐使用，包含题目、选项、答案</li>
+                  <li>• <strong>PDF文档 (.pdf)</strong> - 支持 PDF 文件导入</li>
+                  <li>• <strong>文本文件 (.txt)</strong> - 纯文本格式，支持多种排版</li>
+                  <li>• <strong>CSV文件 (.csv)</strong> - 表格格式，便于批量编辑</li>
+                  <li>• <strong>JSON文件 (.json)</strong> - 程序化格式</li>
+                </ul>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  选择分类
+                </label>
+                <div className="relative">
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(parseInt(e.target.value))}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 appearance-none"
+                  >
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
+                </div>
+              </div>
+
+              <div
+                className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-green-500 transition-colors cursor-pointer"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".docx,.doc,.txt,.csv,.json,.pdf"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                />
+                <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                {selectedFile ? (
+                  <div>
+                    <p className="text-green-600 font-medium">{selectedFile.name}</p>
+                    <p className="text-sm text-gray-500 mt-1">
+                      {(selectedFile.size / 1024).toFixed(1)} KB
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <p className="text-gray-600">点击或拖拽文件到这里</p>
+                    <p className="text-sm text-gray-400 mt-1">支持 docx, pdf, txt, csv, json 格式</p>
+                  </div>
+                )}
+              </div>
+
+              {errors.length > 0 && (
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                  <div className="flex items-start space-x-2">
+                    <AlertCircle className="h-5 w-5 text-yellow-500 mt-0.5" />
+                    <div>
+                      <p className="font-medium text-yellow-800">警告</p>
+                      {errors.map((err, i) => (
+                        <p key={i} className="text-sm text-yellow-700">{err}</p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-semibold text-gray-700 mb-2">题目格式示例：</h3>
+                <div className="text-sm text-gray-600 space-y-2 font-mono">
+                  <p>1. 题目内容是什么？</p>
+                  <p>A. 选项一</p>
+                  <p>B. 选项二</p>
+                  <p>C. 选项三</p>
+                  <p>D. 选项四</p>
+                  <p className="text-green-600">答案：B</p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="flex items-center space-x-3">
+                  <Check className="h-6 w-6 text-green-500" />
+                  <div>
+                    <p className="font-medium text-green-800">
+                      成功解析 {parsedQuestions.length} 道题目
+                    </p>
+                    {errors.length > 0 && (
+                      <p className="text-sm text-yellow-600">
+                        {errors.length} 道题目解析失败
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowPreview(false)}
+                  className="text-sm text-green-600 hover:text-green-800"
+                >
+                  重新选择文件
+                </button>
+              </div>
+
+              <div className="max-h-96 overflow-y-auto space-y-3">
+                {parsedQuestions.map((q, index) => (
+                  <div key={index} className="bg-white border rounded-lg p-4">
+                    <p className="font-medium text-gray-800 mb-2">
+                      {index + 1}. {q.content}
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      {q.options.map((opt, i) => (
+                        <div
+                          key={i}
+                          className={`px-3 py-1 rounded ${
+                            i === q.correctAnswer
+                              ? 'bg-green-100 text-green-700 border border-green-300'
+                              : 'bg-gray-50 text-gray-600'
+                          }`}
+                        >
+                          {String.fromCharCode(65 + i)}. {opt}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="p-6 border-t bg-gray-50 flex justify-end space-x-4">
+          <button
+            onClick={onClose}
+            className="px-6 py-2 text-gray-700 hover:bg-gray-200 rounded-lg transition-colors"
+          >
+            取消
+          </button>
+          {!showPreview ? (
+            <button
+              onClick={handleParse}
+              disabled={!selectedFile || isLoading}
+              className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+            >
+              {isLoading ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  <span>解析中...</span>
+                </>
+              ) : (
+                <>
+                  <Upload className="h-4 w-4" />
+                  <span>解析文件</span>
+                </>
+              )}
+            </button>
+          ) : !importResult ? (
+            <button
+              onClick={handleImport}
+              disabled={isImporting}
+              className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+            >
+              {isImporting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                  <span>导入中...</span>
+                </>
+              ) : (
+                <>
+                  <Check className="h-4 w-4" />
+                  <span>确认导入</span>
+                </>
+              )}
+            </button>
+          ) : (
+            <div className="flex items-center space-x-2 text-green-600">
+              <Check className="h-5 w-5" />
+              <span>导入完成！</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}

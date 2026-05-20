@@ -38,7 +38,7 @@ export function Login() {
               <BookOpen className="h-12 w-12 text-blue-600" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-2">学习助手</h1>
+          <h1 className="text-3xl font-bold text-white mb-2">传输通信知识学习助手</h1>
           <p className="text-blue-200">基于科学记忆的高效学习系统</p>
         </div>
 

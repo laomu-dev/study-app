@@ -7,14 +7,18 @@ export interface User {
   createdAt: Date;
 }
 
+export type QuestionType = 'single' | 'multiple' | 'judge';
+
 export interface Question {
   id: number;
   categoryId: number;
   content: string;
   options: string[];
-  correctAnswer: number;
+  correctAnswer: number | number[];
   explanation?: string | null;
   createdAt: Date;
+  isMultiple?: boolean;
+  type?: QuestionType;
 }
 
 export interface Category {

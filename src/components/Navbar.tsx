@@ -32,7 +32,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2 text-xl font-bold">
               <BookOpen className="h-8 w-8" />
-              <span className="hidden sm:inline">学习助手</span>
+              <span className="hidden sm:inline">传输通信知识学习助手</span>
             </Link>
           </div>
 
