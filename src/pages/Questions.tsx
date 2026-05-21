@@ -19,7 +19,7 @@ export function Questions() {
     categoryId: 0,
     content: '',
     options: ['', '', '', ''],
-    correctAnswer: 0,
+    correctAnswer: 0 as number | number[],
     explanation: '',
   });
 
