@@ -1,4 +1,4 @@
-import { db } from '../config/database-simple';
+import { db } from '../config/database';
 import { Question, StudyRecord, DailyTask, StudyProgress, StudyStats } from '../../shared/types';
 import { calculateNextReview, updateMemoryStrength } from '../utils/spacedRepetition';
 
@@ -15,8 +15,8 @@ export class StudyService {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const allQuestions = db.questions.getAll(userId, categoryId);
-    const userRecords = db.studyRecords.getByUserId(userId);
+    const allQuestions = await db.questions.getAll(userId, categoryId);
+    const userRecords = await db.studyRecords.getByUserId(userId);
     const recordsMap = new Map(userRecords.map(r => [r.questionId, r]));
 
     const tasks: DailyTask[] = [];
@@ -52,18 +52,18 @@ export class StudyService {
   }
 
   async submitAnswer(userId: number, submission: AnswerSubmission): Promise<{ isCorrect: boolean; studyRecord: StudyRecord }> {
-    const question = db.questions.findById(submission.questionId, userId);
+    const question = await db.questions.findById(submission.questionId, userId);
     if (!question) throw new Error('Question not found');
 
     const isCorrect = this.checkAnswerCorrect(question.correctAnswer, submission.selectedAnswer);
 
-    let studyRecord = db.studyRecords.getByUserAndQuestion(userId, submission.questionId);
+    let studyRecord = await db.studyRecords.getByUserAndQuestion(userId, submission.questionId);
 
     if (studyRecord) {
       const newMemoryStrength = updateMemoryStrength(isCorrect, studyRecord.memoryStrength);
       const nextReviewAt = calculateNextReview(newMemoryStrength);
 
-      studyRecord = db.studyRecords.update(studyRecord.id, {
+      studyRecord = await db.studyRecords.update(studyRecord.id, {
         memoryStrength: newMemoryStrength,
         nextReviewAt,
         lastReviewedAt: new Date(),
@@ -74,7 +74,7 @@ export class StudyService {
       const initialMemoryStrength = updateMemoryStrength(isCorrect, 0);
       const nextReviewAt = calculateNextReview(initialMemoryStrength);
 
-      studyRecord = db.studyRecords.create({
+      studyRecord = await db.studyRecords.create({
         userId,
         questionId: submission.questionId,
         memoryStrength: initialMemoryStrength,
@@ -95,8 +95,8 @@ export class StudyService {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const allQuestions = db.questions.getAll(userId, categoryId);
-    const userRecords = db.studyRecords.getByUserId(userId);
+    const allQuestions = await db.questions.getAll(userId, categoryId);
+    const userRecords = await db.studyRecords.getByUserId(userId);
 
     const reviewedToday = userRecords.filter(r => {
       const reviewed = new Date(r.lastReviewedAt!);
@@ -121,7 +121,7 @@ export class StudyService {
   }
 
   async getStudyStats(userId: number): Promise<StudyStats> {
-    const userRecords = db.studyRecords.getByUserId(userId);
+    const userRecords = await db.studyRecords.getByUserId(userId);
 
     const totalReviews = userRecords.reduce((sum, r) => sum + r.reviewCount, 0);
     const totalCorrect = userRecords.reduce((sum, r) => sum + r.correctCount, 0);
@@ -136,6 +136,6 @@ export class StudyService {
   }
 
   async getStudyRecord(userId: number, questionId: number): Promise<StudyRecord | null> {
-    return db.studyRecords.getByUserAndQuestion(userId, questionId) || null;
+    return (await db.studyRecords.getByUserAndQuestion(userId, questionId)) || null;
   }
 }

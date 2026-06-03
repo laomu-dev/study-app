@@ -1,4 +1,4 @@
-import { db } from '../config/database-simple';
+import { db } from '../config/database';
 import { Question, Category } from '../../shared/types';
 
 export interface CreateQuestionData {
@@ -12,43 +12,43 @@ export interface CreateQuestionData {
 
 export class QuestionService {
   async getAllQuestions(userId: number, categoryId?: number): Promise<Question[]> {
-    return db.questions.getAll(userId, categoryId);
+    return await db.questions.getAll(userId, categoryId);
   }
 
   async getQuestionById(userId: number, id: number): Promise<Question | null> {
-    return db.questions.findById(id, userId) || null;
+    return (await db.questions.findById(id, userId)) || null;
   }
 
   async createQuestion(userId: number, data: CreateQuestionData): Promise<Question> {
-    if (!db.categories.findById(data.categoryId, userId)) {
+    if (!(await db.categories.findById(data.categoryId, userId))) {
       throw new Error('Category not found');
     }
 
-    return db.questions.create({ ...data, userId });
+    return await db.questions.create({ ...data, userId });
   }
 
   async updateQuestion(userId: number, id: number, data: Partial<CreateQuestionData>): Promise<Question | null> {
-    if (data.categoryId && !db.categories.findById(data.categoryId, userId)) {
+    if (data.categoryId && !(await db.categories.findById(data.categoryId, userId))) {
       throw new Error('Category not found');
     }
 
-    return db.questions.update(id, userId, data) || null;
+    return (await db.questions.update(id, userId, data)) || null;
   }
 
   async deleteQuestion(userId: number, id: number): Promise<boolean> {
-    return db.questions.delete(id, userId);
+    return await db.questions.delete(id, userId);
   }
 
   async getAllCategories(userId: number): Promise<Category[]> {
-    return db.categories.getAll(userId);
+    return await db.categories.getAll(userId);
   }
 
   async createCategory(userId: number, name: string, description?: string): Promise<Category> {
-    return db.categories.create({ userId, name, description });
+    return await db.categories.create({ userId, name, description });
   }
 
   async getRandomQuestions(userId: number, count: number, excludeIds?: number[]): Promise<Question[]> {
-    let qs = db.questions.getAll(userId);
+    let qs = await db.questions.getAll(userId);
     if (excludeIds && excludeIds.length > 0) {
       qs = qs.filter(q => !excludeIds.includes(q.id));
     }

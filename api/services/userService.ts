@@ -1,4 +1,5 @@
-import { db } from '../config/database-simple';
+import bcrypt from 'bcrypt';
+import { db } from '../config/database';
 import { User } from '../../shared/types';
 
 export interface LoginCredentials {
@@ -18,13 +19,13 @@ export class UserService {
   }
 
   async findByUsername(username: string): Promise<User | null> {
-    const u = db.users.findByUsername(username);
+    const u = await db.users.findByUsername(username);
     if (!u) return null;
     return this.toPublicUser(u);
   }
 
   async findById(id: number): Promise<User | null> {
-    const u = db.users.findById(id);
+    const u = await db.users.findById(id);
     if (!u) return null;
     return this.toPublicUser(u);
   }
@@ -33,14 +34,15 @@ export class UserService {
     const normalizedUsername = username.trim();
     const normalizedEmail = email?.trim() || `${normalizedUsername}@example.com`;
 
-    if (db.users.findByUsername(normalizedUsername)) {
+    if (await db.users.findByUsername(normalizedUsername)) {
       throw new Error('Username already exists');
     }
 
-    const user = db.users.create({
+    const passwordHash = await bcrypt.hash(password, 10);
+    const user = await db.users.create({
       username: normalizedUsername,
       email: normalizedEmail,
-      passwordHash: password,
+      passwordHash,
       role: 'user',
     });
 
@@ -48,13 +50,9 @@ export class UserService {
   }
 
   async verifyPassword(user: User, password: string): Promise<boolean> {
-    const storedUser = db.users.findById(user.id);
+    const storedUser = await db.users.findById(user.id);
     if (!storedUser) return false;
 
-    if (storedUser.passwordHash.startsWith('$2b$')) {
-      return password === 'admin123';
-    }
-
-    return storedUser.passwordHash === password;
+    return bcrypt.compare(password, storedUser.passwordHash);
   }
 }

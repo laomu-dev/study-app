@@ -2,7 +2,7 @@
  * local server entry file, for local development
  */
 import app from './app.js';
-import { initDatabase } from './config/database-simple.js';
+import { initDatabase } from './config/database.js';
 
 /**
  * initialize database with tables and seed data

@@ -52,7 +52,7 @@ export interface StudyRecord {
 }
 
 // 模拟数据
-const initialUsers: User[] = [
+export const initialUsers: User[] = [
   {
     id: 1,
     username: 'admin',
@@ -95,7 +95,7 @@ const initialUsers: User[] = [
   },
 ];
 
-const initialCategories: Category[] = [
+export const initialCategories: Category[] = [
   { id: 1, name: '通信题库', description: '通信岗位基础与专业题目' },
   { id: 2, name: '人工智能题库', description: 'AI 基础知识、应用方法与资料生成题' },
 ];
@@ -405,7 +405,7 @@ function loadAdditionalQuestions(): Question[] {
   }
 }
 
-const seedQuestions = [...initialQuestions, ...loadAdditionalQuestions()];
+export const seedQuestions = [...initialQuestions, ...loadAdditionalQuestions()];
 
 // 内存存储
 const users: Map<number, User> = new Map(initialUsers.map(u => [u.id, u]));
