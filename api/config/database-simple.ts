@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const defaultPasswordHash = '$2b$10$rzTnHNeE2DzP5mrAX0idOe0dbgF1EL0E/zfszsShlRrG/yoWD5mni';
 
 export interface User {
   id: number;
@@ -57,7 +58,7 @@ export const initialUsers: User[] = [
     id: 1,
     username: 'admin',
     email: 'admin@example.com',
-    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    passwordHash: defaultPasswordHash, // admin123
     role: 'admin',
     createdAt: new Date(),
   },
@@ -65,7 +66,7 @@ export const initialUsers: User[] = [
     id: 2,
     username: 'testuser',
     email: 'user@example.com',
-    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    passwordHash: defaultPasswordHash, // admin123
     role: 'user',
     createdAt: new Date(),
   },
@@ -73,7 +74,7 @@ export const initialUsers: User[] = [
     id: 3,
     username: 'admin2',
     email: 'admin2@example.com',
-    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    passwordHash: defaultPasswordHash, // admin123
     role: 'admin',
     createdAt: new Date(),
   },
@@ -81,7 +82,7 @@ export const initialUsers: User[] = [
     id: 4,
     username: 'admin3',
     email: 'admin3@example.com',
-    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    passwordHash: defaultPasswordHash, // admin123
     role: 'admin',
     createdAt: new Date(),
   },
@@ -89,7 +90,7 @@ export const initialUsers: User[] = [
     id: 5,
     username: 'admin4',
     email: 'admin4@example.com',
-    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    passwordHash: defaultPasswordHash, // admin123
     role: 'admin',
     createdAt: new Date(),
   },
