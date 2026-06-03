@@ -8,14 +8,14 @@ export interface AnswerSubmission {
 }
 
 export class StudyService {
-  async getTodayTasks(userId: number, limit: number = 20): Promise<DailyTask[]> {
+  async getTodayTasks(userId: number, limit: number = 50, categoryId?: number): Promise<DailyTask[]> {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const allQuestions = db.questions.getAll();
+    const allQuestions = db.questions.getAll(categoryId);
     const userRecords = db.studyRecords.getByUserId(userId);
     const recordsMap = new Map(userRecords.map(r => [r.questionId, r]));
 
@@ -88,14 +88,14 @@ export class StudyService {
     return { isCorrect, studyRecord };
   }
 
-  async getStudyProgress(userId: number): Promise<StudyProgress> {
+  async getStudyProgress(userId: number, categoryId?: number): Promise<StudyProgress> {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const allQuestions = db.questions.getAll();
+    const allQuestions = db.questions.getAll(categoryId);
     const userRecords = db.studyRecords.getByUserId(userId);
 
     const reviewedToday = userRecords.filter(r => {

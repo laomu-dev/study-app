@@ -1,13 +1,15 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
 import { BookOpen, CheckCircle, Calendar, TrendingUp, Play } from 'lucide-react';
+import { Category } from '../../shared/types';
 
 export function Home() {
   const navigate = useNavigate();
   const { user, progress, stats, setProgress, setStats } = useAppStore();
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     if (user) {
@@ -23,13 +25,16 @@ export function Home() {
       ]);
       setProgress(progressResult.progress);
       setStats(statsResult.stats);
+
+      const categoriesResult: any = await api.questions.getCategories();
+      setCategories(categoriesResult.categories || []);
     } catch (error) {
       console.error('Failed to load data:', error);
     }
   };
 
-  const startLearning = () => {
-    navigate('/study');
+  const startLearning = (categoryId?: number) => {
+    navigate(categoryId ? `/study?categoryId=${categoryId}` : '/study');
   };
 
   return (
@@ -40,6 +45,48 @@ export function Home() {
             欢迎回来, {user?.username}!
           </h1>
           <p className="text-gray-600">今天是学习的好日子</p>
+        </div>
+
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">选择题库学习</h2>
+              <p className="text-sm text-gray-600">按题库进入学习，只练当前题库里的内容</p>
+            </div>
+            <button
+              onClick={() => startLearning()}
+              className="hidden sm:inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-gray-900 text-white text-sm font-medium hover:bg-gray-800"
+            >
+              <Play className="h-4 w-4" />
+              <span>全部题库</span>
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => startLearning(category.id)}
+                className="bg-white rounded-xl shadow-md p-5 text-left hover:shadow-lg hover:-translate-y-0.5 transition-all border border-gray-100"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-1">{category.name}</h3>
+                    <p className="text-sm text-gray-600 line-clamp-2">
+                      {category.description || '进入这个题库开始学习'}
+                    </p>
+                  </div>
+                  <div className="bg-blue-50 p-2 rounded-lg">
+                    <BookOpen className="h-5 w-5 text-blue-600" />
+                  </div>
+                </div>
+                <div className="mt-4 inline-flex items-center space-x-2 text-blue-600 font-medium text-sm">
+                  <Play className="h-4 w-4" />
+                  <span>开始这个题库</span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -130,7 +177,7 @@ export function Home() {
             </div>
 
             <button
-              onClick={startLearning}
+              onClick={() => startLearning()}
               className="w-full bg-white text-blue-700 font-bold py-4 px-6 rounded-xl hover:bg-blue-50 transition-colors flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
             >
               <Play className="h-5 w-5" />

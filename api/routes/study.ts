@@ -5,6 +5,18 @@ import { UserService } from '../services/userService';
 const router = Router();
 const studyService = new StudyService();
 const userService = new UserService();
+const DEFAULT_DAILY_LIMIT = 50;
+const MIN_DAILY_LIMIT = 30;
+const MAX_DAILY_LIMIT = 50;
+
+function normalizeDailyLimit(rawLimit: unknown): number {
+  if (!rawLimit) return DEFAULT_DAILY_LIMIT;
+
+  const parsed = parseInt(String(rawLimit), 10);
+  if (Number.isNaN(parsed)) return DEFAULT_DAILY_LIMIT;
+
+  return Math.min(Math.max(parsed, MIN_DAILY_LIMIT), MAX_DAILY_LIMIT);
+}
 
 async function checkAuth(req: any, res: any) {
   const userId = (req.session as any)?.userId;
@@ -25,8 +37,9 @@ router.get('/today', async (req, res) => {
     const user = await checkAuth(req, res);
     if (!user) return;
 
-    const limit = req.query.limit ? parseInt(req.query.limit as string) : 20;
-    const tasks = await studyService.getTodayTasks(user.id, limit);
+    const limit = normalizeDailyLimit(req.query.limit);
+    const categoryId = req.query.categoryId ? parseInt(req.query.categoryId as string) : undefined;
+    const tasks = await studyService.getTodayTasks(user.id, limit, categoryId);
     res.json({ tasks });
   } catch (error) {
     console.error('Get today tasks error:', error);
@@ -58,7 +71,8 @@ router.get('/progress', async (req, res) => {
     const user = await checkAuth(req, res);
     if (!user) return;
 
-    const progress = await studyService.getStudyProgress(user.id);
+    const categoryId = req.query.categoryId ? parseInt(req.query.categoryId as string) : undefined;
+    const progress = await studyService.getStudyProgress(user.id, categoryId);
     res.json({ progress });
   } catch (error) {
     console.error('Get progress error:', error);

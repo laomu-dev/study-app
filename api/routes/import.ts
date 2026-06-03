@@ -34,6 +34,19 @@ const upload = multer({
   }
 });
 
+function isValidAnswer(answer: unknown, optionsCount: number): boolean {
+  if (typeof answer === 'number') {
+    return Number.isInteger(answer) && answer >= 0 && answer < optionsCount;
+  }
+
+  if (Array.isArray(answer)) {
+    return answer.length > 0
+      && answer.every(item => Number.isInteger(item) && item >= 0 && item < optionsCount);
+  }
+
+  return false;
+}
+
 async function checkAdmin(req: any, res: any) {
   const userId = (req.session as any)?.userId;
   if (!userId) {
@@ -50,7 +63,6 @@ async function checkAdmin(req: any, res: any) {
 
 router.post('/parse', upload.single('file'), async (req, res) => {
   try {
-    console.log('=== 开始解析请求');
     const user = await checkAdmin(req, res);
     if (!user) return;
 
@@ -59,9 +71,6 @@ router.post('/parse', upload.single('file'), async (req, res) => {
     }
 
     const { categoryId } = req.body;
-    console.log('文件名:', req.file.originalname);
-    console.log('文件大小:', req.file.size);
-    console.log('分类ID:', categoryId);
     
     if (!categoryId) {
       return res.status(400).json({ error: '请选择分类' });
@@ -77,22 +86,16 @@ router.post('/parse', upload.single('file'), async (req, res) => {
       parseResult = await parsePDFFile(req.file.buffer);
     } else if (ext === '.json') {
       rawText = decodeText(req.file.buffer);
-      console.log('JSON文件内容:', rawText.substring(0, 500));
       parseResult = parseJSONFile(rawText);
     } else {
       rawText = decodeText(req.file.buffer);
-      console.log('文本文件内容:', rawText.substring(0, 500));
       parseResult = parseTextFile(rawText, req.file.originalname);
     }
-
-    console.log('解析结果:', parseResult);
 
     const questionsWithCategory = parseResult.questions.map(q => ({
       ...q,
       categoryId: parseInt(categoryId)
     }));
-
-    console.log('分类后的题目:', questionsWithCategory.length);
 
     res.json({
       success: parseResult.success,
@@ -126,19 +129,32 @@ router.post('/batch', async (req, res) => {
     for (let i = 0; i < questions.length; i++) {
       const q = questions[i];
       try {
-        if (!q.categoryId || !q.content || !q.options || q.correctAnswer === undefined) {
+        if (!q.categoryId || !q.content || !Array.isArray(q.options) || q.correctAnswer === undefined) {
           results.failed++;
           results.errors.push(`第 ${i + 1} 题: 缺少必填字段`);
           continue;
         }
 
+        const options = q.options.map((option: unknown) => String(option).trim()).filter(Boolean);
+        if (options.length < 2) {
+          results.failed++;
+          results.errors.push(`第 ${i + 1} 题: 至少需要2个有效选项`);
+          continue;
+        }
+
+        if (!isValidAnswer(q.correctAnswer, options.length)) {
+          results.failed++;
+          results.errors.push(`第 ${i + 1} 题: 答案超出选项范围`);
+          continue;
+        }
+
         await questionService.createQuestion({
-          categoryId: q.categoryId,
-          content: q.content,
-          options: q.options,
+          categoryId: Number(q.categoryId),
+          content: String(q.content).trim(),
+          options,
           correctAnswer: q.correctAnswer,
-          isMultiple: q.isMultiple,
-          explanation: q.explanation
+          isMultiple: Array.isArray(q.correctAnswer) || q.isMultiple,
+          explanation: q.explanation ? String(q.explanation).trim() : undefined
         });
         results.success++;
       } catch (err: any) {

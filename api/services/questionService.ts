@@ -36,9 +36,7 @@ export class QuestionService {
   }
 
   async createCategory(name: string, description?: string): Promise<Category> {
-    // For simplicity, we'll just return an error for now
-    // In a real app, we'd add to database
-    throw new Error('Category creation not implemented in demo');
+    return db.categories.create({ name, description });
   }
 
   async getRandomQuestions(count: number, excludeIds?: number[]): Promise<Question[]> {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
-import { BookOpen, Home, Settings, LogOut, BookMarked, Menu, X } from 'lucide-react';
+import { BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText } from 'lucide-react';
 
 export function Navbar() {
   const location = useLocation();
@@ -60,19 +60,44 @@ export function Navbar() {
               <BookMarked className="h-4 w-4" />
               <span>学习</span>
             </Link>
+
+            <Link
+              to="/quiz"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                isActive('/quiz')
+                  ? 'bg-blue-900 text-white shadow-md'
+                  : 'text-blue-100 hover:bg-blue-700'
+              }`}
+            >
+              <ClipboardCheck className="h-4 w-4" />
+              <span>测验</span>
+            </Link>
             
             {user.role === 'admin' && (
-              <Link
-                to="/questions"
-                className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                  isActive('/questions')
-                    ? 'bg-blue-900 text-white shadow-md'
-                    : 'text-blue-100 hover:bg-blue-700'
-                }`}
-              >
-                <Settings className="h-4 w-4" />
-                <span>题库</span>
-              </Link>
+              <>
+                <Link
+                  to="/materials"
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                    isActive('/materials')
+                      ? 'bg-blue-900 text-white shadow-md'
+                      : 'text-blue-100 hover:bg-blue-700'
+                  }`}
+                >
+                  <FileText className="h-4 w-4" />
+                  <span>资料</span>
+                </Link>
+                <Link
+                  to="/questions"
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                    isActive('/questions')
+                      ? 'bg-blue-900 text-white shadow-md'
+                      : 'text-blue-100 hover:bg-blue-700'
+                  }`}
+                >
+                  <Settings className="h-4 w-4" />
+                  <span>题库</span>
+                </Link>
+              </>
             )}
           </div>
 
@@ -127,20 +152,47 @@ export function Navbar() {
                 <BookMarked className="h-5 w-5" />
                 <span>学习</span>
               </Link>
+
+              <Link
+                to="/quiz"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                  isActive('/quiz')
+                    ? 'bg-blue-900 text-white'
+                    : 'text-blue-100 hover:bg-blue-700'
+                }`}
+              >
+                <ClipboardCheck className="h-5 w-5" />
+                <span>测验</span>
+              </Link>
               
               {user.role === 'admin' && (
-                <Link
-                  to="/questions"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
-                    isActive('/questions')
-                      ? 'bg-blue-900 text-white'
-                      : 'text-blue-100 hover:bg-blue-700'
-                  }`}
-                >
-                  <Settings className="h-5 w-5" />
-                  <span>题库管理</span>
-                </Link>
+                <>
+                  <Link
+                    to="/materials"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                      isActive('/materials')
+                        ? 'bg-blue-900 text-white'
+                        : 'text-blue-100 hover:bg-blue-700'
+                    }`}
+                  >
+                    <FileText className="h-5 w-5" />
+                    <span>资料生成</span>
+                  </Link>
+                  <Link
+                    to="/questions"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                      isActive('/questions')
+                        ? 'bg-blue-900 text-white'
+                        : 'text-blue-100 hover:bg-blue-700'
+                    }`}
+                  >
+                    <Settings className="h-5 w-5" />
+                    <span>题库管理</span>
+                  </Link>
+                </>
               )}
               
               <div className="border-t border-blue-600 pt-2 mt-2">

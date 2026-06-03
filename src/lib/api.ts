@@ -72,17 +72,80 @@ class ApiClient {
   };
 
   study = {
-    getTodayTasks: (limit?: number) => 
-      this.request(`/study/today${limit ? `?limit=${limit}` : ''}`),
+    getTodayTasks: (limit?: number, categoryId?: number) => {
+      const params = new URLSearchParams();
+      if (limit) params.set('limit', String(limit));
+      if (categoryId) params.set('categoryId', String(categoryId));
+      const query = params.toString();
+      return this.request(`/study/today${query ? `?${query}` : ''}`);
+    },
     submitAnswer: (questionId: number, selectedAnswer: number | number[]) => 
       this.request('/study/answer', {
         method: 'POST',
         body: JSON.stringify({ questionId, selectedAnswer }),
       }),
-    getProgress: () => 
-      this.request('/study/progress'),
+    getProgress: (categoryId?: number) => 
+      this.request(`/study/progress${categoryId ? `?categoryId=${categoryId}` : ''}`),
     getStats: () => 
       this.request('/study/stats'),
+  };
+
+  quiz = {
+    start: (categoryId?: number, limit?: number) =>
+      this.request('/quiz/start', {
+        method: 'POST',
+        body: JSON.stringify({ categoryId, limit }),
+      }),
+    submit: (answers: Array<{ questionId: number; selectedAnswer: number | number[] }>) =>
+      this.request('/quiz/submit', {
+        method: 'POST',
+        body: JSON.stringify({ answers }),
+      }),
+  };
+
+  materials = {
+    extract: async (file: File, questionCount: number) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('questionCount', String(questionCount));
+
+      const response = await fetch(`${this.baseUrl}/materials/extract`, {
+        method: 'POST',
+        credentials: 'include',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP ${response.status}`);
+      }
+
+      return await response.json();
+    },
+    generate: async (file: File, questionCount: number, categoryId: number) => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('questionCount', String(questionCount));
+      formData.append('categoryId', String(categoryId));
+
+      const response = await fetch(`${this.baseUrl}/materials/generate`, {
+        method: 'POST',
+        credentials: 'include',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP ${response.status}`);
+      }
+
+      return await response.json();
+    },
+    parseGenerated: (content: string, categoryId: number) =>
+      this.request('/materials/parse-generated', {
+        method: 'POST',
+        body: JSON.stringify({ content, categoryId }),
+      }),
   };
 
   import = {

@@ -1,13 +1,14 @@
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
-import { DailyTask } from '../../shared/types';
+import { Category, DailyTask } from '../../shared/types';
 import { CheckCircle, XCircle, ArrowRight, RotateCcw, Home, Trophy } from 'lucide-react';
 
 export function Study() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { user, todayTasks, setTodayTasks } = useAppStore();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | number[] | null>(null);
@@ -15,6 +16,9 @@ export function Study() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [completed, setCompleted] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const categoryId = searchParams.get('categoryId') ? parseInt(searchParams.get('categoryId')!, 10) : undefined;
+  const currentCategory = categories.find(category => category.id === categoryId);
 
   const currentTask: DailyTask | null = todayTasks[currentIndex] || null;
   
@@ -25,13 +29,21 @@ export function Study() {
     if (user) {
       loadTasks();
     }
-  }, [user]);
+  }, [user, categoryId]);
 
   const loadTasks = async () => {
     try {
       setIsLoading(true);
-      const result: any = await api.study.getTodayTasks();
-      setTodayTasks(result.tasks);
+      const [tasksResult, categoriesResult]: any = await Promise.all([
+        api.study.getTodayTasks(undefined, categoryId),
+        api.questions.getCategories(),
+      ]);
+      setCategories(categoriesResult.categories || []);
+      setTodayTasks(tasksResult.tasks);
+      setCurrentIndex(0);
+      setSelectedAnswer(null);
+      setShowResult(false);
+      setCompleted(false);
     } catch (error) {
       console.error('Failed to load tasks:', error);
     } finally {
@@ -114,7 +126,9 @@ export function Study() {
         <div className="text-center">
           <Trophy className="h-24 w-24 text-yellow-500 mx-auto mb-6" />
           <h2 className="text-3xl font-bold text-gray-800 mb-4">太棒了！</h2>
-          <p className="text-gray-600 mb-8">今天没有需要复习的题目</p>
+          <p className="text-gray-600 mb-8">
+            {currentCategory ? `${currentCategory.name} 今天没有需要复习的题目` : '今天没有需要复习的题目'}
+          </p>
           <button
             onClick={handleGoHome}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors"
@@ -162,6 +176,17 @@ export function Study() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
+          <div className="mb-4">
+            <button
+              onClick={handleGoHome}
+              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+            >
+              返回题库选择
+            </button>
+            <h1 className="text-2xl font-bold text-gray-900 mt-2">
+              {currentCategory ? currentCategory.name : '全部题库'}
+            </h1>
+          </div>
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-gray-600">
               第 {currentIndex + 1} 题 / 共 {todayTasks.length} 题

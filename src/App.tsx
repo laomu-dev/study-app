@@ -7,6 +7,8 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Study } from "./pages/Study";
 import { Questions } from "./pages/Questions";
+import { Quiz } from "./pages/Quiz";
+import { MaterialGenerator } from "./pages/MaterialGenerator";
 
 function ProtectedRoute({ children, requireAdmin = false }: { children: React.ReactNode, requireAdmin?: boolean }) {
   const { user } = useAppStore();
@@ -63,6 +65,14 @@ export default function App() {
               </ProtectedRoute>
             } 
           />
+          <Route
+            path="/quiz"
+            element={
+              <ProtectedRoute>
+                <Quiz />
+              </ProtectedRoute>
+            }
+          />
           <Route 
             path="/questions" 
             element={
@@ -70,6 +80,14 @@ export default function App() {
                 <Questions />
               </ProtectedRoute>
             } 
+          />
+          <Route
+            path="/materials"
+            element={
+              <ProtectedRoute requireAdmin>
+                <MaterialGenerator />
+              </ProtectedRoute>
+            }
           />
         </Routes>
       </div>

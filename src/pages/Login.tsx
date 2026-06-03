@@ -39,7 +39,7 @@ export function Login() {
             </div>
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">传输通信知识学习助手</h1>
-          <p className="text-blue-200">基于科学记忆的高效学习系统</p>
+          <p className="text-blue-200">围绕题库练习与科学复习的学习系统</p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-2xl p-8">

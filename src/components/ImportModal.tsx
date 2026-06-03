@@ -6,19 +6,22 @@ import { Category } from '../../shared/types';
 interface ParsedQuestion {
   content: string;
   options: string[];
-  correctAnswer: number;
+  correctAnswer: number | number[];
+  isMultiple?: boolean;
+  type?: 'single' | 'multiple' | 'judge';
   explanation?: string;
   categoryId: number;
 }
 
 interface ImportModalProps {
   categories: Category[];
+  initialCategoryId?: number;
   onClose: () => void;
   onImportComplete: () => void;
 }
 
-export function ImportModal({ categories, onClose, onImportComplete }: ImportModalProps) {
-  const [selectedCategory, setSelectedCategory] = useState<number>(categories[0]?.id || 0);
+export function ImportModal({ categories, initialCategoryId, onClose, onImportComplete }: ImportModalProps) {
+  const [selectedCategory, setSelectedCategory] = useState<number>(initialCategoryId || categories[0]?.id || 0);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [parsedQuestions, setParsedQuestions] = useState<ParsedQuestion[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
@@ -27,6 +30,12 @@ export function ImportModal({ categories, onClose, onImportComplete }: ImportMod
   const [importResult, setImportResult] = useState<{ success: number; failed: number } | null>(null);
   const [showPreview, setShowPreview] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const isCorrectOption = (question: ParsedQuestion, index: number) => {
+    return Array.isArray(question.correctAnswer)
+      ? question.correctAnswer.includes(index)
+      : question.correctAnswer === index;
+  };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -116,13 +125,11 @@ export function ImportModal({ categories, onClose, onImportComplete }: ImportMod
           {!showPreview ? (
             <div className="space-y-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h3 className="font-semibold text-blue-800 mb-2">支持的文件格式：</h3>
+                <h3 className="font-semibold text-blue-800 mb-2">推荐导入格式：</h3>
                 <ul className="text-sm text-blue-700 space-y-1">
-                  <li>• <strong>Word文档 (.docx)</strong> - 推荐使用，包含题目、选项、答案</li>
-                  <li>• <strong>PDF文档 (.pdf)</strong> - 支持 PDF 文件导入</li>
-                  <li>• <strong>文本文件 (.txt)</strong> - 纯文本格式，支持多种排版</li>
-                  <li>• <strong>CSV文件 (.csv)</strong> - 表格格式，便于批量编辑</li>
-                  <li>• <strong>JSON文件 (.json)</strong> - 程序化格式</li>
+                  <li>• <strong>CSV文件 (.csv)</strong> - 最推荐，按列填写，识别最稳定</li>
+                  <li>• <strong>JSON文件 (.json)</strong> - 适合程序生成，准确度最高</li>
+                  <li>• <strong>文本/Word/PDF</strong> - 可导入规范题块，但排版复杂时可能需要人工检查预览</li>
                 </ul>
               </div>
 
@@ -188,8 +195,14 @@ export function ImportModal({ categories, onClose, onImportComplete }: ImportMod
               )}
 
               <div className="bg-gray-50 rounded-lg p-4">
-                <h3 className="font-semibold text-gray-700 mb-2">题目格式示例：</h3>
-                <div className="text-sm text-gray-600 space-y-2 font-mono">
+                <h3 className="font-semibold text-gray-700 mb-2">CSV 格式示例：</h3>
+                <div className="text-sm text-gray-600 space-y-2 font-mono overflow-x-auto">
+                  <p>题目,A,B,C,D,答案,解析</p>
+                  <p>光纤通信常用波长窗口是？,850nm,1310nm,1550nm,以上都是,D,三种波长都常见</p>
+                  <p>TCP/IP 中 IP 层对应 OSI 哪一层？,数据链路层,网络层,传输层,应用层,B,IP 工作在网络层</p>
+                </div>
+                <div className="text-sm text-gray-600 mt-4 space-y-2 font-mono">
+                  <p>文本/Word 也支持这种题块：</p>
                   <p>1. 题目内容是什么？</p>
                   <p>A. 选项一</p>
                   <p>B. 选项二</p>
@@ -234,7 +247,7 @@ export function ImportModal({ categories, onClose, onImportComplete }: ImportMod
                         <div
                           key={i}
                           className={`px-3 py-1 rounded ${
-                            i === q.correctAnswer
+                            isCorrectOption(q, i)
                               ? 'bg-green-100 text-green-700 border border-green-300'
                               : 'bg-gray-50 text-gray-600'
                           }`}

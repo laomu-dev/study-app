@@ -12,3 +12,7 @@ pnpm-debug.log*
 .vite/
 .cache/
 api/node_modules/
+cookies.txt
+chrome_profile_notebooklm/
+*.log
+scripts/__pycache__/

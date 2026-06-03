@@ -13,8 +13,10 @@ export function Questions() {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [categoryForm, setCategoryForm] = useState({ name: '', description: '' });
   const [formData, setFormData] = useState({
     categoryId: 0,
     content: '',
@@ -105,6 +107,25 @@ export function Questions() {
     setFormData(prev => ({ ...prev, options: newOptions }));
   };
 
+  const handleCreateCategory = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      await api.questions.createCategory(categoryForm.name, categoryForm.description);
+      setShowCategoryModal(false);
+      setCategoryForm({ name: '', description: '' });
+      loadData();
+    } catch (error) {
+      console.error('Failed to create category:', error);
+    }
+  };
+
+  const isCorrectOption = (question: Question, index: number) => {
+    return Array.isArray(question.correctAnswer)
+      ? question.correctAnswer.includes(index)
+      : question.correctAnswer === index;
+  };
+
   if (user?.role !== 'admin') {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -126,11 +147,18 @@ export function Questions() {
           </div>
           <div className="flex space-x-3">
             <button
+              onClick={() => setShowCategoryModal(true)}
+              className="bg-white hover:bg-gray-50 text-gray-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center space-x-2 border border-gray-300"
+            >
+              <Plus className="h-5 w-5" />
+              <span>新增题库</span>
+            </button>
+            <button
               onClick={() => setShowImportModal(true)}
               className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center space-x-2"
             >
               <Upload className="h-5 w-5" />
-              <span>批量导入</span>
+              <span>{selectedCategory ? '导入当前题库' : '批量导入'}</span>
             </button>
             <button
               onClick={handleCreate}
@@ -182,14 +210,14 @@ export function Questions() {
                         <div
                           key={index}
                           className={`flex items-center space-x-2 text-sm ${
-                            index === question.correctAnswer
+                            isCorrectOption(question, index)
                               ? 'text-green-600 font-medium'
                               : 'text-gray-600'
                           }`}
                         >
                           <span>{String.fromCharCode(65 + index)}.</span>
                           <span>{option}</span>
-                          {index === question.correctAnswer && (
+                          {isCorrectOption(question, index) && (
                             <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
                               正确答案
                             </span>
@@ -349,9 +377,73 @@ export function Questions() {
           </div>
         )}
 
+        {showCategoryModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full">
+              <div className="p-6 border-b">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-2xl font-bold text-gray-800">新增题库</h2>
+                  <button
+                    onClick={() => setShowCategoryModal(false)}
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <X className="h-6 w-6 text-gray-500" />
+                  </button>
+                </div>
+              </div>
+
+              <form onSubmit={handleCreateCategory} className="p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    题库名称
+                  </label>
+                  <input
+                    value={categoryForm.name}
+                    onChange={(e) => setCategoryForm(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    placeholder="例如：党建题库"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    说明（可选）
+                  </label>
+                  <textarea
+                    value={categoryForm.description}
+                    onChange={(e) => setCategoryForm(prev => ({ ...prev, description: e.target.value }))}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    rows={3}
+                    placeholder="这个题库主要放哪些内容"
+                  />
+                </div>
+
+                <div className="flex justify-end space-x-4 pt-4 border-t">
+                  <button
+                    type="button"
+                    onClick={() => setShowCategoryModal(false)}
+                    className="px-6 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    取消
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center space-x-2"
+                  >
+                    <Save className="h-5 w-5" />
+                    <span>保存题库</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         {showImportModal && (
           <ImportModal
             categories={categories}
+            initialCategoryId={selectedCategory || undefined}
             onClose={() => setShowImportModal(false)}
             onImportComplete={() => {
               setShowImportModal(false);

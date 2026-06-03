@@ -32,8 +32,6 @@ export class UserService {
   }
 
   async verifyPassword(user: User, password: string): Promise<boolean> {
-    console.log('Verifying password for user:', user.username);
-    console.log('Password provided:', password);
     // For demo purposes, just use plain text comparison
     return password === 'admin123';
   }

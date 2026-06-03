@@ -1,4 +1,4 @@
-import mammoth from 'mammoth'; // Restart server
+import mammoth from 'mammoth';
 import { createRequire } from 'module';
 import iconv from 'iconv-lite';
 const require = createRequire(import.meta.url);
@@ -35,8 +35,44 @@ export interface ParseResult {
   errors: string[];
 }
 
+export async function extractRawTextFromBuffer(buffer: Buffer, filename: string): Promise<string> {
+  const ext = filename.toLowerCase().split('.').pop();
+
+  if (ext === 'docx' || ext === 'doc') {
+    const result = await mammoth.extractRawText({ buffer });
+    return cleanText(result.value);
+  }
+
+  if (ext === 'pdf') {
+    return extractPDFRawText(buffer);
+  }
+
+  return cleanText(decodeText(buffer));
+}
+
+function extractPDFRawText(buffer: Buffer): Promise<string> {
+  return new Promise((resolve) => {
+    const pdfParser = new PDFParser();
+
+    pdfParser.on('pdfParser_dataReady', () => {
+      try {
+        resolve(cleanText(pdfParser.getRawTextContent()));
+      } catch (error) {
+        resolve('');
+      }
+    });
+
+    pdfParser.on('pdfParser_dataError', () => {
+      resolve('');
+    });
+
+    pdfParser.parseBuffer(buffer);
+  });
+}
+
 function cleanText(text: string): string {
   return text
+    .replace(/^\uFEFF/, '')
     .replace(/[\r\n]+/g, '\n')
     .replace(/\t/g, ' ')
     .replace(/\u00A0/g, ' ')
@@ -45,55 +81,85 @@ function cleanText(text: string): string {
     .trim();
 }
 
+function answerTextToResult(rawAnswer: string): { answer: number | number[], type: QuestionType } | null {
+  const answerText = rawAnswer.trim().replace(/[，,、\s]+/g, '').toUpperCase();
+  if (!answerText) return null;
+
+  const judgeMap: Record<string, number> = {
+    正确: 1,
+    对: 1,
+    '√': 1,
+    TRUE: 1,
+    T: 1,
+    错误: 0,
+    错: 0,
+    '×': 0,
+    FALSE: 0,
+    F: 0,
+  };
+
+  if (answerText in judgeMap) {
+    return { answer: judgeMap[answerText], type: 'judge' };
+  }
+
+  if (/^[A-H]+$/.test(answerText)) {
+    const answers = answerText.split('').map(char => char.charCodeAt(0) - 65);
+    return answers.length > 1
+      ? { answer: answers, type: 'multiple' }
+      : { answer: answers[0], type: 'single' };
+  }
+
+  if (/^[1-8]+$/.test(answerText)) {
+    const answers = answerText.split('').map(char => parseInt(char, 10) - 1);
+    return answers.length > 1
+      ? { answer: answers, type: 'multiple' }
+      : { answer: answers[0], type: 'single' };
+  }
+
+  return null;
+}
+
 function findCorrectAnswer(text: string): { answer: number | number[], type: QuestionType } {
+  const normalized = cleanText(text);
   // 首先检查判断题答案
   const judgePatterns = [
-    /(?:答案?|answer|correct)[:：]?\s*(正确|错误|对|错|√|×|true|false)/i,
-    /\[答案?[:：]?\s*(正确|错误|对|错|√|×|true|false)\]/i,
-    /【答案?[:：]?\s*(正确|错误|对|错|√|×|true|false)】/i,
+    /(?:正确答案|参考答案|答案|answer|correct)[:：]?\s*(正确|错误|对|错|√|×|true|false|t|f)/i,
+    /\[答案?[:：]?\s*(正确|错误|对|错|√|×|true|false|t|f)\]/i,
+    /【答案?[:：]?\s*(正确|错误|对|错|√|×|true|false|t|f)】/i,
   ];
   
   for (const pattern of judgePatterns) {
-    const match = text.match(pattern);
+    const match = normalized.match(pattern);
     if (match) {
-      const answerText = match[1].toLowerCase();
-      // 判断题：0=错误/×，1=正确/√
-      const isTrue = ['正确', '对', '√', 'true'].includes(answerText);
-      return { answer: isTrue ? 1 : 0, type: 'judge' };
+      const result = answerTextToResult(match[1]);
+      if (result) return result;
     }
   }
   
   // 检查选择题答案
   const multiplePatterns = [
-    /(?:答案?|answer|correct)[:：]?\s*([A-Da-d]+)/i,
-    /\[答案?[:：]?\s*([A-Da-d]+)\]/i,
-    /【答案?[:：]?\s*([A-Da-d]+)】/i,
+    /(?:正确答案|参考答案|答案|answer|correct)[:：]?\s*([A-Ha-h](?:[\s,，、]*[A-Ha-h])*)/i,
+    /\[答案?[:：]?\s*([A-Ha-h](?:[\s,，、]*[A-Ha-h])*)\]/i,
+    /【答案?[:：]?\s*([A-Ha-h](?:[\s,，、]*[A-Ha-h])*)】/i,
   ];
   
   for (const pattern of multiplePatterns) {
-    const match = text.match(pattern);
+    const match = normalized.match(pattern);
     if (match) {
-      const answerStr = match[1].toUpperCase();
-      if (answerStr.length > 1) {
-        const answers = [];
-        for (const char of answerStr) {
-          answers.push(char.charCodeAt(0) - 65);
-        }
-        return { answer: answers, type: 'multiple' };
-      } else if (answerStr.length === 1) {
-        return { answer: answerStr.charCodeAt(0) - 65, type: 'single' };
-      }
+      const result = answerTextToResult(match[1]);
+      if (result) return result;
     }
   }
   
   const singlePatterns = [
-    /^\s*([A-Da-d])[\.、)]\s*$/m,
+    /^\s*([A-Ha-h])[\.、)]?\s*$/m,
   ];
   
   for (const pattern of singlePatterns) {
-    const match = text.match(pattern);
+    const match = normalized.match(pattern);
     if (match) {
-      return { answer: match[1].toUpperCase().charCodeAt(0) - 65, type: 'single' };
+      const result = answerTextToResult(match[1]);
+      if (result) return result;
     }
   }
   return { answer: 0, type: 'single' };
@@ -101,17 +167,28 @@ function findCorrectAnswer(text: string): { answer: number | number[], type: Que
 
 function extractExplanation(text: string): string | undefined {
   const patterns = [
-    /(?:解析?|explanation|分析?)[:：]\s*(.+)/i,
-    /【解析?】\s*(.+)/,
+    /(?:解析|答案解析|explanation|分析)[:：]\s*([\s\S]+?)(?=\n\s*(?:\d+[\.、)]\s*|$))/i,
+    /【解析】\s*([\s\S]+?)(?=\n\s*(?:\d+[\.、)]\s*|$))/,
   ];
 
   for (const pattern of patterns) {
     const match = text.match(pattern);
     if (match) {
-      return match[1].trim();
+      return match[1].trim().replace(/\n+/g, ' ');
     }
   }
   return undefined;
+}
+
+function stripMetaText(text: string): string {
+  return text
+    .replace(/(?:正确答案|参考答案|答案|answer|correct)[:：]?\s*(?:[A-Ha-h](?:[\s,，、]*[A-Ha-h])*|正确|错误|对|错|√|×|true|false|t|f)\s*/gi, '')
+    .replace(/(?:解析|答案解析|explanation|分析)[:：][\s\S]*$/i, '')
+    .trim();
+}
+
+function isAnswerOrExplanationLine(line: string): boolean {
+  return /^(?:正确答案|参考答案|答案|answer|correct|解析|答案解析|explanation|分析)[:：]/i.test(line.trim());
 }
 
 function parseTextFormat(content: string): ParseResult {
@@ -138,20 +215,22 @@ function parseTextFormat(content: string): ParseResult {
     
     for (let j = 0; j < lines.length; j++) {
       const line = lines[j];
-      const optionMatch = line.match(/^[A-Da-d][\.、)]\s*(.+)/);
+      const optionMatch = line.match(/^([A-Ha-h])[\.、)]\s*(.+)/);
       
       if (j === 0 && !optionMatch) {
-        question.content = line.replace(/^\d+[\.、)]\s*/, '');
+        question.content = stripMetaText(line.replace(/^\d+[\.、)]\s*/, ''));
       } else if (optionMatch) {
-        question.options.push(optionMatch[1]);
-      } else if (question.options.length > 0) {
+        question.options.push(stripMetaText(optionMatch[2]));
+      } else if (question.options.length > 0 && !isAnswerOrExplanationLine(line)) {
         const lastIdx = question.options.length - 1;
         question.options[lastIdx] += ' ' + line;
       }
     }
     
     question.explanation = extractExplanation(block);
-    question.correctAnswer = findCorrectAnswer(block);
+    const answerResult = findCorrectAnswer(block);
+    question.correctAnswer = answerResult.answer;
+    question.type = answerResult.type;
     question.isMultiple = Array.isArray(question.correctAnswer);
     
     if (question.content && question.options.length >= 2) {
@@ -168,23 +247,19 @@ function parseSimpleNumberedFormat(content: string): ParseResult {
   const questions: ParsedQuestion[] = [];
   const errors: string[] = [];
   
-  console.log('开始解析编号格式文本，原始长度:', content.length);
   content = cleanText(content);
   
   const lines = content.split('\n').map(l => l.trim()).filter(l => l);
-  console.log('处理后行数:', lines.length);
-  console.log('前10行:', lines.slice(0, 10));
   
   // 用于累积当前题目的所有行（包含题目、选项、答案）
   let currentQuestionLines: string[] = [];
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    console.log(`第${i+1}行:`, line);
     
     // 检查是否是新的题目开始（数字开头，并且不是选项）
     const questionMatch = line.match(/^(\d+)[\.、)]\s*(.+)/);
-    const isOptionLine = line.match(/^[A-D][\.、)]/);
+    const isOptionLine = line.match(/^[A-Ha-h][\.、)]/);
     
     if (questionMatch && !isOptionLine) {
       // 遇到新题目，先处理之前累积的题目
@@ -192,9 +267,6 @@ function parseSimpleNumberedFormat(content: string): ParseResult {
         const parsedQuestion = parseQuestionFromLines(currentQuestionLines);
         if (parsedQuestion) {
           questions.push(parsedQuestion);
-          console.log(`成功添加第 ${questions.length} 题`);
-        } else {
-          console.log(`第 ${questions.length + 1} 题解析失败，跳过`);
         }
       }
       // 开始新题目的累积
@@ -210,25 +282,14 @@ function parseSimpleNumberedFormat(content: string): ParseResult {
     const parsedQuestion = parseQuestionFromLines(currentQuestionLines);
     if (parsedQuestion) {
       questions.push(parsedQuestion);
-      console.log(`成功添加第 ${questions.length} 题`);
     }
   }
-  
-  console.log('解析完成，共找到题目:', questions.length);
-  console.log('所有题目:', questions.map((q, idx) => ({
-    index: idx + 1,
-    content: q.content.substring(0, 30) + '...',
-    optionsCount: q.options.length,
-    isMultiple: q.isMultiple
-  })));
   
   return { success: questions.length > 0, questions, errors };
 }
 
 function parseQuestionFromLines(lines: string[]): ParsedQuestion | null {
   if (lines.length === 0) return null;
-  
-  console.log('正在从以下行解析题目:', lines);
   
   const question: ParsedQuestion = {
     content: '',
@@ -253,7 +314,7 @@ function parseQuestionFromLines(lines: string[]): ParsedQuestion | null {
     questionContent = questionContent.substring(0, ansIdx).trim();
   }
   
-  question.content = questionContent;
+  question.content = stripMetaText(questionContent);
   
   // 从所有行中查找答案
   const fullText = lines.join('\n');
@@ -268,11 +329,11 @@ function parseQuestionFromLines(lines: string[]): ParsedQuestion | null {
     question.options = ['错误', '正确']; // 0=错误，1=正确
   } else {
     // 选择题的处理 - 从所有行中提取选项
-    const optionPattern = /([A-D])[\.、)]\s*((?:(?!\s*[A-D][\.、)]).)*)/g;
+    const optionPattern = /([A-Ha-h])[\.、)]\s*([\s\S]*?)(?=\s+[A-Ha-h][\.、)]|\n[A-Ha-h][\.、)]|\n(?:正确答案|参考答案|答案|解析|answer|correct|explanation)[:：]|$)/gi;
     let match;
     
     while ((match = optionPattern.exec(fullText)) !== null) {
-      let optContent = match[2].trim();
+      let optContent = stripMetaText(match[2]);
       // 移除选项中的答案部分
       const ansInOpt = optContent.match(/答案[：:]\s*([A-D]+|正确|错误|对|错|√|×)/i);
       if (ansInOpt) {
@@ -290,9 +351,9 @@ function parseQuestionFromLines(lines: string[]): ParsedQuestion | null {
     // 如果上面的方法没找到足够的选项，尝试逐行处理
     if (question.options.length < 2) {
       for (const line of lines) {
-        const optionMatch = line.match(/^[A-D][\.、)]\s*(.+)/);
+        const optionMatch = line.match(/^([A-Ha-h])[\.、)]\s*(.+)/);
         if (optionMatch) {
-          let optContent = optionMatch[1].trim();
+          let optContent = stripMetaText(optionMatch[2]);
           // 移除选项中的答案部分
           const ansInOpt = optContent.match(/答案[：:]\s*([A-D]+|正确|错误|对|错|√|×)/i);
           if (ansInOpt) {
@@ -308,17 +369,8 @@ function parseQuestionFromLines(lines: string[]): ParsedQuestion | null {
   
   question.explanation = extractExplanation(fullText) || '';
   
-  console.log('解析结果:', {
-    content: question.content,
-    type: question.type,
-    options: question.options,
-    correctAnswer: question.correctAnswer,
-    isMultiple: question.isMultiple
-  });
-  
   // 验证题目是否有效
   if (!question.content) {
-    console.log('题目无效（无内容），跳过');
     return null;
   }
   
@@ -329,7 +381,6 @@ function parseQuestionFromLines(lines: string[]): ParsedQuestion | null {
   
   // 选择题需要至少2个选项
   if (question.options.length < 2) {
-    console.log('题目无效（选项不足），跳过');
     return null;
   }
   
@@ -340,59 +391,83 @@ function parseCSVFormat(content: string): ParseResult {
   const questions: ParsedQuestion[] = [];
   const errors: string[] = [];
   
-  const lines = content.split('\n').map(l => l.trim()).filter(l => l);
+  const lines = cleanText(content).split('\n').map(l => l.trim()).filter(l => l);
+  const rows = lines.map(parseCSVLine);
+  const header = rows[0]?.map(cell => cell.trim().toLowerCase()) || [];
+  const hasHeader = header.some(cell => ['题目', '题干', 'content', 'question'].includes(cell));
+  const startIndex = hasHeader ? 1 : 0;
   
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const parts = line.split(',').map(p => p.trim().replace(/^["']|["']$/g, ''));
+  for (let i = startIndex; i < rows.length; i++) {
+    const parts = rows[i].map(p => p.trim());
     
     if (parts.length < 6) {
       errors.push(`行 ${i + 1}: 列数不足，需要至少6列(题目,A,B,C,D,答案)`);
       continue;
     }
     
-    const options = parts.slice(1, 5).filter(o => o);
-    const answerStr = parts[5].toUpperCase();
+    const answerCellIndex = hasHeader
+      ? header.findIndex(cell => ['答案', '正确答案', 'answer', 'correctanswer', 'correct_answer'].includes(cell))
+      : 5;
+    const explanationCellIndex = hasHeader
+      ? header.findIndex(cell => ['解析', '说明', 'explanation'].includes(cell))
+      : 6;
+    const answerIndex = answerCellIndex >= 0 ? answerCellIndex : 5;
+    const contentText = parts[0];
+    const options = parts.slice(1, answerIndex).filter(o => o);
+    const answerStr = parts[answerIndex];
+    const explanation = explanationCellIndex >= 0 ? parts[explanationCellIndex] : parts[6];
     
-    let correctAnswer: number | number[] = 0;
-    let isMultiple = false;
-    
-    if (answerStr.length > 1) {
-      const answers = [];
-      for (const char of answerStr) {
-        const idx = char.charCodeAt(0) - 65;
-        if (idx >= 0 && idx < 4) {
-          answers.push(idx);
-        }
-      }
-      if (answers.length > 0) {
-        correctAnswer = answers;
-        isMultiple = true;
-      }
-    } else {
-      const answerMap: { [key: string]: number } = { 
-        'A': 0, 'B': 1, 'C': 2, 'D': 3,
-        'a': 0, 'b': 1, 'c': 2, 'd': 3,
-        '0': 0, '1': 1, '2': 2, '3': 3
-      };
-      const answer = answerMap[answerStr];
-      if (answer === undefined) {
-        errors.push(`行 ${i + 1}: 答案格式不正确`);
-        continue;
-      }
-      correctAnswer = answer;
+    const answerResult = answerTextToResult(answerStr);
+    if (!contentText) {
+      errors.push(`行 ${i + 1}: 题目内容为空`);
+      continue;
+    }
+    if (options.length < 2) {
+      errors.push(`行 ${i + 1}: 至少需要2个选项`);
+      continue;
+    }
+    if (!answerResult) {
+      errors.push(`行 ${i + 1}: 答案格式不正确，请填写 A/B/C/D 或多选 AB`);
+      continue;
     }
     
     questions.push({
-      content: parts[0],
+      content: contentText,
       options,
-      correctAnswer,
-      isMultiple,
-      explanation: parts[6] || undefined
+      correctAnswer: answerResult.answer,
+      isMultiple: answerResult.type === 'multiple',
+      type: answerResult.type,
+      explanation: explanation || undefined
     });
   }
   
   return { success: questions.length > 0, questions, errors };
+}
+
+function parseCSVLine(line: string): string[] {
+  const result: string[] = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    const next = line[i + 1];
+
+    if (char === '"' && inQuotes && next === '"') {
+      current += '"';
+      i++;
+    } else if (char === '"') {
+      inQuotes = !inQuotes;
+    } else if ((char === ',' || char === '，') && !inQuotes) {
+      result.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+
+  result.push(current.trim());
+  return result.map(cell => cell.replace(/^["']|["']$/g, ''));
 }
 
 export async function parseWordFile(buffer: Buffer): Promise<ParseResult> {
@@ -454,11 +529,25 @@ export function parseJSONFile(content: string): ParseResult {
             options: [],
             correctAnswer: 0
           });
-        } else if (item.content && item.options) {
+        } else if (item.content && Array.isArray(item.options)) {
+          const answerResult = Array.isArray(item.correctAnswer) || typeof item.correctAnswer === 'number'
+            ? {
+                answer: item.correctAnswer,
+                type: Array.isArray(item.correctAnswer) ? 'multiple' as QuestionType : 'single' as QuestionType,
+              }
+            : answerTextToResult(String(item.answer ?? item.correctAnswer ?? 'A'));
+
+          if (!answerResult) {
+            errors.push(`第 ${i + 1} 项答案格式不正确`);
+            continue;
+          }
+
           questions.push({
             content: item.content,
             options: item.options,
-            correctAnswer: item.correctAnswer ?? 0,
+            correctAnswer: answerResult.answer,
+            isMultiple: answerResult.type === 'multiple',
+            type: answerResult.type,
             explanation: item.explanation || item.解析 || undefined
           });
         } else {

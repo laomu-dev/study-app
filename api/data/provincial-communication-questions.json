@@ -1,0 +1,4089 @@
+[
+  {
+    "content": "水泥卡盘的程式规格为（ ）mm。",
+    "options": [
+      "500*500*80",
+      "800*300*120",
+      "500*300*150",
+      "600*400*150"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "架空杆路与房屋建筑最小水平净距为（ ）m。",
+    "options": [
+      "0.3",
+      "0.5",
+      "1",
+      "2"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "架空光缆架设高度与市郊区树木交越时架设高度为（ ）m。",
+    "options": [
+      "0.6",
+      "1.0",
+      "1.5",
+      "2.0"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "吊线在电杆上应用（ ）夹板和穿钉或（ ）夹板和吊线抱箍固定。",
+    "options": [
+      "单眼单槽",
+      "双眼单槽",
+      "三眼单槽",
+      "三眼双槽"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "在架空电杆上作业时，应系好安全带，并扣好安全带保险环。安全带应兜挂在距杆梢（ ）以下的位置。",
+    "options": [
+      "20cm",
+      "30cm",
+      "40cm",
+      "50cm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "下列有关仪表的说法，错误的是（ ）。",
+    "options": [
+      "仪表使用时应放在工作台上，无需接地保护",
+      "仪表使用直流电源供电时，电源的正负极性不得接反",
+      "直流电源供电仪表长期不使用时应及时从仪表中取出电池，电池不得和金属物品一起存放",
+      "使用带激光源的仪器时，不得将光源正对着眼睛"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "8m水泥电杆在硬土洞深为（ ）m，洞深允许偏差为±50mm。",
+    "options": [
+      "1.2",
+      "1.3",
+      "1.4",
+      "1.5"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "7/2.6拉线在普通土地锚坑深为（ ）m。",
+    "options": [
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "7/2.6拉线在水田的地锚坑深为（ ）m。",
+    "options": [
+      "1.3",
+      "1.4",
+      "1.5",
+      "1.6"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "杆上有两层吊线且装设2条拉线时，层间间隔应为（ ）mm。",
+    "options": [
+      "200",
+      "300",
+      "400",
+      "500"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "角杆竖立起后杆身应向张力反侧倾斜（ ）。",
+    "options": [
+      "5~10cm",
+      "一个杆梢",
+      "30cm",
+      "20cm"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "拉线抱箍应安装在电缆吊线的（ ）10cm处。",
+    "options": [
+      "上方",
+      "下方",
+      "上方或下方",
+      "以上都不对"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "吊线夹板距杆顶一般不小于（ ）。",
+    "options": [
+      "40cm",
+      "50cm",
+      "60cm",
+      "70cm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "架空光缆的吊线一般采用规格为（ ）的镀锌钢绞线。",
+    "options": [
+      "7/2.0",
+      "7/2.2",
+      "7/2.6"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "光缆运到现场后，必须进行单盘检验。检验（ ）应符合规定。",
+    "options": [
+      "传输衰耗",
+      "传输性能、长度",
+      "出厂日期",
+      "色散"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "光缆线路路由，敷设方式应以批准的施工图设计为依据，必要路由变更，可由监理、施工方提出，经业主同意确定。对于（ ）以上较大路由变更，设计单位至现场与监理、施工方协商，业主批准填报“工程设计变更单”。",
+    "options": [
+      "300米",
+      "500米",
+      "1000米",
+      "2000米"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "光在单模光纤中的（ ）部分以全反射的方式进行传输。",
+    "options": [
+      "包层",
+      "涂敷层",
+      "纤芯",
+      "外被层"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "铺设塑料管时的最小曲率半径，应不小于塑料管外径的（ ）倍。",
+    "options": [
+      "10",
+      "15",
+      "20",
+      "25"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "光缆可同其他通信光缆或电缆同沟敷设，但不得重叠或交叉，缆间的平行净距不应小于（ ）。",
+    "options": [
+      "100mm",
+      "110mm",
+      "120mm",
+      "130mm"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "直埋光缆与其他建筑设施的最小净距下列表述错误的是（ ）。",
+    "options": [
+      "通信管道边线(不包括人手孔) 交越时0.5m；(应为0.25)",
+      "埋式电力电缆(交流35 kV 以下)交越时0.5m",
+      "通信管道交越时0.25m",
+      "房屋建筑红线或基础平行时l.0m。"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "光缆通道的大小和埋深应符合下列要求：宽度宜为1.4-1.6m，净高不应小于（ ）。",
+    "options": [
+      "1.5m",
+      "1.6m",
+      "1.8m",
+      "2.0m"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "新架设光缆与杆上原有光缆设施的间距应为（ ）。",
+    "options": [
+      "200mm",
+      "300mm",
+      "400mm",
+      "500mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "工程竣工验收由（ ）组织。",
+    "options": [
+      "施工单位",
+      "监理单位",
+      "设计单位",
+      "建设单位"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "光缆出管孔（ ）mm内不得弯曲。",
+    "options": [
+      "100",
+      "150",
+      "200",
+      "250"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "架空光缆与有防雷保护设备的10kv以下电力线交越时的最小垂直净距为（ ）。",
+    "options": [
+      "1.5m",
+      "2.0m",
+      "2.5m",
+      "3.0mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "吊线夹板在第一条吊线安装时应在前进方向左侧，夹板位置不能随意改变方向，第一条吊线夹板距同侧第二条吊线夹板间距为（ ）mm。",
+    "options": [
+      "100",
+      "200",
+      "400",
+      "600"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "架空光缆与公路交越时，最低缆线到地面的最小垂直净距为（ ）米。",
+    "options": [
+      "3.0",
+      "4.5",
+      "5.5",
+      "7.5"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "各种管道进入人（手）孔、通道时，管顶距人（手）孔、通道上覆及沟盖底面不应小于（ ）mm，管底距人（手）孔、通道基础面不应小于400mm。",
+    "options": [
+      "400",
+      "300",
+      "200",
+      "100"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "铺设塑料管道时，管孔内径大的管材应放在管群的（ ）。",
+    "options": [
+      "下边和外侧",
+      "下边和内侧",
+      "上边和外侧",
+      "上边和内侧"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "通信管道工程的回填土，应在管道或人（手）孔按施工顺序完成施工内容，并经（ ）小时养护和隐蔽工程检验合格后进行。",
+    "options": [
+      "12",
+      "24",
+      "36",
+      "48"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "在城镇的道路转弯处、交叉路口进行通信管线施工时，必须摆放（ ），设置防护围栏等安全设施，夜间应设置警示灯。",
+    "options": [
+      "施工标志",
+      "提示标志",
+      "安全警示标志",
+      "施工工具"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "在通信线路作业过程中，附近遇有其他线缆时，在没有辨明该线缆使用性质前，一律按（ ）处理。",
+    "options": [
+      "电力线",
+      "光缆",
+      "火线",
+      "以上都不是"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "架空杆路架设吊线时，如钢绞线在低压电力线之上，必须设专人用（ ）托住钢绞线，严禁在电力线上拖拉。",
+    "options": [
+      "绝缘棒",
+      "绝缘手套",
+      "树枝",
+      "竹梯"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "发电机是野外进行光缆线路作业时常用的电源，下列关于发电机的说法，错误的是（ ）。",
+    "options": [
+      "严禁发电机的排气口直对易燃物品",
+      "严禁在发电机周围使用明火，但可以吸烟",
+      "发电机开启后，操作人员应监视发电机的运转情况，不得远离",
+      "严禁在密闭环境下使用发电机"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "在地下室、地下通道、管道人孔作业期间，若感觉呼吸困难或（ ），或发现易燃、易爆或有毒、有害气体或其他异常情况时，必须立即呼救并迅速撤离，待查明原因并处理后方可恢复作业。",
+    "options": [
+      "光线不足",
+      "身体不适",
+      "进出不便",
+      "空间狭小"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "砌筑人孔及人孔内、外壁抹灰高度超过（ ）时，应搭设脚手架作业。",
+    "options": [
+      "1.2m",
+      "1.8m",
+      "2m",
+      "无要求"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "楼道型 FTTX 用综合信息箱应可靠接地，接地电阻不大于（ ）欧姆。一般宜采用布放接地电缆至大楼的接地体或与弱电井的接地、走线槽等可靠的接地体相连。",
+    "options": [
+      "1",
+      "5",
+      "10",
+      "15"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "蝶形引入光缆采用墙面开孔方式入户：开孔标准为自用户室内往用户室外进行开孔，开孔方向是向下倾斜（ ）度角，防止雨水倒灌至用户室内。",
+    "options": [
+      "10",
+      "20",
+      "25",
+      "30"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "目前市场上 POE 反向供电主要采用五类线的（ ）线对来传输。",
+    "options": [
+      "1234",
+      "1278",
+      "1245",
+      "4578"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "对接入网而言，光纤的（ ）是影响传输距离的最主要因素。",
+    "options": [
+      "色散",
+      "损耗",
+      "折射率",
+      "材料"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "现阶段，在FTTH建设中，最大分光比不宜超过（ ）。",
+    "options": [
+      "1:8",
+      "1:32",
+      "1:64",
+      "1:128"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "PON的组网模式是（ ）。",
+    "options": [
+      "点到点",
+      "点到多点",
+      "多点到多点",
+      "多点到点"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "（ ）在OLT和ONU间提供光通道。",
+    "options": [
+      "OLT",
+      "ODN",
+      "ONU",
+      "ODB"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "1:4光分路器插入损耗的典型值是（ ）。",
+    "options": [
+      "3.8",
+      "7.2",
+      "10.5",
+      "13.8"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "（ ）是光缆的终端设备，用于光缆分配纤序和连接入户蝶形引入光缆或光跳纤的设备。",
+    "options": [
+      "光缆分纤盒",
+      "接头盒",
+      "光缆交接箱",
+      "ODF架"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "（ ）是光缆和光通信设备之间、或光通信设备之间的配线连接设备。",
+    "options": [
+      "光缆分纤盒",
+      "接头盒",
+      "光缆交接箱",
+      "光纤配线架"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "根据设计要求确定 ODF 架安装位置和朝向，安装时垂直偏差应不大于机架高度的（ ）‰。",
+    "options": [
+      "1",
+      "3",
+      "5",
+      "7"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "设备直流电源线用红、蓝两色区分，保护地线使用（ ）。",
+    "options": [
+      "黄色",
+      "绿色",
+      "黄绿双色",
+      "黑色"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "光纤连接线在ODF架布放时应整齐，跳纤余长在架内盘绕整齐，用魔术扣或（ ）绑扎。",
+    "options": [
+      "套塑铁丝",
+      "扎带",
+      "尼龙绳",
+      "尾纤塑带"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "ODF架外壳设备保护地应采用（ ）mm2以上的多股铜电线接到机房设备专用地排。",
+    "options": [
+      "6",
+      "10",
+      "16",
+      "24"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "光交箱底座外沿距光交箱箱体不小于150mm，底座高度距离地面不小于（ ）mm。",
+    "options": [
+      "200",
+      "250",
+      "300",
+      "400"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "光缆分光分纤盒在以下（ ）位置不宜挂墙安装：",
+    "options": [
+      "商铺外墙",
+      "地下车库",
+      "楼道竖井",
+      "女儿墙"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "光缆在单盘检验时的光特性检验不包括以下内容（ ）。",
+    "options": [
+      "光缆长度复测",
+      "光缆单盘损耗测量",
+      "光缆加强芯强度测试",
+      "光缆护层绝缘检查"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "管道施工时，光缆出管孔（ ）mm 以内不得做弯曲处理。",
+    "options": [
+      "100",
+      "150",
+      "200",
+      "250"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "直埋光缆与35KV以下电力电缆交越时，最小间距应大于（ ）m。",
+    "options": [
+      "0.4",
+      "0.5",
+      "1.0",
+      "1.2"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "微槽敷设光缆最小曲率半径应满足在短期动态弯曲时，应大于（ ）D（D为光缆外径）。",
+    "options": [
+      "5",
+      "10",
+      "15",
+      "20"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "架空光缆与公路交越时，缆线最低点距离路面应大于（ ）米。",
+    "options": [
+      "3.0",
+      "5.0",
+      "5.5",
+      "7.5"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "架空光缆施工时，应根据设计要求选用光缆的挂钩程式。光缆挂钩的卡挂间距应为（ ）mm，允许偏差±30mm。",
+    "options": [
+      "300",
+      "400",
+      "500",
+      "600"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "楼道内缆线与煤气管平行敷设时，最小净距应大于（ ）mm。",
+    "options": [
+      "300",
+      "400",
+      "500",
+      "1000"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "1：8光分路器模块的插入损耗以及端口插损均匀性指标分别为（ ）和（ ）。",
+    "options": [
+      "≤4.1dB，≤0.8dB",
+      "≤7.4dB，≤0.8dB",
+      "≤10.5dB，≤0.8dB",
+      "≤13.8dB，≤1.0dB"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "光纤链路全程光衰减测试上行测试（ ）nm 波长的衰减，下行测试（ ）nm 波长的衰减。",
+    "options": [
+      "1310，1490",
+      "850，1310",
+      "1490，1550",
+      "1310，1550"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "在项目管控中，工程验收不包括以下哪个过程（ ）。",
+    "options": [
+      "单点验收",
+      "竣工终验",
+      "飞行检查",
+      "随工检验"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "工程终验前施工单位应根据建设单位要求按时提交竣工技术文件，下列哪个选项是不包括在内的（ ）。",
+    "options": [
+      "安装工程量总表",
+      "工程设计变更单",
+      "测试记录",
+      "安全记录本"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "同一杆路上自承式光缆布放条数不得超过（ ）条。",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "以下对于蝶形光缆采用明线钉固方式描述不正确的是（ ）。",
+    "options": [
+      "施工容易，成本低",
+      "线缆缺乏一定的保护措施，使用寿命没有保障",
+      "是通过卡钉扣夹住光缆外护套进行固定的",
+      "光缆可贴住墙面进行直角弯"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "蝶形光缆通过墙面开孔入户，使用（ ）电锤钻孔。",
+    "options": [
+      "Φ6mm",
+      "Φ8mm",
+      "Φ20mm",
+      "Φ15mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "在通过暗管布放光缆时，如遇到有管径较小或管孔内有其它线缆的管道时，需要采用（ ）。",
+    "options": [
+      "铁丝",
+      "塑料穿管器",
+      "润滑剂",
+      "钢制穿管器"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "采用线槽方式敷设蝶形引入光缆，在平面转弯处使用（ ）。",
+    "options": [
+      "阴角",
+      "阳角",
+      "弯角",
+      "线槽软管"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "遇到有管径较小或管孔内有其它线缆的管道时，需要采用（ ）。",
+    "options": [
+      "铁丝",
+      "塑料穿管器",
+      "润滑剂",
+      "钢制穿管器"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "墙体与基础应结合严密、不漏水，结合部的内外侧应用（ ）水泥砂浆抹八字。",
+    "options": [
+      "1:1",
+      "1:2",
+      "1:2.5",
+      "1:3"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "通信钢管管道的埋设深度(管顶至路面)，在人行道下不应小于0.5m，在车行道下不应小于0.6m；与轨道交越(管顶到轨道底)不应小于0.8m；与铁道交越(管顶至轨道底)不应小于（ ）m。",
+    "options": [
+      "0.5",
+      "0.6",
+      "0.8",
+      "1.2"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "通信塑料管道的段长应按相邻两个人孔的中心点间距而定。高等级公路上的直线管道段长不应大于（ ）m。",
+    "options": [
+      "150",
+      "250",
+      "500",
+      "1000"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "城镇内通信管道工程施工现场，堆土高度不宜超过（ ）m。",
+    "options": [
+      "0.8",
+      "1.2",
+      "1.5",
+      "2.0"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 C。"
+  },
+  {
+    "content": "管道进入人(手)孔时，管口不应凸出人(手)孔内壁，应终止在距墙体内侧（ ）mm处，并应严密封堵，管口做成喇叭口。",
+    "options": [
+      "50",
+      "100",
+      "150",
+      "200"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "光分路器引出尾纤宜采用 Φ2.0mm 或 Φ3.0mm 或（ ） 外护套尾纤。其引出长度不宜超过 1.5m。",
+    "options": [
+      "Φ0.9mm",
+      "Φ10 mm",
+      "Φ5mm",
+      "Φ8mm"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 A。"
+  },
+  {
+    "content": "在执行重要通信任务期间在用业务发生全部阻断，影响重要通信任务并造成严重后果的为（ ）。",
+    "options": [
+      "通信事故",
+      "严重故障",
+      "一般故障",
+      "重大故障"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 D。"
+  },
+  {
+    "content": "割接超出割接方案审批范围和时段的，视作（ ）考核。",
+    "options": [
+      "违反割接制度",
+      "障碍",
+      "违反纪律",
+      "违反工单"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx，原题答案为 B。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，对光缆线路的器材检验，一般规定：光缆和其他线路器材的程式、（    ）、（型号）、数量等应符合设计规定。",
+    "options": [
+      "规格",
+      "红线",
+      "最小净距",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：规格。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，对光缆线路的器材检验，一般规定：光缆和其他线路器材的程式、（规格）、（    ）、数量等应符合设计规定。",
+    "options": [
+      "型号",
+      "最小净距",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：型号。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，线路路由施工测量应以批准的设计和规划部门批准的（    ）为依据。",
+    "options": [
+      "型号",
+      "最小净距",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：红线。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，直埋光缆、硅芯塑料管与其他建筑设施间（    ）达不到规定要求时，应按设计要求采取行之有效的保护措施。",
+    "options": [
+      "最小净距",
+      "型号",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：最小净距。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光电缆与供电线交越时，跨越档两侧电杆及吊线安装应做（    ）保护装置。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "加强"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：加强。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，杆8.0米水泥，普通土洞深应为（    ）米。7.0米水泥杆，普通土洞深应为（ 1.3 ）米。",
+    "options": [
+      "2.5",
+      "1.0",
+      "1.5",
+      "2.0"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：1.5。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，杆8.0米水泥，普通土洞深应为（ 1.5 ）米。7.0米水泥杆，普通土洞深应为（    ）米。",
+    "options": [
+      "1.3",
+      "1.8",
+      "2.3",
+      "0.8"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：1.3。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，拉线上把扎固一般有（    ）、（ 夹板法 ）、（卡固法 ）三种方法。",
+    "options": [
+      "规格",
+      "另缠法",
+      "红线",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：另缠法。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，拉线上把扎固一般有（另缠法 ）、（    ）、（卡固法 ）三种方法。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "夹板法"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：夹板法。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，拉线上把扎固一般有（另缠法 ）、（ 夹板法 ）、（    ）三种方法。",
+    "options": [
+      "红线",
+      "规格",
+      "型号",
+      "卡固法"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：卡固法。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，拉线中把另缠法规格：7/2.6拉线缠扎线经为（    ）mm)，首节长度（ 150 mm)，间隙（ 30 mm)，末节长度为（ 100 ）mm)，留头长度（ 100 ）mm)。",
+    "options": [
+      "2.5",
+      "3.5",
+      "4.0",
+      "3.0"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：3.0。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，吊线在电杆上坡度变更大于杆距的20%，应加装（    ）辅助装置。",
+    "options": [
+      "规格",
+      "仰角或俯角",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：仰角或俯角。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，吊线在拉线反侧装置，角深在10-15m应加装（    ）辅助装置。",
+    "options": [
+      "型号",
+      "规格",
+      "吊线",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：吊线。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，GYTA光缆敷设过程中的曲率半径必须大于光缆直径（    ）倍，光缆在人（手）孔中固定后曲率半径必须大于光缆直径的（ 10 ）倍。",
+    "options": [
+      "40",
+      "20",
+      "25",
+      "15"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：20。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，GYTA光缆敷设过程中的曲率半径必须大于光缆直径（ 20 ）倍，光缆在人（    ）孔中固定后曲率半径必须大于光缆直径的（ 10 ）倍。",
+    "options": [
+      "规格",
+      "红线",
+      "型号",
+      "手"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，GYTA光缆敷设过程中的曲率半径必须大于光缆直径（ 20 ）倍，光缆在人（手）孔中固定后曲率半径必须大于光缆直径的（    ）倍。",
+    "options": [
+      "10",
+      "5",
+      "15",
+      "20"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，吊线距电杆顶的距离一般情况下应≧（    ），在特殊情况下应不小于（250mm）。",
+    "options": [
+      "550mm",
+      "500mm",
+      "750mm",
+      "450mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：500mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，吊线距电杆顶的距离一般情况下应≧（500mm），在特殊情况下应不小于（    ）。",
+    "options": [
+      "300mm",
+      "375mm",
+      "200mm",
+      "250mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：250mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，地锚出土长度应为（    ）。",
+    "options": [
+      "450mm～600mm",
+      "250mm～600mm",
+      "350mm～600mm",
+      "300mm～600mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：300mm～600mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，在雷暴严重地区，应按照设计要求的规格程式和安装位置在相应段落安装防雷排流线。防雷排流线应位于光缆上方（    ）处，接头处应连接牢固。",
+    "options": [
+      "300mm",
+      "250mm",
+      "450mm",
+      "350mm"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：300mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，（2）环形钢筋混凝土电杆有环向裂纹宽度超过（    ）、有可见纵向裂缝的或混凝土破碎部分总面积超过（200mm），情况之一者不得使用。",
+    "options": [
+      "1.0mm",
+      "0.1mm",
+      "0.5mm",
+      "1.5mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：0.5mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，（2）环形钢筋混凝土电杆有环向裂纹宽度超过（0.5mm）、有可见纵向裂缝的或混凝土破碎部分总面积超过（    ），情况之一者不得使用。",
+    "options": [
+      "250mm",
+      "150mm",
+      "300mm",
+      "200mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：200mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，长杆档光电缆吊线应按设计要求做（    ）。",
+    "options": [
+      "红线",
+      "辅助吊线",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：辅助吊线。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆的规格、型号和结构应符合设计规定和（    ）。",
+    "options": [
+      "型号",
+      "规格",
+      "红线",
+      "路由实际状况"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：路由实际状况。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆挂钩的卡挂间距应为（    ），允许偏差为±30mm。挂钩吊线上的搭扣方向应一致，挂钩托板应齐全、整齐。",
+    "options": [
+      "450mm",
+      "750mm",
+      "500mm",
+      "550mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：500mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，布放吊挂式架空光缆应在每1根杆上做一处伸缩预留。伸缩预留弯在过杆处应安装（    ）。",
+    "options": [
+      "红线",
+      "型号",
+      "保护管",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：保护管。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆经十字吊线或丁字吊线处应安装（    ）。",
+    "options": [
+      "保护管",
+      "红线",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：保护管。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，同一杆路架设两层吊线时，同侧两层吊线间距应为（    ）。",
+    "options": [
+      "350mm",
+      "600mm",
+      "400mm",
+      "450mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：400mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，通信管道人孔的井盖外缘与口圈的内缘间隙不应大（    ）；井盖与口圈盖合后，井盖边缘应高于口圈（1-3mm ）。",
+    "options": [
+      "型号",
+      "红线",
+      "于3mm",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：于3mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，管道进入人（    ）孔时，管口不应凸出人（手）孔内壁，应终止在距墙体内侧（ 100mm ）处，并应严密封堵，管口做成喇叭口。",
+    "options": [
+      "红线",
+      "手",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，管道进入人（手）孔时，管口不应凸出人（    ）孔内壁，应终止在距墙体内侧（ 100mm ）处，并应严密封堵，管口做成喇叭口。",
+    "options": [
+      "型号",
+      "手",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，通信管道施工开挖时，遇到地下已有其他管线平行或垂直距离接近时，应按设计规范的规定核对其相互间的（    ）是否符合标准。",
+    "options": [
+      "型号",
+      "规格",
+      "最小净距",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：最小净距。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，各种引上钢管引入人(手)孔、通道时，管口不应凸出墙面，应终止在墙体内（    ）处，并应封堵严密、抹出喇叭口。",
+    "options": [
+      "25～50mm",
+      "30～50mm",
+      "35～50mm",
+      "60～50mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：30～50mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，管道回填土前，应先清除沟内的遗留木料、草帘、纸袋等杂物。沟内如有（    ），必须排除后方可进行回填土。",
+    "options": [
+      "型号",
+      "积水和淤泥",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：积水和淤泥。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，管道工程验收文件应保证质量，做到外观整洁、（    ）、（数据准确）、装订规范。",
+    "options": [
+      "内容齐全",
+      "红线",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：内容齐全。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，管道工程验收文件应保证质量，做到外观整洁、（内容齐全）、（    ）、装订规范。",
+    "options": [
+      "红线",
+      "数据准确",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：数据准确。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，各种管道进入人(手)孔、通道的位置应符合下列规定：管顶距人(手)孔、通道上覆及沟盖底面不应小于（    ）mm。管底距人(手)孔、通道基础面不应小于400mm。",
+    "options": [
+      "250",
+      "450",
+      "350",
+      "300"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：300。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，采用定向钻孔方式铺设管道时，宜采用（ 高密度聚乙烯（    ））管。",
+    "options": [
+      "红线",
+      "HDPE",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：HDPE。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，在人孔内抽水时，抽水机的排气管不得靠近人孔口，应放在人孔的（    ）方向。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "下风"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：下风。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，人工开挖土方或路面时，应在现场周围做好安全防护措施，相邻作业人员间应保持（    ）间距，作业人员不得在沟坑内或隧道中休息。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "安全"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：安全。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，各企业为施工人员配发的安全带必须符合（    ）标准。严禁用一般绳索、电线等代替安全带。",
+    "options": [
+      "规格",
+      "国家",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：国家。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，上下人孔时必须使用（    ），严禁踩踏人孔内线缆或线缆托架。",
+    "options": [
+      "红线",
+      "型号",
+      "梯子",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：梯子。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，在桥梁侧体悬空作业时，作业人员应穿（    ），桥上人员应穿交通警示服，作业车辆应设置施工停车警示标志。",
+    "options": [
+      "红线",
+      "规格",
+      "救生衣",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：救生衣。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光纤由（    ）和（包层）和涂敷层三部分组成，光缆的结构可分为（缆芯）， （加强元件）和护层三大部分。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "纤芯"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：纤芯。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光纤由（纤芯）和（    ）和涂敷层三部分组成，光缆的结构可分为（缆芯）， （加强元件）和护层三大部分。",
+    "options": [
+      "包层",
+      "规格",
+      "红线",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：包层。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光纤由（纤芯）和（包层）和涂敷层三部分组成，光缆的结构可分为（    ）， （加强元件）和护层三大部分。",
+    "options": [
+      "缆芯",
+      "型号",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：缆芯。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光纤由（纤芯）和（包层）和涂敷层三部分组成，光缆的结构可分为（缆芯）， （    ）和护层三大部分。",
+    "options": [
+      "规格",
+      "红线",
+      "型号",
+      "加强元件"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：加强元件。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光纤包层外径一般是（    ）。",
+    "options": [
+      "188μm",
+      "125μm",
+      "75μm",
+      "175μm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：125μm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （    ）技术, 下行数据采用的是 （ 广播）技术。上行数据波长（1310）nm，下行数据波长（ 1490）nm。",
+    "options": [
+      "红线",
+      "TDMA",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：TDMA。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （TDMA）技术, 下行数据采用的是 （    ）技术。上行数据波长（1310）nm，下行数据波长（ 1490）nm。",
+    "options": [
+      "型号",
+      "规格",
+      "广播",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：广播。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （TDMA）技术, 下行数据采用的是 （ 广播）技术。上行数据波长（    ）nm，下行数据波长（ 1490）nm。",
+    "options": [
+      "1360",
+      "1965",
+      "1310",
+      "1260"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：1310。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （TDMA）技术, 下行数据采用的是 （ 广播）技术。上行数据波长（1310）nm，下行数据波长（    ）nm。",
+    "options": [
+      "1440",
+      "1540",
+      "1490",
+      "2235"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：1490。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，OLT 设备应在满足 FTTx 网络传输系统指标的前提下，遵循（    ）原则，集中部署。",
+    "options": [
+      "红线",
+      "型号",
+      "“大容量、少局所”",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：“大容量、少局所”。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光交箱接地阻值应不大于（    ）欧姆。",
+    "options": [
+      "5",
+      "15",
+      "10",
+      "20"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，竖井与接入间内安装光缆分光分纤盒，底部距地面高度宜为（    ），具体结合现场情况。",
+    "options": [
+      "1.0m～1.5m",
+      "2.0m～1.5m",
+      "1.5m～1.5m",
+      "0.5m～1.5m"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：1.0m～1.5m。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，楼道内安装光缆分光分纤盒，底部距地面高度宜为（    ），具体结合现场情况。",
+    "options": [
+      "2.0m～2.5m",
+      "2.5m～2.5m",
+      "3.0m～2.5m",
+      "1.5m～2.5m"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：2.0m～2.5m。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆进入箱体后在光缆固定位缠绕多圈胶布并箍紧，在光缆的入孔处从箱内往外用（    ）进行封堵。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "防火泥"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：防火泥。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，子管在人（    ）孔内伸出长度一般为（100～200mm）；本期工程不用的管孔及子管管孔应及时按照设计要求（封堵）。",
+    "options": [
+      "手",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，子管在人（手）孔内伸出长度一般为（100～200mm）；本期工程不用的管孔及子管管孔应及时按照设计要求（    ）。",
+    "options": [
+      "规格",
+      "型号",
+      "封堵",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：封堵。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，吊线式墙壁光缆，吊线式墙壁光缆使用的吊线程式应符合设计要求。墙上支撑的间距应为（    ）m，终端固定物与第一只中间支撑的距离不应大于（5m）。",
+    "options": [
+      "3～10",
+      "16～10",
+      "8～10",
+      "13～10"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：8～10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，盒式光分路器型（    ）通过光分路器自带尾纤连接至配线光缆和主干光缆的适配器，实现无跳接功能，减少了活接头衰耗。",
+    "options": [
+      "规格",
+      "红线",
+      "型号",
+      "无跳纤光缆交接箱"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：无跳纤光缆交接箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，盒式（    ）是针对光纤接入网中光分支点处于室外环境而专门设计的室外型光配线设备，具有对光纤的接续、贮存、分光和调度等功能。",
+    "options": [
+      "无跳纤光缆交接箱",
+      "规格",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：无跳纤光缆交接箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，（    ）一般壁嵌式安装在用户住宅内的客厅、书房、壁橱等室内环境下，主要用于安装 ONU 和家庭网关等设备，提供各类弱电信息布线在户外与户内间的端接、汇聚、配线以及设备供电。",
+    "options": [
+      "综合信息箱",
+      "红线",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：综合信息箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，（    ）的安装位置应在家庭布线系统的汇聚点，且应尽量安装在通风、满足家庭无线覆盖和维护方便的地方。家庭信息箱宜低位安装，但箱体底边距地坪不应小于（300mm）。",
+    "options": [
+      "综合信息箱",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：综合信息箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，（综合信息箱）的安装位置应在家庭布线系统的汇聚点，且应尽量安装在通风、满足家庭无线覆盖和维护方便的地方。家庭信息箱宜低位安装，但箱体底边距地坪不应小于（    ）。",
+    "options": [
+      "450mm",
+      "300mm",
+      "250mm",
+      "350mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：300mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（    ）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（500mm），允许偏差（±20mm）。",
+    "options": [
+      "规格",
+      "红线",
+      "搭扣",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：搭扣。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（    ）。在电杆两侧的第一只挂钩应各距电杆（500mm），允许偏差（±20mm）。",
+    "options": [
+      "红线",
+      "规格",
+      "齐全、整齐",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：齐全、整齐。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（    ），允许偏差（±20mm）。",
+    "options": [
+      "550mm",
+      "450mm",
+      "750mm",
+      "500mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：500mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（500mm），允许偏差（    ）。",
+    "options": [
+      "规格",
+      "±20mm",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：±20mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，在障碍物较多的墙面采用墙壁卡箍波纹管方式敷设蝶形光缆时，水平波纹管段长超过 15m 并且有 2 个以上的 90°弯角或直线段长超过 30m 时，应设置（    ）。",
+    "options": [
+      "型号",
+      "规格",
+      "红线",
+      "过路盒"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：过路盒。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，敷设管道型蝶形引入光缆时，管道型蝶形引入光缆一次敷设长度不得超过（    ）m。",
+    "options": [
+      "250",
+      "300",
+      "350",
+      "450"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：300。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，用户室内蝶形引入光缆敷设时，对装潢较高的用户可使用（    ）方式在用户室内进行布线，对装潢要求较低的用户可使用（卡钉扣 ）方式进行布线，用户原先暗管可利用的，则优先选择该方式。",
+    "options": [
+      "线槽",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：线槽。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，用户室内蝶形引入光缆敷设时，对装潢较高的用户可使用（线槽 ）方式在用户室内进行布线，对装潢要求较低的用户可使用（    ）方式进行布线，用户原先暗管可利用的，则优先选择该方式。",
+    "options": [
+      "红线",
+      "卡钉扣",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：卡钉扣。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，暗管内穿放蝶形光缆时，将蝶形光缆绑扎在穿线器的牵引头上，保证绑扎牢固、不脱离、无凸角。接头和蝶形光缆上可适当（    ）。",
+    "options": [
+      "红线",
+      "规格",
+      "涂抹润滑剂",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：涂抹润滑剂。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，FTTH 终端设备安装主要有三种方式：综合信息箱安装方式、（    ）和桌面安装方式。",
+    "options": [
+      "红线",
+      "型号",
+      "规格",
+      "壁挂式安装方式"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：壁挂式安装方式。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，制作光纤活动连接插头是FTTH 入户光缆施工中最基本的一项技术，一般SC 型单芯光纤活动连接插头和连接插座（    ）组成的插拔式活动连接器的连接损耗应控制在（ 0.5）dB以下。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "适配器"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：适配器。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，制作光纤活动连接插头是FTTH 入户光缆施工中最基本的一项技术，一般SC 型单芯光纤活动连接插头和连接插座（适配器）组成的插拔式活动连接器的连接损耗应控制在（    ）dB以下。",
+    "options": [
+      "0.1",
+      "1.5",
+      "1.0",
+      "0.5"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：0.5。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，蝶形引入光缆采用墙面开孔方式入户：开孔标准为自用户室内往用户室外进行开孔，开孔方向是向下倾斜（    ）度角，防止雨水倒灌至用户室内。",
+    "options": [
+      "15",
+      "20",
+      "5",
+      "10"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，ODN 网络主要由接入网（    ）、（配线光缆 ）、（蝶形引入光缆 ）以及光缆交接配线设备和光分路器等组成。",
+    "options": [
+      "主干光缆",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：主干光缆。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，ODN 网络主要由接入网（主干光缆）、（    ）、（蝶形引入光缆 ）以及光缆交接配线设备和光分路器等组成。",
+    "options": [
+      "红线",
+      "型号",
+      "配线光缆",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：配线光缆。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，ODN 网络主要由接入网（主干光缆）、（配线光缆 ）、（    ）以及光缆交接配线设备和光分路器等组成。",
+    "options": [
+      "蝶形引入光缆",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：蝶形引入光缆。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空通信线路铁件产品除螺母和电缆挂钩可用电镀产品外，其他线路铁件产品均采用（    ）处理。",
+    "options": [
+      "热镀锌",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：热镀锌。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，电杆洞、拉线坑、撑杆洞回填土应逐层进行夯实，每回填（    ）mm夯实一次。",
+    "options": [
+      "350",
+      "300",
+      "450",
+      "250"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：300。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，市内一般道路的回填土夯实，应高出路面（    ）mm，在郊区土地上回填土，可高出地表（ 150～200 ）mm。",
+    "options": [
+      "1～l00",
+      "100～l00",
+      "50～l00",
+      "75～l00"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：50～l00。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，市内一般道路的回填土夯实，应高出路面（ 50～l00 ）mm，在郊区土地上回填土，可高出地表（    ）mm。",
+    "options": [
+      "150～200",
+      "200～200",
+      "100～200",
+      "225～200"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：150～200。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，号杆的字的高度，最末一个字或杆号牌下边缘应距地面（    ）m，杆面应面向（街道）。",
+    "options": [
+      "3.0",
+      "2.5",
+      "3.5",
+      "2.0"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：2.5。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，号杆的字的高度，最末一个字或杆号牌下边缘应距地面（2.5 ）m，杆面应面向（    ）。",
+    "options": [
+      "红线",
+      "规格",
+      "型号",
+      "街道"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：街道。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，电杆洞深应符合规定，洞深允许偏差不大于（    ）。",
+    "options": [
+      "50mm",
+      "1mm",
+      "75mm",
+      "100mm"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：50mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，管道光缆人工敷设光缆不得超过（    ），光缆气流敷设单向一般不超过（2000m）。",
+    "options": [
+      "1500m",
+      "950m",
+      "1050m",
+      "1000m"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：1000m。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，管道光缆人工敷设光缆不得超过（1000m），光缆气流敷设单向一般不超过（    ）。",
+    "options": [
+      "1950m",
+      "2050m",
+      "3000m",
+      "2000m"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：2000m。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆吊线在终端杆及角深大于25m的角杆上，应做（    ）。",
+    "options": [
+      "规格",
+      "终结",
+      "红线",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：终结。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆敷设完毕，应保证光纤或缆线良好，光缆端头应做好（    ）处理，不得浸水。",
+    "options": [
+      "规格",
+      "红线",
+      "型号",
+      "密封防潮"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：密封防潮。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空吊线安装应按（    ），（先难后易）的原则确定吊线的占位。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "先上后下"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：先上后下。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空吊线安装应按（先上后下），（    ）的原则确定吊线的占位。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "先难后易"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：先难后易。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，通信管道工程的回填土，应在管道或人(手)孔按施工顺序完成施工内容，并经（    ）养护和（隐蔽工程）检验合格后进行。",
+    "options": [
+      "29小时",
+      "48小时",
+      "19小时",
+      "24小时"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：24小时。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，通信管道工程的回填土，应在管道或人(手)孔按施工顺序完成施工内容，并经（24小时）养护和（    ）检验合格后进行。",
+    "options": [
+      "红线",
+      "隐蔽工程",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：隐蔽工程。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，塑料管铺管及接续时，施工环境温度不宜低于（    ）。",
+    "options": [
+      "红线",
+      "规格",
+      "型号",
+      "-5℃"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：-5℃。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，从事高处作业的施工人员，必须正确使用（    ）、安全帽。",
+    "options": [
+      "红线",
+      "型号",
+      "安全带",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：安全带。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，架空杆路中，拉线的安装位置宜避开有碍行人、行车的地方，并安装拉线（    ）护套。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "警示"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：警示。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，PON系统的组成包括（    ）、（ODN）、ONU。",
+    "options": [
+      "红线",
+      "型号",
+      "规格",
+      "OLT"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：OLT。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，PON系统的组成包括（OLT）、（    ）、ONU。",
+    "options": [
+      "型号",
+      "ODN",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：ODN。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，交接箱的箱体安装后的垂直度偏差不大于机架高度的（1‰），底座外沿距光交箱箱体不小于（    ），底座高度距离地面不小于（300mm）。 光交箱箱体喷号规范应符合设计要求。",
+    "options": [
+      "100mm",
+      "200mm",
+      "225mm",
+      "150mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：150mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，交接箱的箱体安装后的垂直度偏差不大于机架高度的（1‰），底座外沿距光交箱箱体不小于（150mm），底座高度距离地面不小于（    ）。 光交箱箱体喷号规范应符合设计要求。",
+    "options": [
+      "250mm",
+      "300mm",
+      "350mm",
+      "450mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：300mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，户外安装光缆分光分纤盒，底部距地面高度宜为（    ），具体结合现场情况。",
+    "options": [
+      "3.8m～3.2m",
+      "3.3m～3.2m",
+      "2.8m～3.2m",
+      "2.3m～3.2m"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：2.8m～3.2m。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆挂牌绑扎在光缆的成端、盘留处以及入箱、入孔位。挂牌内容包括光缆编码、（    ）、光缆芯数等。",
+    "options": [
+      "规格",
+      "型号",
+      "光缆路由信息",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：光缆路由信息。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，光缆在各类管材中穿放时，管材的内径应不小于光缆外径的（    ）倍。",
+    "options": [
+      "2.0",
+      "1.0",
+      "2.5",
+      "1.5"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：1.5。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，入户光缆采用卡钉扣方式从墙孔进入户内，入户处使用（    ）保护。将沿门框边沿和贴脚线安装卡钉扣，卡钉扣间距（50cm ），待卡钉扣全部安装完成。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "过墙套管"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：过墙套管。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库1-70%.docx》，入户光缆采用卡钉扣方式从墙孔进入户内，入户处使用（过墙套管）保护。将沿门框边沿和贴脚线安装卡钉扣，卡钉扣间距（    ），待卡钉扣全部安装完成。",
+    "options": [
+      "50cm",
+      "1cm",
+      "75cm",
+      "100cm"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原填空答案为：50cm。"
+  },
+  {
+    "content": "判断正误：角杆根部应在线路转角点沿线路夹角平分线外移。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：角深不大于13m的角杆，可安装1根与吊线程式相同的钢绞线作拉线。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：终端拉线、顶头拉线、角杆拉线、三方拉线和防凌杆的顺线拉应安装在吊线的下方，防风拉线应安装在吊线的上方。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：光缆在各类管材中穿放后，管孔应封堵严实。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：子管不得跨人（手）敷设，子管孔内不得有接头。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：架设第一条吊线时，吊线宜设置在杆路的人行道或有建筑物侧。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：吊线应置于三眼双槽夹板的线槽中，夹板线槽应向上方。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：吊线在墙壁上应水平敷设，各种终端、中间支持物应装设牢固，横平竖直，各支撑点应水平。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：光纤后向散射曲线应有良好线形且无明显台阶，接头部位应无异常线形。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：电杆卡盘装置应在埋深400mm（上卡盘）或杆根上300mm（下卡盘）处，容差应为≤50mm。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：管道光缆接头盒安装应符合设计要求，余缆用波纹管保护，并紧贴本人孔壁或人孔搁架，盘成“0”型，并用扎线固定。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：光缆线路工程，应在施工完毕并经工程监理单位预检合格后进行初验，业主收到监理单位“工程初验申请报告”后二周内组织工程初验会议。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：在相邻两直通人（手）孔之间的管孔内子管可以连续敷设。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：为了防雷，敷设后的光缆其金属构件应该是接头处不连接不接地，进局点再接地。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：管孔试通抽查规则，每个多孔管试通对角线2孔，单孔管全部试通。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：通信管道工程的回填土前，沟（坑）内如有积水和淤泥，应先用草帘、纸袋等杂物进行铺垫，然后再用细土回填。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：挖掘通信管道沟（坑）施工现场，应设置红白相间的临时护栏或醒目的标志。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：进入地下室、地下通道、管道人孔前，必须使用专用气体检测仪器进行气体检测，确认无易燃、易爆、有毒、有害气体并通风后方可进入。作业期间，必须保证通风良好，必须使用专用气体检测仪器进行气体监测。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：立杆作业时，允许在电力线路正下方立杆作业。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：使用脚扣登杆作业前应检查脚扣是否完好。当发现脚扣带坏损时，不得使用，但可以用电话线或其他绳索临时替代脚扣带后使用。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：架空光缆维护工作中，如需更换拉线的，在更换拉线前，必须制作不低于原拉线规格程式的临时拉线。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：在跨越铁路、公路杆档，安装光缆挂钩和拆除吊线滑轮时，应该使用吊板。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：在管道沟、坑沿线设置普通照明灯或安全警示灯时，灯距地面的高度应大于2 米。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：架空（或墙壁）光缆作业需使用梯子时，梯子放置的斜度要适当。当梯子搭靠在吊线上时，梯子上端至少高出吊线30 cm(梯子上端装铁钩的除外)，但高出部分不得超过梯子高度的1/3。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：光缆中填充石油膏的目的是为了防滑。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：光缆在经过直线过路盒时可直线通过。在经过转弯处的过路盒时，需在过路盒内余留30cm,并绑扎成圈。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：当设备器材型号不符合原工程设计要求而需作较大改变时，必须征得监理和建设单位的同意并办理设计变更手续。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：光路全程测试时，全程链路测试数据可略大于设计中计算的光通道衰减核算指标。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：当采用熔接方式时，单芯光纤双向熔接点衰减平均值应不大于 0.01dB/芯.点；当采用冷接方式时，单芯光纤双向连接点衰减平均值应不大于 0.15dB/芯.点。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：GPON技术中下行采用的是广播的方式，每个ONU都会接收OLT发送的所有数据。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：GPON系统需要使用G.652和G.657标准的单模光纤。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：GPON目前可以提供上下行对称的1.25Gbps的带宽。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：光纤的光学特性是决定光纤的传输性能的一个重要因素。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：按光纤插头端面形状分有 FC、 PC（包括 SPC 或 UPC）和 APC。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：光缆占用的子管或硅芯管应用专用堵头封堵管口。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：托盘式光分路器一般安装在光缆分光分纤盒内以及使用插箱安装在光纤配线架、光缆交接箱、19 英寸标准机架内。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：ODF或光交箱的接地线中严禁加装开关，但是可以装熔断器，以保护其他设备。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：光缆分光分纤盒如需在水泥杆上安装，应使用金属杆箍固定。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：光分路器模块在光缆分光分纤盒内的安装顺序必须符合本地市资源管理部门的要求。同一个光缆分光分纤盒必须安装同一厂家的光分路器模块。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：管道光缆施工时，孔径90mm 及以上的水泥管道、钢管或塑料管道内，在条件允许的情况下，应根据设计规定在两人（手）孔间一次性敷设三根或三根以上的子管。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：直埋光缆埋深应满足通信光缆线路工程设计要求的有关规定，普通土埋深应大于等于1.0m。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：布放吊挂式架空光缆应在每1～3 根杆上作一处伸缩预留。伸缩预留在电杆两侧的扎带间下垂200mm，并套保护管。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：楼道光缆采取相应的保护措施如套保护管后，就可以布放在电梯或供水、供气、供暖管道竖井或者是强电竖井中。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：单点验收结果等同于正式验收。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：入户光缆采用卡钉扣方式从墙孔进入户内，先将蝶形光缆逐个扣入卡钉扣内，然后再安装、敲击卡钉扣。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：自承式蝶形光缆在较平整墙面敷设时，可采用墙壁钉固方式。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：自承式蝶形光缆引下时，自承式蝶形光缆开剥点以下的光缆采用纵包管保护，自承式蝶形光缆如果遇有墙角等障碍物，均需采用纵包管等保护。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：正确。"
+  },
+  {
+    "content": "判断正误：上覆、盖板直接在墙体上浇灌时，上覆、盖板与墙体搭接的内、外侧，应用1：2.5的水泥砂浆抹八字角。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "判断正误：砌筑手孔时，相邻两组穿钉间距应符合设计规定，偏差应小于10mm。",
+    "options": [
+      "正确",
+      "错误"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库1-70%.docx。原判断题答案为：错误。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，对光缆线路的器材检验，一般规定：光缆和其他线路器材的程式、（    ）、（ 型号 ）、数量等应符合设计规定。",
+    "options": [
+      "规格",
+      "红线",
+      "最小净距",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：规格。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，对光缆线路的器材检验，一般规定：光缆和其他线路器材的程式、（ 规格 ）、（    ）、数量等应符合设计规定。",
+    "options": [
+      "型号",
+      "最小净距",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：型号。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，线路路由施工测量应以批准的设计和规划部门批准的（    ）为依据。",
+    "options": [
+      "型号",
+      "最小净距",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：红线。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，直埋光缆、硅芯塑料管与其他建筑设施间（    ）达不到规定要求时，应按设计要求采取行之有效的保护措施。",
+    "options": [
+      "最小净距",
+      "型号",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：最小净距。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光电缆与供电线交越时，跨越档两侧电杆及吊线安装应做（    ）保护装置。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "加强"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：加强。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，杆8.0米水泥，普通土洞深应为（    ）米。7.0米水泥杆，普通土洞深应为（ 1.3 ）米。",
+    "options": [
+      "2.5",
+      "1.0",
+      "1.5",
+      "2.0"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：1.5。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，杆8.0米水泥，普通土洞深应为（ 1.5 ）米。7.0米水泥杆，普通土洞深应为（    ）米。",
+    "options": [
+      "1.3",
+      "1.8",
+      "2.3",
+      "0.8"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：1.3。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，拉线上把扎固一般有（    ）、（ 夹板法 ）、（ 卡固法 ）三种方法。",
+    "options": [
+      "规格",
+      "另缠法",
+      "红线",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：另缠法。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，拉线上把扎固一般有（ 另缠法 ）、（    ）、（ 卡固法 ）三种方法。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "夹板法"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：夹板法。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，拉线上把扎固一般有（ 另缠法 ）、（ 夹板法 ）、（    ）三种方法。",
+    "options": [
+      "红线",
+      "规格",
+      "型号",
+      "卡固法"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：卡固法。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，拉线中把另缠法规格：7/2.6拉线缠扎线经为（    ）mm)，首节长度（ 150 mm)，间隙（ 30 mm)，末节长度为（ 100 ）mm)，留头长度（ 100 ）mm)。",
+    "options": [
+      "2.5",
+      "3.5",
+      "4.0",
+      "3.0"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：3.0。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，吊线在电杆上坡度变更大于杆距的20%，应加装（    ）辅助装置。",
+    "options": [
+      "规格",
+      "仰角或俯角",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：仰角或俯角。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，吊线在拉线反侧装置，角深在10-15m应加装（    ）辅助装置。",
+    "options": [
+      "型号",
+      "规格",
+      "吊线",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：吊线。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，GYTA光缆敷设过程中的曲率半径必须大于光缆直径（    ）倍，光缆在人（手）孔中固定后曲率半径必须大于光缆直径的（ 10 ）倍。",
+    "options": [
+      "40",
+      "20",
+      "25",
+      "15"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：20。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，GYTA光缆敷设过程中的曲率半径必须大于光缆直径（ 20 ）倍，光缆在人（    ）孔中固定后曲率半径必须大于光缆直径的（ 10 ）倍。",
+    "options": [
+      "规格",
+      "红线",
+      "型号",
+      "手"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，GYTA光缆敷设过程中的曲率半径必须大于光缆直径（ 20 ）倍，光缆在人（手）孔中固定后曲率半径必须大于光缆直径的（    ）倍。",
+    "options": [
+      "10",
+      "5",
+      "15",
+      "20"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，吊线距电杆顶的距离一般情况下应≧（    ），在特殊情况下应不小于（ 250mm ）。",
+    "options": [
+      "550mm",
+      "500mm",
+      "750mm",
+      "450mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：500mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，吊线距电杆顶的距离一般情况下应≧（ 500mm ），在特殊情况下应不小于（    ）。",
+    "options": [
+      "300mm",
+      "375mm",
+      "200mm",
+      "250mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：250mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，地锚出土长度应为（    ）。",
+    "options": [
+      "450mm～600mm",
+      "250mm～600mm",
+      "350mm～600mm",
+      "300mm～600mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：300mm～600mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，在雷暴严重地区，应按照设计要求的规格程式和安装位置在相应段落安装防雷排流线。防雷排流线应位于光缆上方（    ）处，接头处应连接牢固。",
+    "options": [
+      "300mm",
+      "250mm",
+      "450mm",
+      "350mm"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：300mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，（2）环形钢筋混凝土电杆有环向裂纹宽度超过（    ）、有可见纵向裂缝的或混凝土破碎部分总面积超过（ 200mm ），情况之一者不得使用。",
+    "options": [
+      "1.0mm",
+      "0.1mm",
+      "0.5mm",
+      "1.5mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：0.5mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，（2）环形钢筋混凝土电杆有环向裂纹宽度超过（ 0.5mm ）、有可见纵向裂缝的或混凝土破碎部分总面积超过（    ），情况之一者不得使用。",
+    "options": [
+      "250mm",
+      "150mm",
+      "300mm",
+      "200mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：200mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，长杆档光电缆吊线应按设计要求做（    ）。",
+    "options": [
+      "红线",
+      "辅助吊线",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：辅助吊线。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光缆的规格、型号和结构应符合设计规定和（    ）。",
+    "options": [
+      "型号",
+      "规格",
+      "红线",
+      "路由实际状况"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：路由实际状况。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光缆挂钩的卡挂间距应为（    ），允许偏差为±30mm。挂钩吊线上的搭扣方向应一致，挂钩托板应齐全、整齐。",
+    "options": [
+      "450mm",
+      "750mm",
+      "500mm",
+      "550mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：500mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，布放吊挂式架空光缆应在每1根杆上做一处伸缩预留。伸缩预留弯在过杆处应安装（    ）。",
+    "options": [
+      "红线",
+      "型号",
+      "保护管",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：保护管。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光缆经十字吊线或丁字吊线处应安装（    ）。",
+    "options": [
+      "保护管",
+      "红线",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：保护管。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，同一杆路架设两层吊线时，同侧两层吊线间距应为（    ）。",
+    "options": [
+      "350mm",
+      "600mm",
+      "400mm",
+      "450mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：400mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，通信管道人孔的井盖外缘与口圈的内缘间隙不应大（    ）；井盖与口圈盖合后，井盖边缘应高于口圈（ 1-3mm ）。",
+    "options": [
+      "型号",
+      "红线",
+      "于3mm",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：于3mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，管道进入人（    ）孔时，管口不应凸出人（手）孔内壁，应终止在距墙体内侧（ 100mm ）处，并应严密封堵，管口做成喇叭口。",
+    "options": [
+      "红线",
+      "手",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，管道进入人（手）孔时，管口不应凸出人（    ）孔内壁，应终止在距墙体内侧（ 100mm ）处，并应严密封堵，管口做成喇叭口。",
+    "options": [
+      "型号",
+      "手",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，通信管道施工开挖时，遇到地下已有其他管线平行或垂直距离接近时，应按设计规范的规定核对其相互间的（    ）是否符合标准。",
+    "options": [
+      "型号",
+      "规格",
+      "最小净距",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：最小净距。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，各种引上钢管引入人(手)孔、通道时，管口不应凸出墙面，应终止在墙体内（    ）处，并应封堵严密、抹出喇叭口。",
+    "options": [
+      "25～50mm",
+      "30～50mm",
+      "35～50mm",
+      "60～50mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：30～50mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，管道回填土前，应先清除沟内的遗留木料、草帘、纸袋等杂物。沟内如有（    ），必须排除后方可进行回填土。",
+    "options": [
+      "型号",
+      "积水和淤泥",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：积水和淤泥。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，管道工程验收文件应保证质量，做到外观整洁、（    ）、（ 数据准确 ）、装订规范。",
+    "options": [
+      "内容齐全",
+      "红线",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：内容齐全。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，管道工程验收文件应保证质量，做到外观整洁、（ 内容齐全 ）、（    ）、装订规范。",
+    "options": [
+      "红线",
+      "数据准确",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：数据准确。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，各种管道进入人(手)孔、通道的位置应符合下列规定：管顶距人(手)孔、通道上覆及沟盖底面不应小于（    ）mm。管底距人(手)孔、通道基础面不应小于400mm。",
+    "options": [
+      "250",
+      "450",
+      "350",
+      "300"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：300。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，采用定向钻孔方式铺设管道时，宜采用（ 高密度聚乙烯（    ））管。",
+    "options": [
+      "红线",
+      "HDPE",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：HDPE。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，在人孔内抽水时，抽水机的排气管不得靠近人孔口，应放在人孔的（    ）方向。",
+    "options": [
+      "型号",
+      "红线",
+      "规格",
+      "下风"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：下风。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，人工开挖土方或路面时，应在现场周围做好安全防护措施，相邻作业人员间应保持（    ）间距，作业人员不得在沟坑内或隧道中休息。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "安全"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：安全。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，各企业为施工人员配发的安全带必须符合（    ）标准。严禁用一般绳索、电线等代替安全带。",
+    "options": [
+      "规格",
+      "国家",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：国家。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，上下人孔时必须使用（    ），严禁踩踏人孔内线缆或线缆托架。",
+    "options": [
+      "红线",
+      "型号",
+      "梯子",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：梯子。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，在桥梁侧体悬空作业时，作业人员应穿（    ），桥上人员应穿交通警示服，作业车辆应设置施工停车警示标志。",
+    "options": [
+      "红线",
+      "规格",
+      "救生衣",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：救生衣。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光纤由（    ）和（ 包层 ）和涂敷层三部分组成，光缆的结构可分为（ 缆芯 ）， （ 加强元件 ） 和护层三大部分。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "纤芯"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：纤芯。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光纤由（ 纤芯 ）和（    ）和涂敷层三部分组成，光缆的结构可分为（ 缆芯 ）， （ 加强元件 ） 和护层三大部分。",
+    "options": [
+      "包层",
+      "规格",
+      "红线",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：包层。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光纤由（ 纤芯 ）和（ 包层 ）和涂敷层三部分组成，光缆的结构可分为（    ）， （ 加强元件 ） 和护层三大部分。",
+    "options": [
+      "缆芯",
+      "型号",
+      "红线",
+      "规格"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：缆芯。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光纤由（ 纤芯 ）和（ 包层 ）和涂敷层三部分组成，光缆的结构可分为（ 缆芯 ）， （    ） 和护层三大部分。",
+    "options": [
+      "规格",
+      "红线",
+      "型号",
+      "加强元件"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：加强元件。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光纤包层外径一般是（    ）。",
+    "options": [
+      "188μm",
+      "125μm",
+      "75μm",
+      "175μm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：125μm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （    ）技术, 下行数据采用的是 （ 广播 ）技术。上行数据波长（ 1310 ）nm，下行数据波长（ 1490 ）nm。",
+    "options": [
+      "红线",
+      "TDMA",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：TDMA。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （ TDMA ）技术, 下行数据采用的是 （    ）技术。上行数据波长（ 1310 ）nm，下行数据波长（ 1490 ）nm。",
+    "options": [
+      "型号",
+      "规格",
+      "广播",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：广播。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （ TDMA ）技术, 下行数据采用的是 （ 广播 ）技术。上行数据波长（    ）nm，下行数据波长（ 1490 ）nm。",
+    "options": [
+      "1360",
+      "1965",
+      "1310",
+      "1260"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：1310。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，为了分离同一根光纤上多个用户的来去方向的信号， PON采用两种复用技术,上行数据采用的是 （ TDMA ）技术, 下行数据采用的是 （ 广播 ）技术。上行数据波长（ 1310 ）nm，下行数据波长（    ）nm。",
+    "options": [
+      "1440",
+      "1540",
+      "1490",
+      "2235"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：1490。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，OLT 设备应在满足 FTTx 网络传输系统指标的前提下，遵循（    ）原则，集中部署。",
+    "options": [
+      "红线",
+      "型号",
+      "“大容量、少局所”",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：“大容量、少局所”。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光交箱接地阻值应不大于（    ）欧姆。",
+    "options": [
+      "5",
+      "15",
+      "10",
+      "20"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，竖井与接入间内安装光缆分光分纤盒，底部距地面高度宜为（    ），具体结合现场情况。",
+    "options": [
+      "1.0m～1.5m",
+      "2.0m～1.5m",
+      "1.5m～1.5m",
+      "0.5m～1.5m"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：1.0m～1.5m。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，楼道内安装光缆分光分纤盒，底部距地面高度宜为（    ），具体结合现场情况。",
+    "options": [
+      "2.0m～2.5m",
+      "2.5m～2.5m",
+      "3.0m～2.5m",
+      "1.5m～2.5m"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：2.0m～2.5m。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，光缆进入箱体后在光缆固定位缠绕多圈胶布并箍紧，在光缆的入孔处从箱内往外用（    ）进行封堵。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "防火泥"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：防火泥。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，子管在人（    ）孔内伸出长度一般为（ 100～200mm ）；本期工程不用的管孔及子管管孔应及时按照设计要求（ 封堵 ）。",
+    "options": [
+      "手",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，子管在人（手）孔内伸出长度一般为（ 100～200mm ）；本期工程不用的管孔及子管管孔应及时按照设计要求（    ）。",
+    "options": [
+      "规格",
+      "型号",
+      "封堵",
+      "红线"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：封堵。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，吊线式墙壁光缆，吊线式墙壁光缆使用的吊线程式应符合设计要求。墙上支撑的间距应为（    ）m，终端固定物与第一只中间支撑的距离不应大于（ 5m ）。",
+    "options": [
+      "3～10",
+      "16～10",
+      "8～10",
+      "13～10"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：8～10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，盒式光分路器型（    ）通过光分路器自带尾纤连接至配线光缆和主干光缆的适配器，实现无跳接功能，减少了活接头衰耗。",
+    "options": [
+      "规格",
+      "红线",
+      "型号",
+      "无跳纤光缆交接箱"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：无跳纤光缆交接箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，盒式（    ）是针对光纤接入网中光分支点处于室外环境而专门设计的室外型光配线设备，具有对光纤的接续、贮存、分光和调度等功能。",
+    "options": [
+      "无跳纤光缆交接箱",
+      "规格",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：无跳纤光缆交接箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，（    ）一般壁嵌式安装在用户住宅内的客厅、书房、壁橱等室内环境下，主要用于安装 ONU 和家庭网关等设备，提供各类弱电信息布线在户外与户内间的端接、汇聚、配线以及设备供电。",
+    "options": [
+      "综合信息箱",
+      "红线",
+      "规格",
+      "型号"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：综合信息箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，（    ）的安装位置应在家庭布线系统的汇聚点，且应尽量安装在通风、满足家庭无线覆盖和维护方便的地方。家庭信息箱宜低位安装，但箱体底边距地坪不应小于（ 300mm ）。",
+    "options": [
+      "综合信息箱",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：综合信息箱。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，（ 综合信息箱 ）的安装位置应在家庭布线系统的汇聚点，且应尽量安装在通风、满足家庭无线覆盖和维护方便的地方。家庭信息箱宜低位安装，但箱体底边距地坪不应小于（    ）。",
+    "options": [
+      "450mm",
+      "300mm",
+      "250mm",
+      "350mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：300mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（    ）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（ 500mm ），允许偏差（ ±20mm ）。",
+    "options": [
+      "规格",
+      "红线",
+      "搭扣",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：搭扣。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（    ）。在电杆两侧的第一只挂钩应各距电杆（ 500mm ），允许偏差（ ±20mm ）。",
+    "options": [
+      "红线",
+      "规格",
+      "齐全、整齐",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：齐全、整齐。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（    ），允许偏差（ ±20mm ）。",
+    "options": [
+      "550mm",
+      "450mm",
+      "750mm",
+      "500mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：500mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（ 500mm ），允许偏差（    ）。",
+    "options": [
+      "规格",
+      "±20mm",
+      "型号",
+      "红线"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：±20mm。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，在障碍物较多的墙面采用墙壁卡箍波纹管方式敷设蝶形光缆时，水平波纹管段长超过 15m 并且有 2 个以上的 90°弯角或直线段长超过 30m 时，应设置（    ）。",
+    "options": [
+      "型号",
+      "规格",
+      "红线",
+      "过路盒"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：过路盒。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，敷设管道型蝶形引入光缆时，管道型蝶形引入光缆一次敷设长度不得超过（    ）m。",
+    "options": [
+      "250",
+      "300",
+      "350",
+      "450"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：300。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，用户室内蝶形引入光缆敷设时，对装潢较高的用户可使用（    ）方式在用户室内进行布线，对装潢要求较低的用户可使用（ 卡钉扣 ）方式进行布线，用户原先暗管可利用的，则优先选择该方式。",
+    "options": [
+      "线槽",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：线槽。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，用户室内蝶形引入光缆敷设时，对装潢较高的用户可使用（ 线槽 ）方式在用户室内进行布线，对装潢要求较低的用户可使用（    ）方式进行布线，用户原先暗管可利用的，则优先选择该方式。",
+    "options": [
+      "红线",
+      "卡钉扣",
+      "型号",
+      "规格"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：卡钉扣。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，暗管内穿放蝶形光缆时，将蝶形光缆绑扎在穿线器的牵引头上，保证绑扎牢固、不脱离、无凸角。接头和蝶形光缆上可适当（    ）。",
+    "options": [
+      "红线",
+      "规格",
+      "涂抹润滑剂",
+      "型号"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：涂抹润滑剂。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，FTTH 终端设备安装主要有三种方式：综合信息箱安装方式、（    ）和桌面安装方式。",
+    "options": [
+      "红线",
+      "型号",
+      "规格",
+      "壁挂式安装方式"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：壁挂式安装方式。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，制作光纤活动连接插头是FTTH 入户光缆施工中最基本的一项技术，一般SC 型单芯光纤活动连接插头和连接插座（    ）组成的插拔式活动连接器的连接损耗应控制在（ 0.5 ）dB以下。",
+    "options": [
+      "规格",
+      "型号",
+      "红线",
+      "适配器"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：适配器。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，制作光纤活动连接插头是FTTH 入户光缆施工中最基本的一项技术，一般SC 型单芯光纤活动连接插头和连接插座（适配器）组成的插拔式活动连接器的连接损耗应控制在（    ）dB以下。",
+    "options": [
+      "0.1",
+      "1.5",
+      "1.0",
+      "0.5"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：0.5。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，蝶形引入光缆采用墙面开孔方式入户：开孔标准为自用户室内往用户室外进行开孔，开孔方向是向下倾斜（    ）度角，防止雨水倒灌至用户室内。",
+    "options": [
+      "15",
+      "20",
+      "5",
+      "10"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：10。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，ODN 网络主要由接入网（    ）、（ 配线光缆 ）、（ 蝶形引入光缆 ）以及光缆交接配线设备和光分路器等组成。",
+    "options": [
+      "主干光缆",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：主干光缆。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，ODN 网络主要由接入网（ 主干光缆）、（    ）、（ 蝶形引入光缆 ）以及光缆交接配线设备和光分路器等组成。",
+    "options": [
+      "红线",
+      "型号",
+      "配线光缆",
+      "规格"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：配线光缆。"
+  },
+  {
+    "content": "根据《2021年光网技能竞赛题库2-70%.docx》，ODN 网络主要由接入网（ 主干光缆）、（ 配线光缆 ）、（    ）以及光缆交接配线设备和光分路器等组成。",
+    "options": [
+      "蝶形引入光缆",
+      "型号",
+      "规格",
+      "红线"
+    ],
+    "correctAnswer": 0,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：2021年光网技能竞赛题库2-70%.docx。原填空答案为：蝶形引入光缆。"
+  },
+  {
+    "content": "根据《温州题库（提供）.docx》，管道进入人（    ）孔时，管口不应凸出人（手）孔内壁，应终止在距墙体内侧（ 100mm ）处，并应严密封堵，管口做成喇叭口。",
+    "options": [
+      "搭扣",
+      "手",
+      "100mm",
+      "梯子"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：温州题库（提供）.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《温州题库（提供）.docx》，管道进入人（手）孔时，管口不应凸出人（    ）孔内壁，应终止在距墙体内侧（ 100mm ）处，并应严密封堵，管口做成喇叭口。",
+    "options": [
+      "梯子",
+      "手",
+      "搭扣",
+      "100mm"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：温州题库（提供）.docx。原填空答案为：手。"
+  },
+  {
+    "content": "根据《温州题库（提供）.docx》，上下人孔时必须使用（    ），严禁踩踏人孔内线缆或线缆托架。",
+    "options": [
+      "搭扣",
+      "100mm",
+      "梯子",
+      "手"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：温州题库（提供）.docx。原填空答案为：梯子。"
+  },
+  {
+    "content": "根据《温州题库（提供）.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（    ）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（ 500mm ），允许偏差（ ±20mm ）。",
+    "options": [
+      "手",
+      "梯子",
+      "搭扣",
+      "100mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：温州题库（提供）.docx。原填空答案为：搭扣。"
+  },
+  {
+    "content": "根据《温州题库（提供）.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（    ）。在电杆两侧的第一只挂钩应各距电杆（ 500mm ），允许偏差（ ±20mm ）。",
+    "options": [
+      "梯子",
+      "手",
+      "齐全、整齐",
+      "100mm"
+    ],
+    "correctAnswer": 2,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：温州题库（提供）.docx。原填空答案为：齐全、整齐。"
+  },
+  {
+    "content": "根据《温州题库（提供）.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（    ），允许偏差（ ±20mm ）。",
+    "options": [
+      "550mm",
+      "450mm",
+      "750mm",
+      "500mm"
+    ],
+    "correctAnswer": 3,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：温州题库（提供）.docx。原填空答案为：500mm。"
+  },
+  {
+    "content": "根据《温州题库（提供）.docx》，架空光缆施工时，应根据设计要求选用光缆的挂钩程式。挂钩在吊线上的（搭扣）方向应一致，挂钩托板应安装（齐全、整齐）。在电杆两侧的第一只挂钩应各距电杆（ 500mm ），允许偏差（    ）。",
+    "options": [
+      "手",
+      "±20mm",
+      "100mm",
+      "梯子"
+    ],
+    "correctAnswer": 1,
+    "isMultiple": false,
+    "type": "single",
+    "explanation": "来源：温州题库（提供）.docx。原填空答案为：±20mm。"
+  }
+]
