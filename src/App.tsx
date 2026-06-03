@@ -76,7 +76,7 @@ export default function App() {
           <Route 
             path="/questions" 
             element={
-              <ProtectedRoute requireAdmin>
+              <ProtectedRoute>
                 <Questions />
               </ProtectedRoute>
             } 
@@ -84,7 +84,7 @@ export default function App() {
           <Route
             path="/materials"
             element={
-              <ProtectedRoute requireAdmin>
+              <ProtectedRoute>
                 <MaterialGenerator />
               </ProtectedRoute>
             }

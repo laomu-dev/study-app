@@ -11,36 +11,44 @@ export interface CreateQuestionData {
 }
 
 export class QuestionService {
-  async getAllQuestions(categoryId?: number): Promise<Question[]> {
-    return db.questions.getAll(categoryId);
+  async getAllQuestions(userId: number, categoryId?: number): Promise<Question[]> {
+    return db.questions.getAll(userId, categoryId);
   }
 
-  async getQuestionById(id: number): Promise<Question | null> {
-    return db.questions.findById(id) || null;
+  async getQuestionById(userId: number, id: number): Promise<Question | null> {
+    return db.questions.findById(id, userId) || null;
   }
 
-  async createQuestion(data: CreateQuestionData): Promise<Question> {
-    return db.questions.create(data);
+  async createQuestion(userId: number, data: CreateQuestionData): Promise<Question> {
+    if (!db.categories.findById(data.categoryId, userId)) {
+      throw new Error('Category not found');
+    }
+
+    return db.questions.create({ ...data, userId });
   }
 
-  async updateQuestion(id: number, data: Partial<CreateQuestionData>): Promise<Question | null> {
-    return db.questions.update(id, data) || null;
+  async updateQuestion(userId: number, id: number, data: Partial<CreateQuestionData>): Promise<Question | null> {
+    if (data.categoryId && !db.categories.findById(data.categoryId, userId)) {
+      throw new Error('Category not found');
+    }
+
+    return db.questions.update(id, userId, data) || null;
   }
 
-  async deleteQuestion(id: number): Promise<boolean> {
-    return db.questions.delete(id);
+  async deleteQuestion(userId: number, id: number): Promise<boolean> {
+    return db.questions.delete(id, userId);
   }
 
-  async getAllCategories(): Promise<Category[]> {
-    return db.categories.getAll();
+  async getAllCategories(userId: number): Promise<Category[]> {
+    return db.categories.getAll(userId);
   }
 
-  async createCategory(name: string, description?: string): Promise<Category> {
-    return db.categories.create({ name, description });
+  async createCategory(userId: number, name: string, description?: string): Promise<Category> {
+    return db.categories.create({ userId, name, description });
   }
 
-  async getRandomQuestions(count: number, excludeIds?: number[]): Promise<Question[]> {
-    let qs = db.questions.getAll();
+  async getRandomQuestions(userId: number, count: number, excludeIds?: number[]): Promise<Question[]> {
+    let qs = db.questions.getAll(userId);
     if (excludeIds && excludeIds.length > 0) {
       qs = qs.filter(q => !excludeIds.includes(q.id));
     }

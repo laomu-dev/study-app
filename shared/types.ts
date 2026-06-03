@@ -11,6 +11,7 @@ export type QuestionType = 'single' | 'multiple' | 'judge';
 
 export interface Question {
   id: number;
+  userId?: number;
   categoryId: number;
   content: string;
   options: string[];
@@ -23,6 +24,7 @@ export interface Question {
 
 export interface Category {
   id: number;
+  userId?: number;
   name: string;
   description?: string | null;
 }

@@ -15,7 +15,7 @@ export class StudyService {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const allQuestions = db.questions.getAll(categoryId);
+    const allQuestions = db.questions.getAll(userId, categoryId);
     const userRecords = db.studyRecords.getByUserId(userId);
     const recordsMap = new Map(userRecords.map(r => [r.questionId, r]));
 
@@ -52,7 +52,7 @@ export class StudyService {
   }
 
   async submitAnswer(userId: number, submission: AnswerSubmission): Promise<{ isCorrect: boolean; studyRecord: StudyRecord }> {
-    const question = db.questions.findById(submission.questionId);
+    const question = db.questions.findById(submission.questionId, userId);
     if (!question) throw new Error('Question not found');
 
     const isCorrect = this.checkAnswerCorrect(question.correctAnswer, submission.selectedAnswer);
@@ -95,7 +95,7 @@ export class StudyService {
     const tomorrow = new Date(today);
     tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const allQuestions = db.questions.getAll(categoryId);
+    const allQuestions = db.questions.getAll(userId, categoryId);
     const userRecords = db.studyRecords.getByUserId(userId);
 
     const reviewedToday = userRecords.filter(r => {

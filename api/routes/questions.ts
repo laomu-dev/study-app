@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     if (!user) return;
 
     const categoryId = req.query.categoryId ? parseInt(req.query.categoryId as string) : undefined;
-    const questions = await questionService.getAllQuestions(categoryId);
+    const questions = await questionService.getAllQuestions(user.id, categoryId);
     res.json({ questions });
   } catch (error) {
     console.error('Get questions error:', error);
@@ -39,7 +39,7 @@ router.get('/categories', async (req, res) => {
     const user = await checkAuth(req, res);
     if (!user) return;
 
-    const categories = await questionService.getAllCategories();
+    const categories = await questionService.getAllCategories(user.id);
     res.json({ categories });
   } catch (error) {
     console.error('Get categories error:', error);
@@ -53,7 +53,7 @@ router.get('/:id', async (req, res) => {
     if (!user) return;
 
     const id = parseInt(req.params.id);
-    const question = await questionService.getQuestionById(id);
+    const question = await questionService.getQuestionById(user.id, id);
 
     if (!question) {
       return res.status(404).json({ error: 'Question not found' });
@@ -71,17 +71,13 @@ router.post('/', async (req, res) => {
     const user = await checkAuth(req, res);
     if (!user) return;
     
-    if (user.role !== 'admin') {
-      return res.status(403).json({ error: 'Forbidden' });
-    }
-
     const { categoryId, content, options, correctAnswer, explanation } = req.body;
 
     if (!categoryId || !content || !options || correctAnswer === undefined) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
 
-    const question = await questionService.createQuestion({
+    const question = await questionService.createQuestion(user.id, {
       categoryId,
       content,
       options,
@@ -101,14 +97,10 @@ router.put('/:id', async (req, res) => {
     const user = await checkAuth(req, res);
     if (!user) return;
     
-    if (user.role !== 'admin') {
-      return res.status(403).json({ error: 'Forbidden' });
-    }
-
     const id = parseInt(req.params.id);
     const { categoryId, content, options, correctAnswer, explanation } = req.body;
 
-    const question = await questionService.updateQuestion(id, {
+    const question = await questionService.updateQuestion(user.id, id, {
       categoryId,
       content,
       options,
@@ -132,12 +124,8 @@ router.delete('/:id', async (req, res) => {
     const user = await checkAuth(req, res);
     if (!user) return;
     
-    if (user.role !== 'admin') {
-      return res.status(403).json({ error: 'Forbidden' });
-    }
-
     const id = parseInt(req.params.id);
-    const success = await questionService.deleteQuestion(id);
+    const success = await questionService.deleteQuestion(user.id, id);
 
     if (!success) {
       return res.status(404).json({ error: 'Question not found' });
@@ -155,17 +143,13 @@ router.post('/categories', async (req, res) => {
     const user = await checkAuth(req, res);
     if (!user) return;
     
-    if (user.role !== 'admin') {
-      return res.status(403).json({ error: 'Forbidden' });
-    }
-
     const { name, description } = req.body;
 
     if (!name) {
       return res.status(400).json({ error: 'Name is required' });
     }
 
-    const category = await questionService.createCategory(name, description);
+    const category = await questionService.createCategory(user.id, name, description);
     res.status(201).json({ category });
   } catch (error) {
     console.error('Create category error:', error);

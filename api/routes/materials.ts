@@ -8,9 +8,11 @@ import {
   parseTextFile,
 } from '../services/fileParserService';
 import { generateQuestionsFromMaterial } from '../services/questionGeneratorService';
+import { QuestionService } from '../services/questionService';
 
 const router = Router();
 const userService = new UserService();
+const questionService = new QuestionService();
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -26,7 +28,7 @@ const upload = multer({
   },
 });
 
-async function checkAdmin(req: any, res: any) {
+async function checkAuth(req: any, res: any) {
   const userId = (req.session as any)?.userId;
   if (!userId) {
     res.status(401).json({ error: 'Unauthorized' });
@@ -34,8 +36,8 @@ async function checkAdmin(req: any, res: any) {
   }
 
   const user = await userService.findById(userId);
-  if (!user || user.role !== 'admin') {
-    res.status(403).json({ error: 'Forbidden: Admin only' });
+  if (!user) {
+    res.status(401).json({ error: 'Unauthorized' });
     return null;
   }
 
@@ -69,7 +71,7 @@ function buildNotebookPrompt(sourceText: string, questionCount: number): string 
 }
 
 async function extractMaterialText(req: any, res: any) {
-  const user = await checkAdmin(req, res);
+  const user = await checkAuth(req, res);
   if (!user) return null;
 
   if (!req.file) {
@@ -83,13 +85,14 @@ async function extractMaterialText(req: any, res: any) {
     return null;
   }
 
-  return rawText;
+  return { rawText, user };
 }
 
 router.post('/extract', upload.single('file'), async (req, res) => {
   try {
-    const rawText = await extractMaterialText(req, res);
-    if (!rawText || !req.file) return;
+    const result = await extractMaterialText(req, res);
+    if (!result || !req.file) return;
+    const { rawText } = result;
 
     const questionCount = Math.min(Math.max(Number(req.body.questionCount) || 20, 1), 100);
 
@@ -109,12 +112,17 @@ router.post('/extract', upload.single('file'), async (req, res) => {
 
 router.post('/generate', upload.single('file'), async (req, res) => {
   try {
-    const rawText = await extractMaterialText(req, res);
-    if (!rawText || !req.file) return;
+    const result = await extractMaterialText(req, res);
+    if (!result || !req.file) return;
+    const { rawText, user } = result;
 
     const categoryId = Number(req.body.categoryId);
     if (!categoryId) {
       return res.status(400).json({ error: '请选择目标题库' });
+    }
+
+    if (!(await questionService.getAllCategories(user.id)).some(category => category.id === categoryId)) {
+      return res.status(404).json({ error: '题库不存在' });
     }
 
     const questionCount = Math.min(Math.max(Number(req.body.questionCount) || 20, 1), 100);
@@ -145,12 +153,16 @@ router.post('/generate', upload.single('file'), async (req, res) => {
 
 router.post('/parse-generated', async (req, res) => {
   try {
-    const user = await checkAdmin(req, res);
+    const user = await checkAuth(req, res);
     if (!user) return;
 
     const { content, categoryId } = req.body;
     if (!content || !categoryId) {
       return res.status(400).json({ error: '缺少生成内容或目标题库' });
+    }
+
+    if (!(await questionService.getAllCategories(user.id)).some(category => category.id === Number(categoryId))) {
+      return res.status(404).json({ error: '题库不存在' });
     }
 
     const text = String(content).trim();

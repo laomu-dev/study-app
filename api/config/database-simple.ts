@@ -19,6 +19,7 @@ export interface User {
 
 export interface Category {
   id: number;
+  userId?: number;
   name: string;
   description?: string;
 }
@@ -27,6 +28,7 @@ export type QuestionType = 'single' | 'multiple' | 'judge';
 
 export interface Question {
   id: number;
+  userId?: number;
   categoryId: number;
   content: string;
   options: string[];
@@ -407,14 +409,47 @@ const seedQuestions = [...initialQuestions, ...loadAdditionalQuestions()];
 
 // 内存存储
 const users: Map<number, User> = new Map(initialUsers.map(u => [u.id, u]));
-const categories: Map<number, Category> = new Map(initialCategories.map(c => [c.id, c]));
-const questions: Map<number, Question> = new Map(seedQuestions.map(q => [q.id, q]));
+const categories: Map<number, Category> = new Map();
+const questions: Map<number, Question> = new Map();
 const studyRecords: Map<number, StudyRecord[]> = new Map();
 
 let nextUserId = Math.max(...initialUsers.map(user => user.id)) + 1;
-let nextCategoryId = Math.max(...initialCategories.map(category => category.id)) + 1;
-let nextQuestionId = Math.max(...seedQuestions.map(question => question.id)) + 1;
+let nextCategoryId = 1;
+let nextQuestionId = 1;
 let nextStudyRecordId = 1;
+
+function seedDefaultContentForUser(userId: number): void {
+  const categoryIdMap = new Map<number, number>();
+
+  for (const templateCategory of initialCategories) {
+    const category: Category = {
+      id: nextCategoryId++,
+      userId,
+      name: templateCategory.name,
+      description: templateCategory.description,
+    };
+    categories.set(category.id, category);
+    categoryIdMap.set(templateCategory.id, category.id);
+  }
+
+  for (const templateQuestion of seedQuestions) {
+    const categoryId = categoryIdMap.get(templateQuestion.categoryId);
+    if (!categoryId) continue;
+
+    const question: Question = {
+      ...templateQuestion,
+      id: nextQuestionId++,
+      userId,
+      categoryId,
+      createdAt: new Date(templateQuestion.createdAt),
+    };
+    questions.set(question.id, question);
+  }
+}
+
+for (const user of initialUsers) {
+  seedDefaultContentForUser(user.id);
+}
 
 export const db = {
   users: {
@@ -428,12 +463,20 @@ export const db = {
         createdAt: new Date(),
       };
       users.set(user.id, user);
+      seedDefaultContentForUser(user.id);
       return user;
     },
   },
   categories: {
-    getAll: (): Category[] => Array.from(categories.values()),
-    create: (data: Omit<Category, 'id'>): Category => {
+    getAll: (userId: number): Category[] =>
+      Array.from(categories.values()).filter(category => category.userId === userId),
+    findById: (id: number, userId?: number): Category | undefined => {
+      const category = categories.get(id);
+      if (!category) return undefined;
+      if (userId !== undefined && category.userId !== userId) return undefined;
+      return category;
+    },
+    create: (data: Omit<Category, 'id'> & { userId: number }): Category => {
       const category: Category = {
         ...data,
         id: nextCategoryId++,
@@ -443,15 +486,20 @@ export const db = {
     },
   },
   questions: {
-    getAll: (categoryId?: number): Question[] => {
-      let qs = Array.from(questions.values());
+    getAll: (userId: number, categoryId?: number): Question[] => {
+      let qs = Array.from(questions.values()).filter(q => q.userId === userId);
       if (categoryId) {
         qs = qs.filter(q => q.categoryId === categoryId);
       }
       return qs.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
     },
-    findById: (id: number): Question | undefined => questions.get(id),
-    create: (data: Omit<Question, 'id' | 'createdAt'>): Question => {
+    findById: (id: number, userId?: number): Question | undefined => {
+      const question = questions.get(id);
+      if (!question) return undefined;
+      if (userId !== undefined && question.userId !== userId) return undefined;
+      return question;
+    },
+    create: (data: Omit<Question, 'id' | 'createdAt'> & { userId: number }): Question => {
       const q: Question = {
         ...data,
         id: nextQuestionId++,
@@ -460,14 +508,18 @@ export const db = {
       questions.set(q.id, q);
       return q;
     },
-    update: (id: number, data: Partial<Omit<Question, 'id' | 'createdAt'>>): Question | undefined => {
+    update: (id: number, userId: number, data: Partial<Omit<Question, 'id' | 'createdAt' | 'userId'>>): Question | undefined => {
       const q = questions.get(id);
-      if (!q) return undefined;
+      if (!q || q.userId !== userId) return undefined;
       const updated = { ...q, ...data };
       questions.set(id, updated);
       return updated;
     },
-    delete: (id: number): boolean => questions.delete(id),
+    delete: (id: number, userId: number): boolean => {
+      const question = questions.get(id);
+      if (!question || question.userId !== userId) return false;
+      return questions.delete(id);
+    },
   },
   studyRecords: {
     getByUserId: (userId: number): StudyRecord[] => studyRecords.get(userId) || [],

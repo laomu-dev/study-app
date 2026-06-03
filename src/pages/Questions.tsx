@@ -26,10 +26,10 @@ export function Questions() {
   });
 
   useEffect(() => {
-    if (user?.role === 'admin') {
+    if (user) {
       loadData();
     }
-  }, [user]);
+  }, [user, selectedCategory]);
 
   const loadData = async () => {
     try {
@@ -125,17 +125,6 @@ export function Questions() {
       ? question.correctAnswer.includes(index)
       : question.correctAnswer === index;
   };
-
-  if (user?.role !== 'admin') {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">权限不足</h2>
-          <p className="text-gray-600">只有管理员可以访问此页面</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">

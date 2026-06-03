@@ -47,15 +47,15 @@ function isValidAnswer(answer: unknown, optionsCount: number): boolean {
   return false;
 }
 
-async function checkAdmin(req: any, res: any) {
+async function checkAuth(req: any, res: any) {
   const userId = (req.session as any)?.userId;
   if (!userId) {
     res.status(401).json({ error: 'Unauthorized' });
     return null;
   }
   const user = await userService.findById(userId);
-  if (!user || user.role !== 'admin') {
-    res.status(403).json({ error: 'Forbidden: Admin only' });
+  if (!user) {
+    res.status(401).json({ error: 'Unauthorized' });
     return null;
   }
   return user;
@@ -63,7 +63,7 @@ async function checkAdmin(req: any, res: any) {
 
 router.post('/parse', upload.single('file'), async (req, res) => {
   try {
-    const user = await checkAdmin(req, res);
+    const user = await checkAuth(req, res);
     if (!user) return;
 
     if (!req.file) {
@@ -74,6 +74,10 @@ router.post('/parse', upload.single('file'), async (req, res) => {
     
     if (!categoryId) {
       return res.status(400).json({ error: '请选择分类' });
+    }
+
+    if (!(await questionService.getAllCategories(user.id)).some(category => category.id === Number(categoryId))) {
+      return res.status(404).json({ error: '题库不存在' });
     }
 
     const ext = path.extname(req.file.originalname).toLowerCase();
@@ -112,7 +116,7 @@ router.post('/parse', upload.single('file'), async (req, res) => {
 
 router.post('/batch', async (req, res) => {
   try {
-    const user = await checkAdmin(req, res);
+    const user = await checkAuth(req, res);
     if (!user) return;
 
     const { questions } = req.body;
@@ -148,7 +152,7 @@ router.post('/batch', async (req, res) => {
           continue;
         }
 
-        await questionService.createQuestion({
+        await questionService.createQuestion(user.id, {
           categoryId: Number(q.categoryId),
           content: String(q.content).trim(),
           options,

@@ -49,7 +49,7 @@ router.post('/start', async (req, res) => {
 
     const categoryId = req.body.categoryId ? Number(req.body.categoryId) : undefined;
     const limit = Math.min(Math.max(Number(req.body.limit) || 20, 1), 100);
-    const questions = shuffle(await questionService.getAllQuestions(categoryId)).slice(0, limit);
+    const questions = shuffle(await questionService.getAllQuestions(user.id, categoryId)).slice(0, limit);
 
     if (questions.length === 0) {
       return res.status(400).json({ error: '当前题库暂无题目' });
@@ -90,7 +90,7 @@ router.post('/submit', async (req, res) => {
     let correctCount = 0;
 
     for (const questionId of quizQuestionIds) {
-      const question = await questionService.getQuestionById(questionId);
+      const question = await questionService.getQuestionById(user.id, questionId);
       if (!question) continue;
 
       const selectedAnswer = answerMap.get(questionId);
