@@ -136,18 +136,6 @@ export function Login() {
             {isRegistering ? '已有账号，返回登录' : '没有账号？注册账号'}
           </button>
 
-          {!isRegistering && (
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-600 mb-2">测试账号：</p>
-            <div className="text-xs text-gray-500 space-y-1">
-              <p>管理员: admin / admin123</p>
-              <p>管理员: admin2 / admin123</p>
-              <p>管理员: admin3 / admin123</p>
-              <p>管理员: admin4 / admin123</p>
-              <p>普通用户: testuser / admin123</p>
-            </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

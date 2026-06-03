@@ -24,8 +24,6 @@ const PORT = process.env.PORT || 3001;
 const server = app.listen(PORT, async () => {
   await initializeDatabase();
   console.log(`Server ready on port ${PORT}`);
-  console.log('Default admin credentials: admin / admin123');
-  console.log('Default user credentials: testuser / admin123');
 });
 
 /**
