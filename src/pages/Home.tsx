@@ -5,11 +5,14 @@ import { useAppStore } from '../store';
 import { api } from '../lib/api';
 import { BookOpen, CheckCircle, Calendar, TrendingUp, Play } from 'lucide-react';
 import { Category } from '../../shared/types';
+import { DEFAULT_DAILY_LIMIT } from '../../shared/studySettings';
 
 export function Home() {
   const navigate = useNavigate();
   const { user, progress, stats, setProgress, setStats } = useAppStore();
   const [categories, setCategories] = useState<Category[]>([]);
+  const reviewedToday = progress?.reviewedToday || 0;
+  const dailyProgressPercent = Math.min((reviewedToday / DEFAULT_DAILY_LIMIT) * 100, 100);
 
   useEffect(() => {
     if (user) {
@@ -93,9 +96,9 @@ export function Home() {
           <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 mb-1">今日待复习</p>
+                <p className="text-sm text-gray-600 mb-1">今日答题数</p>
                 <p className="text-3xl font-bold text-blue-600">
-                  {progress?.dueToday || 0}
+                  {DEFAULT_DAILY_LIMIT}
                 </p>
               </div>
               <div className="bg-blue-100 p-3 rounded-full">
@@ -109,7 +112,7 @@ export function Home() {
               <div>
                 <p className="text-sm text-gray-600 mb-1">今日已完成</p>
                 <p className="text-3xl font-bold text-green-600">
-                  {progress?.reviewedToday || 0}
+                  {reviewedToday}
                 </p>
               </div>
               <div className="bg-green-100 p-3 rounded-full">
@@ -161,16 +164,14 @@ export function Home() {
               <div className="flex justify-between text-sm mb-2">
                 <span>今日进度</span>
                 <span>
-                  {progress?.reviewedToday || 0} / {progress?.dueToday || 0}
+                  {reviewedToday} / {DEFAULT_DAILY_LIMIT}
                 </span>
               </div>
               <div className="w-full bg-blue-900 rounded-full h-3">
                 <div
                   className="bg-white rounded-full h-3 transition-all duration-500"
                   style={{
-                    width: progress?.dueToday
-                      ? `${(progress.reviewedToday / progress.dueToday) * 100}%`
-                      : '0%',
+                    width: `${dailyProgressPercent}%`,
                   }}
                 />
               </div>

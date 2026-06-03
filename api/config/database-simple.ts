@@ -67,6 +67,30 @@ const initialUsers: User[] = [
     role: 'user',
     createdAt: new Date(),
   },
+  {
+    id: 3,
+    username: 'admin2',
+    email: 'admin2@example.com',
+    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    role: 'admin',
+    createdAt: new Date(),
+  },
+  {
+    id: 4,
+    username: 'admin3',
+    email: 'admin3@example.com',
+    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    role: 'admin',
+    createdAt: new Date(),
+  },
+  {
+    id: 5,
+    username: 'admin4',
+    email: 'admin4@example.com',
+    passwordHash: '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', // admin123
+    role: 'admin',
+    createdAt: new Date(),
+  },
 ];
 
 const initialCategories: Category[] = [
@@ -387,7 +411,7 @@ const categories: Map<number, Category> = new Map(initialCategories.map(c => [c.
 const questions: Map<number, Question> = new Map(seedQuestions.map(q => [q.id, q]));
 const studyRecords: Map<number, StudyRecord[]> = new Map();
 
-let nextUserId = 3;
+let nextUserId = Math.max(...initialUsers.map(user => user.id)) + 1;
 let nextCategoryId = Math.max(...initialCategories.map(category => category.id)) + 1;
 let nextQuestionId = Math.max(...seedQuestions.map(question => question.id)) + 1;
 let nextStudyRecordId = 1;
@@ -397,6 +421,15 @@ export const db = {
     findByUsername: (username: string): User | undefined => 
       Array.from(users.values()).find(u => u.username === username),
     findById: (id: number): User | undefined => users.get(id),
+    create: (data: Omit<User, 'id' | 'createdAt'>): User => {
+      const user: User = {
+        ...data,
+        id: nextUserId++,
+        createdAt: new Date(),
+      };
+      users.set(user.id, user);
+      return user;
+    },
   },
   categories: {
     getAll: (): Category[] => Array.from(categories.values()),

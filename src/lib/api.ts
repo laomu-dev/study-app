@@ -39,6 +39,11 @@ class ApiClient {
         method: 'POST',
         body: JSON.stringify({ username, password }),
       }),
+    register: (username: string, password: string, email?: string) =>
+      this.request('/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({ username, password, email }),
+      }),
     logout: () => 
       this.request('/auth/logout', { method: 'POST' }),
     getMe: () => 

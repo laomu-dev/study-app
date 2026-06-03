@@ -5,6 +5,7 @@ import { useAppStore } from '../store';
 import { api } from '../lib/api';
 import { Category, DailyTask } from '../../shared/types';
 import { CheckCircle, XCircle, ArrowRight, RotateCcw, Home, Trophy } from 'lucide-react';
+import { DEFAULT_DAILY_LIMIT } from '../../shared/studySettings';
 
 export function Study() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export function Study() {
     try {
       setIsLoading(true);
       const [tasksResult, categoriesResult]: any = await Promise.all([
-        api.study.getTodayTasks(undefined, categoryId),
+        api.study.getTodayTasks(DEFAULT_DAILY_LIMIT, categoryId),
         api.questions.getCategories(),
       ]);
       setCategories(categoriesResult.categories || []);

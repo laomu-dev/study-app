@@ -1,13 +1,11 @@
 import { Router } from 'express';
 import { StudyService } from '../services/studyService';
 import { UserService } from '../services/userService';
+import { DEFAULT_DAILY_LIMIT, MAX_DAILY_LIMIT, MIN_DAILY_LIMIT } from '../../shared/studySettings';
 
 const router = Router();
 const studyService = new StudyService();
 const userService = new UserService();
-const DEFAULT_DAILY_LIMIT = 50;
-const MIN_DAILY_LIMIT = 30;
-const MAX_DAILY_LIMIT = 50;
 
 function normalizeDailyLimit(rawLimit: unknown): number {
   if (!rawLimit) return DEFAULT_DAILY_LIMIT;
