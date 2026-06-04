@@ -119,6 +119,51 @@ function answerTextToResult(rawAnswer: string): { answer: number | number[], typ
   return null;
 }
 
+function parseAnswerText(rawAnswer: string): { answer: number | number[], type: QuestionType } | null {
+  const answerText = String(rawAnswer || '')
+    .trim()
+    .replace(/^(答案|正确答案|参考答案|answer|correct)[:：\s]*/i, '')
+    .replace(/[，,、；;\s]+/g, '')
+    .toUpperCase();
+
+  if (!answerText) return null;
+
+  const judgeMap: Record<string, number> = {
+    正确: 1,
+    对: 1,
+    是: 1,
+    '√': 1,
+    TRUE: 1,
+    T: 1,
+    错误: 0,
+    错: 0,
+    否: 0,
+    '×': 0,
+    FALSE: 0,
+    F: 0,
+  };
+
+  if (answerText in judgeMap) {
+    return { answer: judgeMap[answerText], type: 'judge' };
+  }
+
+  if (/^[A-H]+$/.test(answerText)) {
+    const answers = answerText.split('').map(char => char.charCodeAt(0) - 65);
+    return answers.length > 1
+      ? { answer: answers, type: 'multiple' }
+      : { answer: answers[0], type: 'single' };
+  }
+
+  if (/^[1-8]+$/.test(answerText)) {
+    const answers = answerText.split('').map(char => parseInt(char, 10) - 1);
+    return answers.length > 1
+      ? { answer: answers, type: 'multiple' }
+      : { answer: answers[0], type: 'single' };
+  }
+
+  return null;
+}
+
 function findCorrectAnswer(text: string): { answer: number | number[], type: QuestionType } {
   const normalized = cleanText(text);
   // 首先检查判断题答案
@@ -131,7 +176,7 @@ function findCorrectAnswer(text: string): { answer: number | number[], type: Que
   for (const pattern of judgePatterns) {
     const match = normalized.match(pattern);
     if (match) {
-      const result = answerTextToResult(match[1]);
+      const result = parseAnswerText(match[1]);
       if (result) return result;
     }
   }
@@ -146,7 +191,7 @@ function findCorrectAnswer(text: string): { answer: number | number[], type: Que
   for (const pattern of multiplePatterns) {
     const match = normalized.match(pattern);
     if (match) {
-      const result = answerTextToResult(match[1]);
+      const result = parseAnswerText(match[1]);
       if (result) return result;
     }
   }
@@ -158,7 +203,7 @@ function findCorrectAnswer(text: string): { answer: number | number[], type: Que
   for (const pattern of singlePatterns) {
     const match = normalized.match(pattern);
     if (match) {
-      const result = answerTextToResult(match[1]);
+      const result = parseAnswerText(match[1]);
       if (result) return result;
     }
   }
@@ -417,7 +462,7 @@ function parseCSVFormat(content: string): ParseResult {
     const answerStr = parts[answerIndex];
     const explanation = explanationCellIndex >= 0 ? parts[explanationCellIndex] : parts[6];
     
-    const answerResult = answerTextToResult(answerStr);
+    const answerResult = parseAnswerText(answerStr);
     if (!contentText) {
       errors.push(`行 ${i + 1}: 题目内容为空`);
       continue;
@@ -535,7 +580,7 @@ export function parseJSONFile(content: string): ParseResult {
                 answer: item.correctAnswer,
                 type: Array.isArray(item.correctAnswer) ? 'multiple' as QuestionType : 'single' as QuestionType,
               }
-            : answerTextToResult(String(item.answer ?? item.correctAnswer ?? 'A'));
+            : parseAnswerText(String(item.answer ?? item.correctAnswer ?? 'A'));
 
           if (!answerResult) {
             errors.push(`第 ${i + 1} 项答案格式不正确`);

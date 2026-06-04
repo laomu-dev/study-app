@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Upload, X, FileText, Check, AlertCircle, ChevronDown } from 'lucide-react';
+import { Upload, X, FileText, Check, AlertCircle, ChevronDown, Download } from 'lucide-react';
 import { api } from '../lib/api';
 import { Category } from '../../shared/types';
 
@@ -35,6 +35,27 @@ export function ImportModal({ categories, initialCategoryId, onClose, onImportCo
     return Array.isArray(question.correctAnswer)
       ? question.correctAnswer.includes(index)
       : question.correctAnswer === index;
+  };
+
+  const handleDownloadTemplate = () => {
+    const rows = [
+      ['题目', '选项A', '选项B', '选项C', '选项D', '选项E', '选项F', '选项G', '选项H', '答案', '解析'],
+      ['光纤通信中常用的三个波长窗口包括？', '850nm', '1310nm', '1550nm', '以上都是', '', '', '', '', 'D', '850nm、1310nm、1550nm 都是常用窗口'],
+      ['TCP/IP 协议中，IP 层对应 OSI 模型的哪一层？', '数据链路层', '网络层', '传输层', '应用层', '', '', '', '', 'B', 'IP 协议工作在网络层'],
+      ['下面哪些属于多选题示例？', '选项一', '选项二', '选项三', '选项四', '', '', '', '', 'AC', '多选题答案可填写 AB、ACD 等'],
+    ];
+
+    const escapeCsvCell = (value: string) => `"${value.replace(/"/g, '""')}"`;
+    const csv = rows.map(row => row.map(escapeCsvCell).join(',')).join('\r\n');
+    const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = '题目导入标准模板.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,14 +146,25 @@ export function ImportModal({ categories, initialCategoryId, onClose, onImportCo
           {!showPreview ? (
             <div className="space-y-6">
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h3 className="font-semibold text-blue-800 mb-2">推荐导入格式：</h3>
-                <ul className="text-sm text-blue-700 space-y-1">
-                  <li>• <strong>CSV文件 (.csv)</strong> - 最推荐，按列填写，识别最稳定</li>
-                  <li>• <strong>JSON文件 (.json)</strong> - 适合程序生成，准确度最高</li>
-                  <li>• <strong>文本/Word/PDF</strong> - 可导入规范题块，但排版复杂时可能需要人工检查预览</li>
-                </ul>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="font-semibold text-blue-800 mb-2">推荐使用标准 CSV 模板</h3>
+                    <ul className="text-sm text-blue-700 space-y-1">
+                      <li>按固定列填写：题目、选项A-H、答案、解析。</li>
+                      <li>单选答案填 A/B/C/D，多选答案填 AB、ACD。</li>
+                      <li>保存为 CSV 后上传，解析准确率最高。</li>
+                    </ul>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleDownloadTemplate}
+                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+                  >
+                    <Download className="h-4 w-4" />
+                    <span>下载标准模板</span>
+                  </button>
+                </div>
               </div>
-
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   选择分类
