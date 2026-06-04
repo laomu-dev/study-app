@@ -91,4 +91,20 @@ router.get('/stats', async (req, res) => {
   }
 });
 
+router.get('/wrong', async (req, res) => {
+  try {
+    const user = await checkAuth(req, res);
+    if (!user) return;
+
+    const questions = await studyService.getWrongQuestions(user.id);
+    res.json({
+      total: questions.length,
+      questions,
+    });
+  } catch (error) {
+    console.error('Get wrong questions error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 export default router;

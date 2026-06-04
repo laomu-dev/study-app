@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { QuestionService } from '../services/questionService';
+import { StudyService } from '../services/studyService';
 import { UserService } from '../services/userService';
 
 const router = Router();
 const questionService = new QuestionService();
+const studyService = new StudyService();
 const userService = new UserService();
 
 type QuizAnswer = {
@@ -99,6 +101,11 @@ router.post('/submit', async (req, res) => {
         : false;
 
       if (isCorrect) correctCount++;
+
+      await studyService.submitAnswer(user.id, {
+        questionId,
+        selectedAnswer: selectedAnswer ?? -1,
+      });
 
       results.push({
         questionId,

@@ -6,6 +6,7 @@ import type {
   Question,
   StudyRecord,
   User as PublicUser,
+  WrongQuestion,
 } from '../../shared/types';
 
 dotenv.config();
@@ -368,6 +369,57 @@ export const db = {
         [userId],
       );
       return rows.map(toStudyRecord);
+    },
+
+    async getWrongQuestions(userId: number): Promise<WrongQuestion[]> {
+      const [rows] = await pool.query<RowDataPacket[]>(
+        `SELECT
+            sr.*,
+            q.id AS question_id_value,
+            q.user_id AS question_user_id,
+            q.category_id,
+            q.content,
+            q.options,
+            q.correct_answer,
+            q.is_multiple,
+            q.type,
+            q.explanation,
+            q.created_at AS question_created_at,
+            c.name AS category_name
+         FROM study_records sr
+         INNER JOIN questions q ON q.id = sr.question_id AND q.user_id = sr.user_id
+         LEFT JOIN categories c ON c.id = q.category_id AND c.user_id = sr.user_id
+         WHERE sr.user_id = ? AND sr.review_count > sr.correct_count
+         ORDER BY (sr.review_count - sr.correct_count) DESC, sr.last_reviewed_at DESC, sr.id DESC`,
+        [userId],
+      );
+
+      return rows.map(row => {
+        const studyRecord = toStudyRecord(row);
+        const question = toQuestion({
+          id: row.question_id_value,
+          user_id: row.question_user_id,
+          category_id: row.category_id,
+          content: row.content,
+          options: row.options,
+          correct_answer: row.correct_answer,
+          is_multiple: row.is_multiple,
+          type: row.type,
+          explanation: row.explanation,
+          created_at: row.question_created_at,
+        } as RowDataPacket);
+        const wrongCount = studyRecord.reviewCount - studyRecord.correctCount;
+
+        return {
+          question,
+          studyRecord,
+          categoryName: row.category_name || null,
+          wrongCount,
+          accuracy: studyRecord.reviewCount > 0
+            ? Math.round((studyRecord.correctCount / studyRecord.reviewCount) * 100)
+            : 0,
+        };
+      });
     },
 
     async getByUserAndQuestion(userId: number, questionId: number): Promise<StudyRecord | undefined> {

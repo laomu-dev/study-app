@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
-import { BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText } from 'lucide-react';
+import { AlertTriangle, BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText } from 'lucide-react';
 
 export function Navbar() {
   const location = useLocation();
@@ -71,6 +71,18 @@ export function Navbar() {
             >
               <ClipboardCheck className="h-4 w-4" />
               <span>测验</span>
+            </Link>
+            
+            <Link
+              to="/wrong"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                isActive('/wrong')
+                  ? 'bg-blue-900 text-white shadow-md'
+                  : 'text-blue-100 hover:bg-blue-700'
+              }`}
+            >
+              <AlertTriangle className="h-4 w-4" />
+              <span>错题</span>
             </Link>
             
             <Link
@@ -160,6 +172,19 @@ export function Navbar() {
               >
                 <ClipboardCheck className="h-5 w-5" />
                 <span>测验</span>
+              </Link>
+              
+              <Link
+                to="/wrong"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                  isActive('/wrong')
+                    ? 'bg-blue-900 text-white'
+                    : 'text-blue-100 hover:bg-blue-700'
+                }`}
+              >
+                <AlertTriangle className="h-5 w-5" />
+                <span>错题集</span>
               </Link>
               
               <Link

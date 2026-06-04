@@ -1,5 +1,5 @@
 import { db } from '../config/database';
-import { Question, StudyRecord, DailyTask, StudyProgress, StudyStats } from '../../shared/types';
+import { Question, StudyRecord, DailyTask, StudyProgress, StudyStats, WrongQuestion } from '../../shared/types';
 import { calculateNextReview, updateMemoryStrength } from '../utils/spacedRepetition';
 
 export interface AnswerSubmission {
@@ -137,5 +137,9 @@ export class StudyService {
 
   async getStudyRecord(userId: number, questionId: number): Promise<StudyRecord | null> {
     return (await db.studyRecords.getByUserAndQuestion(userId, questionId)) || null;
+  }
+
+  async getWrongQuestions(userId: number): Promise<WrongQuestion[]> {
+    return await db.studyRecords.getWrongQuestions(userId);
   }
 }

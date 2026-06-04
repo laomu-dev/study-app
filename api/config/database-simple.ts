@@ -524,6 +524,34 @@ export const db = {
   },
   studyRecords: {
     getByUserId: (userId: number): StudyRecord[] => studyRecords.get(userId) || [],
+    getWrongQuestions: (userId: number) => {
+      return (studyRecords.get(userId) || [])
+        .filter(record => record.reviewCount > record.correctCount)
+        .map(record => {
+          const question = questions.get(record.questionId);
+          if (!question || question.userId !== userId) return null;
+
+          const category = categories.get(question.categoryId);
+          const wrongCount = record.reviewCount - record.correctCount;
+
+          return {
+            question,
+            studyRecord: record,
+            categoryName: category?.name || null,
+            wrongCount,
+            accuracy: record.reviewCount > 0
+              ? Math.round((record.correctCount / record.reviewCount) * 100)
+              : 0,
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => {
+          if (!a || !b) return 0;
+          if (b.wrongCount !== a.wrongCount) return b.wrongCount - a.wrongCount;
+          return new Date(b.studyRecord.lastReviewedAt || 0).getTime()
+            - new Date(a.studyRecord.lastReviewedAt || 0).getTime();
+        });
+    },
     getByUserAndQuestion: (userId: number, questionId: number): StudyRecord | undefined =>
       studyRecords.get(userId)?.find(sr => sr.questionId === questionId),
     create: (data: Omit<StudyRecord, 'id' | 'createdAt'>): StudyRecord => {

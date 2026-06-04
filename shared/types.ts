@@ -40,6 +40,14 @@ export interface StudyRecord {
   correctCount: number;
 }
 
+export interface WrongQuestion {
+  question: Question;
+  studyRecord: StudyRecord;
+  categoryName?: string | null;
+  wrongCount: number;
+  accuracy: number;
+}
+
 export interface DailyTask {
   question: Question;
   isNew: boolean;

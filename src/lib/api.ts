@@ -93,6 +93,8 @@ class ApiClient {
       this.request(`/study/progress${categoryId ? `?categoryId=${categoryId}` : ''}`),
     getStats: () => 
       this.request('/study/stats'),
+    getWrongQuestions: () =>
+      this.request('/study/wrong'),
   };
 
   quiz = {
