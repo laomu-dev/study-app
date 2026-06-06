@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
 import { Category, DailyTask } from '../../shared/types';
-import { CheckCircle, XCircle, ArrowRight, RotateCcw, Home, Trophy } from 'lucide-react';
+import { CheckCircle, XCircle, RotateCcw, Home, Trophy } from 'lucide-react';
 import { DEFAULT_DAILY_LIMIT } from '../../shared/studySettings';
 
 export function Study() {
@@ -15,6 +15,7 @@ export function Study() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | number[] | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -57,32 +58,12 @@ export function Study() {
       setCurrentIndex(0);
       setSelectedAnswer(null);
       setShowResult(false);
+      setIsSubmitting(false);
       setCompleted(false);
     } catch (error) {
       console.error('Failed to load tasks:', error);
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  const handleSelectAnswer = (index: number) => {
-    if (showResult) return;
-    
-    if (isMultiple) {
-      // 多选模式：切换选中状态
-      setSelectedAnswer(prev => {
-        const current = Array.isArray(prev) ? [...prev] : [];
-        const indexPos = current.indexOf(index);
-        if (indexPos > -1) {
-          current.splice(indexPos, 1);
-        } else {
-          current.push(index);
-        }
-        return current.length > 0 ? current : null;
-      });
-    } else {
-      // 单选模式
-      setSelectedAnswer(index);
     }
   };
 
@@ -96,27 +77,54 @@ export function Study() {
       setCurrentIndex(index => index + 1);
       setSelectedAnswer(null);
       setShowResult(false);
+      setIsSubmitting(false);
     } else {
       setCompleted(true);
     }
   };
 
-  const handleSubmit = async () => {
-    if (selectedAnswer === null || !currentTask) return;
+  const submitAnswer = async (answer: number | number[]) => {
+    if (!currentTask || isSubmitting) return;
 
     try {
+      setIsSubmitting(true);
       const result: any = await api.study.submitAnswer(
         currentTask.question.id,
-        selectedAnswer
+        answer
       );
       setIsCorrect(result.isCorrect);
       setShowResult(true);
-      if (result.isCorrect) {
-        autoNextTimerRef.current = setTimeout(handleNext, 700);
-      }
+      autoNextTimerRef.current = setTimeout(handleNext, result.isCorrect ? 400 : 4000);
     } catch (error) {
       console.error('Failed to submit answer:', error);
+      setIsSubmitting(false);
     }
+  };
+
+  const handleSelectAnswer = (index: number) => {
+    if (showResult || isSubmitting) return;
+
+    if (isMultiple) {
+      setSelectedAnswer(prev => {
+        const current = Array.isArray(prev) ? [...prev] : [];
+        const indexPos = current.indexOf(index);
+        if (indexPos > -1) {
+          current.splice(indexPos, 1);
+        } else {
+          current.push(index);
+        }
+        return current.length > 0 ? current : null;
+      });
+      return;
+    }
+
+    setSelectedAnswer(index);
+    void submitAnswer(index);
+  };
+
+  const handleSubmit = () => {
+    if (selectedAnswer === null) return;
+    void submitAnswer(selectedAnswer);
   };
 
   const handleRestart = () => {
@@ -127,6 +135,7 @@ export function Study() {
     setCurrentIndex(0);
     setSelectedAnswer(null);
     setShowResult(false);
+    setIsSubmitting(false);
     setCompleted(false);
     loadTasks();
   };
@@ -280,7 +289,7 @@ export function Study() {
                     <button
                       key={index}
                       onClick={() => handleSelectAnswer(index)}
-                      disabled={showResult}
+                      disabled={showResult || isSubmitting}
                       className={buttonClass}
                     >
                       <div className="flex items-center justify-center">
@@ -331,26 +340,30 @@ export function Study() {
                 </div>
               )}
 
-              {!showResult ? (
+              {!showResult && isMultiple ? (
                 <button
                   onClick={handleSubmit}
-                  disabled={selectedAnswer === null}
+                  disabled={selectedAnswer === null || isSubmitting}
                   className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-lg transition-colors"
                 >
-                  提交答案
+                  {isSubmitting ? '正在判定...' : '提交多选答案'}
                 </button>
-              ) : isCorrect ? (
-                <div className="w-full bg-green-50 border border-green-200 text-green-800 font-medium py-4 px-6 rounded-lg text-center">
-                  回答正确，正在进入下一题...
+              ) : !showResult ? (
+                <div className="w-full bg-blue-50 border border-blue-200 text-blue-800 font-medium py-4 px-6 rounded-lg text-center">
+                  {isSubmitting ? '正在判定...' : '点击一个选项即可作答'}
                 </div>
               ) : (
-                <button
-                  onClick={handleNext}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-6 rounded-lg transition-colors flex items-center justify-center space-x-2"
+                <div
+                  className={`w-full border font-medium py-4 px-6 rounded-lg text-center ${
+                    isCorrect
+                      ? 'bg-green-50 border-green-200 text-green-800'
+                      : 'bg-red-50 border-red-200 text-red-800'
+                  }`}
                 >
-                  <span>{currentIndex < todayTasks.length - 1 ? '下一题' : '完成'}</span>
-                  <ArrowRight className="h-5 w-5" />
-                </button>
+                  {isCorrect
+                    ? '回答正确，正在进入下一题...'
+                    : '请查看解析，稍后自动进入下一题...'}
+                </div>
               )}
             </div>
           </div>
