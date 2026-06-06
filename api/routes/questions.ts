@@ -54,7 +54,7 @@ router.post('/generate-explanations', async (req, res) => {
     if (!user) return;
 
     const categoryId = req.body.categoryId ? Number(req.body.categoryId) : undefined;
-    const batchSize = Math.min(Math.max(Number(req.body.batchSize) || 20, 1), 20);
+    const batchSize = Math.min(Math.max(Number(req.body.batchSize) || 5, 1), 5);
     const questions = await questionService.getAllQuestions(user.id, categoryId);
     const missing = questions.filter(question => !question.explanation?.trim());
     const batch = missing.slice(0, batchSize);

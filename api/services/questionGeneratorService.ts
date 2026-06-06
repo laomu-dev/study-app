@@ -142,7 +142,9 @@ async function requestCompatibleJson(
       model: config.model,
       messages,
       response_format: { type: 'json_object' },
+      enable_thinking: false,
       temperature: 0.2,
+      max_tokens: 3000,
     }),
   });
 

@@ -132,7 +132,7 @@ export function Questions() {
       while (remaining > 0) {
         const result: any = await api.questions.generateMissingExplanations(
           selectedCategory || undefined,
-          20,
+          5,
         );
         const updated = Number(result.updated || 0);
         remaining = Number(result.remaining || 0);
