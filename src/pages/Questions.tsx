@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
 import { Question, Category } from '../../shared/types';
-import { Plus, Edit, Trash2, BookOpen, Save, X, Upload } from 'lucide-react';
+import { Plus, Edit, Trash2, BookOpen, Save, X, Upload, Sparkles } from 'lucide-react';
 import { ImportModal } from '../components/ImportModal';
 
 export function Questions() {
@@ -16,6 +16,8 @@ export function Questions() {
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isGeneratingExplanations, setIsGeneratingExplanations] = useState(false);
+  const [explanationProgress, setExplanationProgress] = useState('');
   const [categoryForm, setCategoryForm] = useState({ name: '', description: '' });
   const [formData, setFormData] = useState({
     categoryId: 0,
@@ -120,6 +122,46 @@ export function Questions() {
     }
   };
 
+  const handleGenerateExplanations = async () => {
+    try {
+      setIsGeneratingExplanations(true);
+      setExplanationProgress('正在检查缺少解析的题目...');
+      let totalUpdated = 0;
+      let remaining = 1;
+
+      while (remaining > 0) {
+        const result: any = await api.questions.generateMissingExplanations(
+          selectedCategory || undefined,
+          20,
+        );
+        const updated = Number(result.updated || 0);
+        remaining = Number(result.remaining || 0);
+        totalUpdated += updated;
+
+        if (updated === 0) {
+          setExplanationProgress(
+            totalUpdated > 0
+              ? `已补全 ${totalUpdated} 道题，仍有 ${remaining} 道未生成，请稍后重试。`
+              : '当前范围内没有需要补全解析的题目。',
+          );
+          break;
+        }
+
+        setExplanationProgress(
+          remaining > 0
+            ? `已补全 ${totalUpdated} 道题，剩余 ${remaining} 道...`
+            : `已完成，共补全 ${totalUpdated} 道题的解析。`,
+        );
+      }
+
+      await loadData();
+    } catch (error: any) {
+      setExplanationProgress(error.message || 'AI 解析生成失败，请稍后重试。');
+    } finally {
+      setIsGeneratingExplanations(false);
+    }
+  };
+
   const isCorrectOption = (question: Question, index: number) => {
     return Array.isArray(question.correctAnswer)
       ? question.correctAnswer.includes(index)
@@ -129,12 +171,20 @@ export function Questions() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col gap-4 lg:flex-row lg:justify-between lg:items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">题库管理</h1>
             <p className="text-gray-600">管理和维护学习题目</p>
           </div>
-          <div className="flex space-x-3">
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={handleGenerateExplanations}
+              disabled={isGeneratingExplanations}
+              className="bg-violet-600 hover:bg-violet-700 disabled:bg-gray-300 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center space-x-2"
+            >
+              <Sparkles className="h-5 w-5" />
+              <span>{isGeneratingExplanations ? '生成解析中...' : 'AI 补全解析'}</span>
+            </button>
             <button
               onClick={() => setShowCategoryModal(true)}
               className="bg-white hover:bg-gray-50 text-gray-800 font-bold py-3 px-6 rounded-lg transition-colors flex items-center space-x-2 border border-gray-300"
@@ -172,6 +222,9 @@ export function Questions() {
               </option>
             ))}
           </select>
+          {explanationProgress && (
+            <p className="mt-3 text-sm text-gray-600">{explanationProgress}</p>
+          )}
         </div>
 
         {isLoading ? (

@@ -74,6 +74,11 @@ class ApiClient {
         method: 'POST',
         body: JSON.stringify({ name, description }),
       }),
+    generateMissingExplanations: (categoryId?: number, batchSize = 20) =>
+      this.request('/questions/generate-explanations', {
+        method: 'POST',
+        body: JSON.stringify({ categoryId, batchSize }),
+      }),
   };
 
   study = {

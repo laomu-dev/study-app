@@ -50,7 +50,7 @@ router.post('/start', async (req, res) => {
     if (!user) return;
 
     const categoryId = req.body.categoryId ? Number(req.body.categoryId) : undefined;
-    const limit = Math.min(Math.max(Number(req.body.limit) || 20, 1), 100);
+    const limit = Math.min(Math.max(Number(req.body.limit) || 100, 1), 100);
     const questions = shuffle(await questionService.getAllQuestions(user.id, categoryId)).slice(0, limit);
 
     if (questions.length === 0) {
@@ -118,10 +118,13 @@ router.post('/submit', async (req, res) => {
       });
     }
 
+    const score = results.length > 0 ? Math.round((correctCount / results.length) * 100) : 0;
+
     res.json({
       total: results.length,
       correct: correctCount,
-      accuracy: results.length > 0 ? Math.round((correctCount / results.length) * 100) : 0,
+      score,
+      accuracy: score,
       results,
     });
   } catch (error) {

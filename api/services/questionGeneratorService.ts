@@ -15,6 +15,18 @@ type GenerateQuestionOptions = {
 
 export type GeneratedQuestion = ParsedQuestion;
 
+export type ExplanationQuestion = {
+  id: number;
+  content: string;
+  options: string[];
+  correctAnswer: number | number[];
+};
+
+export type GeneratedExplanation = {
+  questionId: number;
+  explanation: string;
+};
+
 const DEFAULT_MODEL = 'gpt-5.5';
 let configuredProxy: string | undefined;
 
@@ -48,6 +60,26 @@ const questionSchema = {
             type: 'array',
             items: { type: 'integer' },
           },
+          explanation: { type: 'string' },
+        },
+      },
+    },
+  },
+};
+
+const explanationSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['explanations'],
+  properties: {
+    explanations: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['questionId', 'explanation'],
+        properties: {
+          questionId: { type: 'integer' },
           explanation: { type: 'string' },
         },
       },
@@ -177,4 +209,76 @@ export async function generateQuestionsFromMaterial({
   }
 
   return questions.map(normalizeQuestion);
+}
+
+export async function generateQuestionExplanations(
+  questions: ExplanationQuestion[],
+): Promise<GeneratedExplanation[]> {
+  configureProxyIfNeeded();
+
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error('缺少 OPENAI_API_KEY，请先在服务器环境变量中配置。');
+  }
+
+  if (questions.length === 0) return [];
+
+  const model = process.env.OPENAI_EXPLANATION_MODEL || 'gpt-4.1-mini';
+  const response = await fetch('https://api.openai.com/v1/responses', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model,
+      input: [
+        {
+          role: 'system',
+          content: [
+            '你是严谨的通信专业题库解析编写助手。',
+            '根据题干、选项和已给出的正确答案，逐题编写简洁、准确的中文解析。',
+            '不得修改正确答案，不得编造题目没有提供的具体标准编号、数值或事实。',
+            '每道题用一至三句话说明正确答案为什么成立；必要时简要指出干扰项的问题。',
+          ].join('\n'),
+        },
+        {
+          role: 'user',
+          content: [
+            '请为以下题目补充解析。correctAnswer 使用从 0 开始的选项下标。',
+            '只返回符合指定结构的 JSON。',
+            JSON.stringify(questions),
+          ].join('\n\n'),
+        },
+      ],
+      text: {
+        format: {
+          type: 'json_schema',
+          name: 'question_explanations',
+          schema: explanationSchema,
+          strict: true,
+        },
+      },
+    }),
+  });
+
+  const payload = await response.json().catch(() => null);
+  if (!response.ok) {
+    const message = payload?.error?.message || `OpenAI API request failed: HTTP ${response.status}`;
+    throw new Error(message);
+  }
+
+  const outputText = extractResponseText(payload);
+  if (!outputText) {
+    throw new Error('AI 未返回可解析的题目解析。');
+  }
+
+  const parsed = JSON.parse(outputText) as { explanations?: GeneratedExplanation[] };
+  const questionIds = new Set(questions.map(question => question.id));
+  return (parsed.explanations || [])
+    .filter(item => questionIds.has(item.questionId) && item.explanation?.trim())
+    .map(item => ({
+      questionId: item.questionId,
+      explanation: item.explanation.trim(),
+    }));
 }

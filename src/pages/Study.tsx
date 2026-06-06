@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
@@ -18,6 +18,7 @@ export function Study() {
   const [isLoading, setIsLoading] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const autoNextTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const categoryId = searchParams.get('categoryId') ? parseInt(searchParams.get('categoryId')!, 10) : undefined;
   const currentCategory = categories.find(category => category.id === categoryId);
 
@@ -32,8 +33,20 @@ export function Study() {
     }
   }, [user, categoryId]);
 
+  useEffect(() => {
+    return () => {
+      if (autoNextTimerRef.current) {
+        clearTimeout(autoNextTimerRef.current);
+      }
+    };
+  }, []);
+
   const loadTasks = async () => {
     try {
+      if (autoNextTimerRef.current) {
+        clearTimeout(autoNextTimerRef.current);
+        autoNextTimerRef.current = null;
+      }
       setIsLoading(true);
       const [tasksResult, categoriesResult]: any = await Promise.all([
         api.study.getTodayTasks(DEFAULT_DAILY_LIMIT, categoryId),
@@ -73,6 +86,21 @@ export function Study() {
     }
   };
 
+  const handleNext = () => {
+    if (autoNextTimerRef.current) {
+      clearTimeout(autoNextTimerRef.current);
+      autoNextTimerRef.current = null;
+    }
+
+    if (currentIndex < todayTasks.length - 1) {
+      setCurrentIndex(index => index + 1);
+      setSelectedAnswer(null);
+      setShowResult(false);
+    } else {
+      setCompleted(true);
+    }
+  };
+
   const handleSubmit = async () => {
     if (selectedAnswer === null || !currentTask) return;
 
@@ -83,22 +111,19 @@ export function Study() {
       );
       setIsCorrect(result.isCorrect);
       setShowResult(true);
+      if (result.isCorrect) {
+        autoNextTimerRef.current = setTimeout(handleNext, 700);
+      }
     } catch (error) {
       console.error('Failed to submit answer:', error);
     }
   };
 
-  const handleNext = () => {
-    if (currentIndex < todayTasks.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setSelectedAnswer(null);
-      setShowResult(false);
-    } else {
-      setCompleted(true);
-    }
-  };
-
   const handleRestart = () => {
+    if (autoNextTimerRef.current) {
+      clearTimeout(autoNextTimerRef.current);
+      autoNextTimerRef.current = null;
+    }
     setCurrentIndex(0);
     setSelectedAnswer(null);
     setShowResult(false);
@@ -314,6 +339,10 @@ export function Study() {
                 >
                   提交答案
                 </button>
+              ) : isCorrect ? (
+                <div className="w-full bg-green-50 border border-green-200 text-green-800 font-medium py-4 px-6 rounded-lg text-center">
+                  回答正确，正在进入下一题...
+                </div>
               ) : (
                 <button
                   onClick={handleNext}

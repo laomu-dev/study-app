@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { QuestionService } from '../services/questionService';
 import { UserService } from '../services/userService';
+import { generateQuestionExplanations } from '../services/questionGeneratorService';
 
 const router = Router();
 const questionService = new QuestionService();
@@ -44,6 +45,49 @@ router.get('/categories', async (req, res) => {
   } catch (error) {
     console.error('Get categories error:', error);
     res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.post('/generate-explanations', async (req, res) => {
+  try {
+    const user = await checkAuth(req, res);
+    if (!user) return;
+
+    const categoryId = req.body.categoryId ? Number(req.body.categoryId) : undefined;
+    const batchSize = Math.min(Math.max(Number(req.body.batchSize) || 20, 1), 20);
+    const questions = await questionService.getAllQuestions(user.id, categoryId);
+    const missing = questions.filter(question => !question.explanation?.trim());
+    const batch = missing.slice(0, batchSize);
+
+    if (batch.length === 0) {
+      return res.json({ updated: 0, remaining: 0, totalMissing: 0 });
+    }
+
+    const generated = await generateQuestionExplanations(batch.map(question => ({
+      id: question.id,
+      content: question.content,
+      options: question.options,
+      correctAnswer: question.correctAnswer,
+    })));
+
+    let updated = 0;
+    for (const item of generated) {
+      const question = batch.find(candidate => candidate.id === item.questionId);
+      if (!question) continue;
+      const result = await questionService.updateQuestion(user.id, question.id, {
+        explanation: item.explanation,
+      });
+      if (result) updated++;
+    }
+
+    res.json({
+      updated,
+      remaining: Math.max(missing.length - updated, 0),
+      totalMissing: missing.length,
+    });
+  } catch (error: any) {
+    console.error('Generate explanations error:', error);
+    res.status(500).json({ error: error.message || 'AI 解析生成失败' });
   }
 });
 

@@ -28,6 +28,7 @@ type QuizResultQuestion = {
 type QuizResult = {
   total: number;
   correct: number;
+  score: number;
   accuracy: number;
   results: QuizResultQuestion[];
 };
@@ -39,7 +40,7 @@ function isResultQuestion(question: QuizQuestion | QuizResultQuestion): question
 export function Quiz() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<number | ''>('');
-  const [limit, setLimit] = useState(20);
+  const [limit, setLimit] = useState(100);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [answers, setAnswers] = useState<Record<number, AnswerValue>>({});
   const [result, setResult] = useState<QuizResult | null>(null);
@@ -168,7 +169,7 @@ export function Quiz() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">测验题量</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">测验题量（默认 100 题）</label>
                 <input
                   type="number"
                   min={1}
@@ -225,7 +226,10 @@ export function Quiz() {
                 <h2 className="text-2xl font-bold text-gray-900">测验结果</h2>
                 <p className="text-gray-600">答对 {result.correct} / {result.total} 题</p>
               </div>
-              <div className="text-4xl font-bold text-blue-600">{result.accuracy}%</div>
+              <div className="text-right">
+                <div className="text-4xl font-bold text-blue-600">{result.score ?? result.accuracy} 分</div>
+                <div className="text-sm text-gray-500 mt-1">满分 100 分</div>
+              </div>
             </div>
           </div>
         )}
