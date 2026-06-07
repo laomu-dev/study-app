@@ -115,6 +115,18 @@ class ApiClient {
       }),
   };
 
+  tutor = {
+    chat: (
+      message: string,
+      categoryId?: number,
+      history: Array<{ role: 'user' | 'assistant'; content: string }> = [],
+    ) =>
+      this.request('/tutor/chat', {
+        method: 'POST',
+        body: JSON.stringify({ message, categoryId, history }),
+      }),
+  };
+
   materials = {
     extract: async (file: File, questionCount: number) => {
       const formData = new FormData();

@@ -10,6 +10,7 @@ import { Questions } from "./pages/Questions";
 import { Quiz } from "./pages/Quiz";
 import { MaterialGenerator } from "./pages/MaterialGenerator";
 import { WrongQuestions } from "./pages/WrongQuestions";
+import { AiTutor } from "./pages/AiTutor";
 
 function ProtectedRoute({ children, requireAdmin = false }: { children: React.ReactNode, requireAdmin?: boolean }) {
   const { user } = useAppStore();
@@ -95,6 +96,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <WrongQuestions />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ai-tutor"
+            element={
+              <ProtectedRoute>
+                <AiTutor />
               </ProtectedRoute>
             }
           />

@@ -20,11 +20,33 @@ export type ExplanationQuestion = {
   content: string;
   options: string[];
   correctAnswer: number | number[];
+  explanation?: string | null;
 };
 
 export type GeneratedExplanation = {
   questionId: number;
   explanation: string;
+};
+
+export type TutorMessage = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
+type TutorOptions = {
+  message: string;
+  history: TutorMessage[];
+  questions: ExplanationQuestion[];
+};
+
+export type TutorReply = {
+  answer: string;
+  keyPoints: string[];
+  suggestedQuestions: string[];
+  references: Array<{
+    questionId: number;
+    content: string;
+  }>;
 };
 
 const DEFAULT_MODEL = 'gpt-5.5';
@@ -100,6 +122,35 @@ const explanationSchema = {
         properties: {
           questionId: { type: 'integer' },
           explanation: { type: 'string' },
+        },
+      },
+    },
+  },
+};
+
+const tutorSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['answer', 'keyPoints', 'suggestedQuestions', 'references'],
+  properties: {
+    answer: { type: 'string' },
+    keyPoints: {
+      type: 'array',
+      items: { type: 'string' },
+    },
+    suggestedQuestions: {
+      type: 'array',
+      items: { type: 'string' },
+    },
+    references: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['questionId', 'content'],
+        properties: {
+          questionId: { type: 'integer' },
+          content: { type: 'string' },
         },
       },
     },
@@ -370,4 +421,95 @@ function normalizeExplanations(
       questionId: item.questionId,
       explanation: item.explanation.trim(),
     }));
+}
+
+export async function generateTutorReply({
+  message,
+  history,
+  questions,
+}: TutorOptions): Promise<TutorReply> {
+  const context = questions.map(question => ({
+    questionId: question.id,
+    content: question.content,
+    options: question.options,
+    correctAnswer: question.correctAnswer,
+    explanation: question.explanation || '',
+  }));
+  const validQuestionIds = new Set(questions.map(question => question.id));
+  const systemMessage = {
+    role: 'system' as const,
+    content: [
+      '你是面向通信行业学习者的 AI 导师。',
+      '优先依据用户个人题库中的题目、答案和解析进行讲解，再补充必要的通信专业拓展知识。',
+      '必须明确区分“题库依据”和“拓展说明”，不能把拓展内容伪装成题库原文。',
+      '回答要准确、清晰、适合学习，可使用分段和编号，但不要输出 Markdown 表格。',
+      'references 只能引用给定题库上下文中真实存在的 questionId；没有相关依据时返回空数组。',
+      '给出 2 至 5 个 keyPoints，以及 2 至 3 个便于继续学习的 suggestedQuestions。',
+      `返回 JSON，结构必须符合：${JSON.stringify(tutorSchema)}`,
+    ].join('\n'),
+  };
+  const userMessage = {
+    role: 'user' as const,
+    content: [
+      `用户当前问题：${message}`,
+      '',
+      `个人题库上下文：${context.length > 0 ? JSON.stringify(context) : '当前没有可用题目，请以拓展学习模式回答。'}`,
+    ].join('\n'),
+  };
+  const messages = [
+    systemMessage,
+    ...history.map(item => ({ role: item.role, content: item.content })),
+    userMessage,
+  ];
+
+  let outputText: string;
+  const compatibleConfig = getCompatibleAIConfig();
+  if (compatibleConfig) {
+    outputText = await requestCompatibleJson(compatibleConfig, messages);
+  } else {
+    configureProxyIfNeeded();
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      throw new Error('缺少 AI_API_KEY 或 OPENAI_API_KEY，请先配置大模型接口。');
+    }
+
+    const response = await fetch('https://api.openai.com/v1/responses', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: process.env.OPENAI_MODEL || DEFAULT_MODEL,
+        input: messages,
+        text: {
+          format: {
+            type: 'json_schema',
+            name: 'tutor_reply',
+            schema: tutorSchema,
+            strict: true,
+          },
+        },
+      }),
+    });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok) {
+      throw new Error(payload?.error?.message || `AI API request failed: HTTP ${response.status}`);
+    }
+    outputText = extractResponseText(payload);
+  }
+
+  const parsed = JSON.parse(extractJsonText(outputText)) as TutorReply;
+  return {
+    answer: String(parsed.answer || '').trim(),
+    keyPoints: (parsed.keyPoints || []).map(String).filter(Boolean).slice(0, 5),
+    suggestedQuestions: (parsed.suggestedQuestions || []).map(String).filter(Boolean).slice(0, 3),
+    references: (parsed.references || [])
+      .filter(reference => validQuestionIds.has(Number(reference.questionId)))
+      .map(reference => ({
+        questionId: Number(reference.questionId),
+        content: String(reference.content || '').trim(),
+      }))
+      .slice(0, 5),
+  };
 }

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
-import { AlertTriangle, BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText } from 'lucide-react';
+import { AlertTriangle, BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText, Sparkles } from 'lucide-react';
 
 export function Navbar() {
   const location = useLocation();
@@ -73,6 +73,18 @@ export function Navbar() {
               <span>测验</span>
             </Link>
             
+            <Link
+              to="/ai-tutor"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                isActive('/ai-tutor')
+                  ? 'bg-blue-900 text-white shadow-md'
+                  : 'text-blue-100 hover:bg-blue-700'
+              }`}
+            >
+              <Sparkles className="h-4 w-4" />
+              <span>AI导师</span>
+            </Link>
+
             <Link
               to="/wrong"
               className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
@@ -174,6 +186,19 @@ export function Navbar() {
                 <span>测验</span>
               </Link>
               
+              <Link
+                to="/ai-tutor"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                  isActive('/ai-tutor')
+                    ? 'bg-blue-900 text-white'
+                    : 'text-blue-100 hover:bg-blue-700'
+                }`}
+              >
+                <Sparkles className="h-5 w-5" />
+                <span>AI 通信导师</span>
+              </Link>
+
               <Link
                 to="/wrong"
                 onClick={() => setMobileMenuOpen(false)}
