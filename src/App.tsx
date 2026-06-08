@@ -11,6 +11,7 @@ import { Quiz } from "./pages/Quiz";
 import { MaterialGenerator } from "./pages/MaterialGenerator";
 import { WrongQuestions } from "./pages/WrongQuestions";
 import { AiTutor } from "./pages/AiTutor";
+import { KnowledgeMap } from "./pages/KnowledgeMap";
 
 function ProtectedRoute({ children, requireAdmin = false }: { children: React.ReactNode, requireAdmin?: boolean }) {
   const { user } = useAppStore();
@@ -104,6 +105,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <AiTutor />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/knowledge-map"
+            element={
+              <ProtectedRoute>
+                <KnowledgeMap />
               </ProtectedRoute>
             }
           />

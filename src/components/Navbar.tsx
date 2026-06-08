@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
-import { AlertTriangle, BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText, Sparkles } from 'lucide-react';
+import { AlertTriangle, BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText, Sparkles, Network } from 'lucide-react';
 
 export function Navbar() {
   const location = useLocation();
@@ -83,6 +83,18 @@ export function Navbar() {
             >
               <Sparkles className="h-4 w-4" />
               <span>AI导师</span>
+            </Link>
+
+            <Link
+              to="/knowledge-map"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                isActive('/knowledge-map')
+                  ? 'bg-blue-900 text-white shadow-md'
+                  : 'text-blue-100 hover:bg-blue-700'
+              }`}
+            >
+              <Network className="h-4 w-4" />
+              <span>脉络</span>
             </Link>
 
             <Link
@@ -197,6 +209,19 @@ export function Navbar() {
               >
                 <Sparkles className="h-5 w-5" />
                 <span>AI 通信导师</span>
+              </Link>
+
+              <Link
+                to="/knowledge-map"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                  isActive('/knowledge-map')
+                    ? 'bg-blue-900 text-white'
+                    : 'text-blue-100 hover:bg-blue-700'
+                }`}
+              >
+                <Network className="h-5 w-5" />
+                <span>知识点脉络</span>
               </Link>
 
               <Link

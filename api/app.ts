@@ -19,6 +19,7 @@ import importRoutes from './routes/import.js'
 import quizRoutes from './routes/quiz.js'
 import materialRoutes from './routes/materials.js'
 import tutorRoutes from './routes/tutor.js'
+import knowledgeMapRoutes from './routes/knowledgeMap.js'
 
 // for esm mode
 const __filename = fileURLToPath(import.meta.url)
@@ -58,6 +59,7 @@ app.use('/api/import', importRoutes)
 app.use('/api/quiz', quizRoutes)
 app.use('/api/materials', materialRoutes)
 app.use('/api/tutor', tutorRoutes)
+app.use('/api/knowledge-map', knowledgeMapRoutes)
 
 /**
  * health

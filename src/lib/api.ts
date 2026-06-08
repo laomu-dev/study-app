@@ -127,6 +127,14 @@ class ApiClient {
       }),
   };
 
+  knowledgeMap = {
+    generate: (categoryId?: number) =>
+      this.request('/knowledge-map/generate', {
+        method: 'POST',
+        body: JSON.stringify({ categoryId }),
+      }),
+  };
+
   materials = {
     extract: async (file: File, questionCount: number) => {
       const formData = new FormData();

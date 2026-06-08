@@ -39,6 +39,11 @@ type TutorOptions = {
   questions: ExplanationQuestion[];
 };
 
+type KnowledgeMapOptions = {
+  categoryName: string;
+  questions: ExplanationQuestion[];
+};
+
 export type TutorReply = {
   answer: string;
   keyPoints: string[];
@@ -47,6 +52,31 @@ export type TutorReply = {
     questionId: number;
     content: string;
   }>;
+};
+
+export type KnowledgeMapNode = {
+  id: string;
+  label: string;
+  type: 'concept' | 'subtopic' | 'mistake' | 'question';
+  summary: string;
+  details: string;
+  questionIds: number[];
+};
+
+export type KnowledgeMapEdge = {
+  id: string;
+  source: string;
+  target: string;
+  label: string;
+  type: 'prerequisite' | 'contains' | 'confuses' | 'tests';
+};
+
+export type KnowledgeMapResult = {
+  title: string;
+  overview: string;
+  studyPath: string[];
+  nodes: KnowledgeMapNode[];
+  edges: KnowledgeMapEdge[];
 };
 
 const DEFAULT_MODEL = 'gpt-5.5';
@@ -151,6 +181,61 @@ const tutorSchema = {
         properties: {
           questionId: { type: 'integer' },
           content: { type: 'string' },
+        },
+      },
+    },
+  },
+};
+
+const knowledgeMapSchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['title', 'overview', 'studyPath', 'nodes', 'edges'],
+  properties: {
+    title: { type: 'string' },
+    overview: { type: 'string' },
+    studyPath: {
+      type: 'array',
+      items: { type: 'string' },
+    },
+    nodes: {
+      type: 'array',
+      minItems: 3,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['id', 'label', 'type', 'summary', 'details', 'questionIds'],
+        properties: {
+          id: { type: 'string' },
+          label: { type: 'string' },
+          type: {
+            type: 'string',
+            enum: ['concept', 'subtopic', 'mistake', 'question'],
+          },
+          summary: { type: 'string' },
+          details: { type: 'string' },
+          questionIds: {
+            type: 'array',
+            items: { type: 'integer' },
+          },
+        },
+      },
+    },
+    edges: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['id', 'source', 'target', 'label', 'type'],
+        properties: {
+          id: { type: 'string' },
+          source: { type: 'string' },
+          target: { type: 'string' },
+          label: { type: 'string' },
+          type: {
+            type: 'string',
+            enum: ['prerequisite', 'contains', 'confuses', 'tests'],
+          },
         },
       },
     },
@@ -511,5 +596,106 @@ export async function generateTutorReply({
         content: String(reference.content || '').trim(),
       }))
       .slice(0, 5),
+  };
+}
+
+export async function generateKnowledgeMap({
+  categoryName,
+  questions,
+}: KnowledgeMapOptions): Promise<KnowledgeMapResult> {
+  const context = questions.map(question => ({
+    questionId: question.id,
+    content: question.content,
+    options: question.options,
+    correctAnswer: question.correctAnswer,
+    explanation: question.explanation || '',
+  }));
+  const validQuestionIds = new Set(questions.map(question => question.id));
+  const systemMessage = {
+    role: 'system' as const,
+    content: [
+      '你是通信专业学习架构师，负责把题库整理成“由点及线、由线及面”的知识脉络图。',
+      '必须从题目、答案和解析中抽取核心概念、子知识点、易错点和关联题目。',
+      '节点数量控制在 8 到 24 个之间；不要把每一道题都做成节点，只选择代表性题目。',
+      '概念节点要覆盖面，子知识点节点要体现线，易错点节点要帮助复习纠偏。',
+      'edges 必须只连接 nodes 中存在的 id。',
+      'questionIds 只能使用给定题库中的 questionId。',
+      'studyPath 给出 4 到 8 个按学习顺序排列的节点 label。',
+      `返回 JSON，结构必须符合：${JSON.stringify(knowledgeMapSchema)}`,
+    ].join('\n'),
+  };
+  const userMessage = {
+    role: 'user' as const,
+    content: [
+      `题库范围：${categoryName}`,
+      `题目数量：${questions.length}`,
+      '请生成适合复习软件展示的知识脉络图。',
+      JSON.stringify(context),
+    ].join('\n\n'),
+  };
+
+  let outputText: string;
+  const compatibleConfig = getCompatibleAIConfig();
+  if (compatibleConfig) {
+    outputText = await requestCompatibleJson(compatibleConfig, [systemMessage, userMessage]);
+  } else {
+    configureProxyIfNeeded();
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      throw new Error('缺少 AI_API_KEY 或 OPENAI_API_KEY，请先配置大模型接口。');
+    }
+
+    const response = await fetch('https://api.openai.com/v1/responses', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: process.env.OPENAI_MODEL || DEFAULT_MODEL,
+        input: [systemMessage, userMessage],
+        text: {
+          format: {
+            type: 'json_schema',
+            name: 'knowledge_map',
+            schema: knowledgeMapSchema,
+            strict: true,
+          },
+        },
+      }),
+    });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok) {
+      throw new Error(payload?.error?.message || `AI API request failed: HTTP ${response.status}`);
+    }
+    outputText = extractResponseText(payload);
+  }
+
+  const parsed = JSON.parse(extractJsonText(outputText)) as KnowledgeMapResult;
+  const nodes = (parsed.nodes || [])
+    .filter(node => node.id && node.label)
+    .map(node => ({
+      ...node,
+      questionIds: (node.questionIds || [])
+        .map(Number)
+        .filter(questionId => validQuestionIds.has(questionId))
+        .slice(0, 8),
+    }))
+    .slice(0, 28);
+  const validNodeIds = new Set(nodes.map(node => node.id));
+  const edges = (parsed.edges || [])
+    .filter(edge => validNodeIds.has(edge.source) && validNodeIds.has(edge.target))
+    .map((edge, index) => ({
+      ...edge,
+      id: edge.id || `edge-${index + 1}`,
+    }))
+    .slice(0, 40);
+
+  return {
+    title: String(parsed.title || `${categoryName}知识脉络`).trim(),
+    overview: String(parsed.overview || '').trim(),
+    studyPath: (parsed.studyPath || []).map(String).filter(Boolean).slice(0, 8),
+    nodes,
+    edges,
   };
 }
