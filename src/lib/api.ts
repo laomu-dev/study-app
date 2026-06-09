@@ -135,6 +135,14 @@ class ApiClient {
       }),
   };
 
+  topicStudy = {
+    generate: (categoryId?: number) =>
+      this.request('/topic-study/generate', {
+        method: 'POST',
+        body: JSON.stringify({ categoryId }),
+      }),
+  };
+
   materials = {
     extract: async (file: File, questionCount: number) => {
       const formData = new FormData();

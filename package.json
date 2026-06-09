@@ -29,6 +29,7 @@
     "mysql2": "^3.22.3",
     "pdf-parser": "^1.0.5",
     "pdf2json": "^4.0.3",
+    "pptxgenjs": "^4.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.3.0",

@@ -44,6 +44,23 @@ type KnowledgeMapOptions = {
   questions: ExplanationQuestion[];
 };
 
+type TopicStudyOptions = {
+  categoryName: string;
+  questions: ExplanationQuestion[];
+  performance: {
+    totalQuestions: number;
+    accuracy: number;
+    dueToday: number;
+    reviewedToday: number;
+    weakQuestions: Array<{
+      questionId: number;
+      content: string;
+      accuracy: number;
+      wrongCount: number;
+    }>;
+  };
+};
+
 export type TutorReply = {
   answer: string;
   keyPoints: string[];
@@ -77,6 +94,37 @@ export type KnowledgeMapResult = {
   studyPath: string[];
   nodes: KnowledgeMapNode[];
   edges: KnowledgeMapEdge[];
+};
+
+export type TopicStudyResult = {
+  title: string;
+  subtitle: string;
+  overview: string;
+  objectives: string[];
+  coreSummary: string[];
+  chapters: Array<{
+    id: string;
+    title: string;
+    summary: string;
+    explanation: string;
+    keyPoints: string[];
+    questionIds: number[];
+  }>;
+  pitfalls: Array<{
+    title: string;
+    explanation: string;
+    questionIds: number[];
+  }>;
+  representativeQuestions: Array<{
+    questionId: number;
+    reason: string;
+  }>;
+  studyPlan: Array<{
+    step: number;
+    title: string;
+    action: string;
+  }>;
+  closingAdvice: string;
 };
 
 const DEFAULT_MODEL = 'gpt-5.5';
@@ -242,6 +290,101 @@ const knowledgeMapSchema = {
   },
 };
 
+const topicStudySchema = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'title',
+    'subtitle',
+    'overview',
+    'objectives',
+    'coreSummary',
+    'chapters',
+    'pitfalls',
+    'representativeQuestions',
+    'studyPlan',
+    'closingAdvice',
+  ],
+  properties: {
+    title: { type: 'string' },
+    subtitle: { type: 'string' },
+    overview: { type: 'string' },
+    objectives: {
+      type: 'array',
+      items: { type: 'string' },
+    },
+    coreSummary: {
+      type: 'array',
+      items: { type: 'string' },
+    },
+    chapters: {
+      type: 'array',
+      minItems: 3,
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['id', 'title', 'summary', 'explanation', 'keyPoints', 'questionIds'],
+        properties: {
+          id: { type: 'string' },
+          title: { type: 'string' },
+          summary: { type: 'string' },
+          explanation: { type: 'string' },
+          keyPoints: {
+            type: 'array',
+            items: { type: 'string' },
+          },
+          questionIds: {
+            type: 'array',
+            items: { type: 'integer' },
+          },
+        },
+      },
+    },
+    pitfalls: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['title', 'explanation', 'questionIds'],
+        properties: {
+          title: { type: 'string' },
+          explanation: { type: 'string' },
+          questionIds: {
+            type: 'array',
+            items: { type: 'integer' },
+          },
+        },
+      },
+    },
+    representativeQuestions: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['questionId', 'reason'],
+        properties: {
+          questionId: { type: 'integer' },
+          reason: { type: 'string' },
+        },
+      },
+    },
+    studyPlan: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['step', 'title', 'action'],
+        properties: {
+          step: { type: 'integer' },
+          title: { type: 'string' },
+          action: { type: 'string' },
+        },
+      },
+    },
+    closingAdvice: { type: 'string' },
+  },
+};
+
 function extractResponseText(response: any): string {
   if (typeof response.output_text === 'string') {
     return response.output_text;
@@ -267,6 +410,7 @@ function extractJsonText(text: string): string {
 async function requestCompatibleJson(
   config: CompatibleAIConfig,
   messages: Array<{ role: 'system' | 'user'; content: string }>,
+  maxTokens = 3000,
 ): Promise<string> {
   const response = await fetch(`${config.baseUrl}/chat/completions`, {
     method: 'POST',
@@ -280,7 +424,7 @@ async function requestCompatibleJson(
       response_format: { type: 'json_object' },
       enable_thinking: false,
       temperature: 0.2,
-      max_tokens: 3000,
+      max_tokens: maxTokens,
     }),
   });
 
@@ -697,5 +841,121 @@ export async function generateKnowledgeMap({
     studyPath: (parsed.studyPath || []).map(String).filter(Boolean).slice(0, 8),
     nodes,
     edges,
+  };
+}
+
+export async function generateTopicStudy({
+  categoryName,
+  questions,
+  performance,
+}: TopicStudyOptions): Promise<TopicStudyResult> {
+  const validQuestionIds = new Set(questions.map(question => question.id));
+  const context = questions.map(question => ({
+    questionId: question.id,
+    content: question.content,
+    options: question.options,
+    correctAnswer: question.correctAnswer,
+    explanation: question.explanation || '',
+  }));
+  const systemMessage = {
+    role: 'system' as const,
+    content: [
+      '你是通信专业课程设计师，要把个人题库整理成一份完整、可复习、可授课的专题学习页。',
+      '内容必须优先依据给定题目、答案和解析，并结合用户掌握度调整重点。',
+      '专题应体现“由点及线、由线及面”：从知识点到关系，再形成完整章节体系。',
+      'chapters 控制在 4 到 7 章，每章 explanation 为 120 到 260 字，keyPoints 为 3 到 5 条。',
+      'pitfalls 聚焦易混淆、易答错、规范边界等问题。',
+      'representativeQuestions 只能引用给定题库中的 questionId。',
+      'studyPlan 提供 4 到 7 个可执行复习步骤。',
+      '语言准确、清晰、适合通信行业学习者，不编造具体标准条款或数值。',
+      `返回 JSON，结构必须符合：${JSON.stringify(topicStudySchema)}`,
+    ].join('\n'),
+  };
+  const userMessage = {
+    role: 'user' as const,
+    content: [
+      `专题范围：${categoryName}`,
+      `个人掌握情况：${JSON.stringify(performance)}`,
+      `题库内容：${JSON.stringify(context)}`,
+    ].join('\n\n'),
+  };
+
+  let outputText: string;
+  const compatibleConfig = getCompatibleAIConfig();
+  if (compatibleConfig) {
+    outputText = await requestCompatibleJson(
+      compatibleConfig,
+      [systemMessage, userMessage],
+      5000,
+    );
+  } else {
+    configureProxyIfNeeded();
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      throw new Error('缺少 AI_API_KEY 或 OPENAI_API_KEY，请先配置大模型接口。');
+    }
+
+    const response = await fetch('https://api.openai.com/v1/responses', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model: process.env.OPENAI_MODEL || DEFAULT_MODEL,
+        input: [systemMessage, userMessage],
+        text: {
+          format: {
+            type: 'json_schema',
+            name: 'topic_study',
+            schema: topicStudySchema,
+            strict: true,
+          },
+        },
+      }),
+    });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok) {
+      throw new Error(payload?.error?.message || `AI API request failed: HTTP ${response.status}`);
+    }
+    outputText = extractResponseText(payload);
+  }
+
+  const parsed = JSON.parse(extractJsonText(outputText)) as TopicStudyResult;
+  const normalizeQuestionIds = (ids: number[]) =>
+    (ids || []).map(Number).filter(id => validQuestionIds.has(id)).slice(0, 8);
+
+  return {
+    title: String(parsed.title || `${categoryName}专题学习`).trim(),
+    subtitle: String(parsed.subtitle || '').trim(),
+    overview: String(parsed.overview || '').trim(),
+    objectives: (parsed.objectives || []).map(String).filter(Boolean).slice(0, 6),
+    coreSummary: (parsed.coreSummary || []).map(String).filter(Boolean).slice(0, 8),
+    chapters: (parsed.chapters || []).map((chapter, index) => ({
+      id: chapter.id || `chapter-${index + 1}`,
+      title: String(chapter.title || `第${index + 1}章`).trim(),
+      summary: String(chapter.summary || '').trim(),
+      explanation: String(chapter.explanation || '').trim(),
+      keyPoints: (chapter.keyPoints || []).map(String).filter(Boolean).slice(0, 5),
+      questionIds: normalizeQuestionIds(chapter.questionIds),
+    })).slice(0, 7),
+    pitfalls: (parsed.pitfalls || []).map(item => ({
+      title: String(item.title || '').trim(),
+      explanation: String(item.explanation || '').trim(),
+      questionIds: normalizeQuestionIds(item.questionIds),
+    })).filter(item => item.title).slice(0, 8),
+    representativeQuestions: (parsed.representativeQuestions || [])
+      .filter(item => validQuestionIds.has(Number(item.questionId)))
+      .map(item => ({
+        questionId: Number(item.questionId),
+        reason: String(item.reason || '').trim(),
+      }))
+      .slice(0, 10),
+    studyPlan: (parsed.studyPlan || []).map((item, index) => ({
+      step: index + 1,
+      title: String(item.title || `步骤${index + 1}`).trim(),
+      action: String(item.action || '').trim(),
+    })).slice(0, 7),
+    closingAdvice: String(parsed.closingAdvice || '').trim(),
   };
 }

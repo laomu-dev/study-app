@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
-import { AlertTriangle, BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText, Sparkles, Network } from 'lucide-react';
+import { AlertTriangle, BookOpen, Home, Settings, LogOut, BookMarked, Menu, X, ClipboardCheck, FileText, Sparkles, Network, Layers3 } from 'lucide-react';
 
 export function Navbar() {
   const location = useLocation();
@@ -32,7 +32,7 @@ export function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2 text-xl font-bold">
               <BookOpen className="h-8 w-8" />
-              <span className="hidden sm:inline">传输通信知识学习助手</span>
+              <span className="hidden xl:inline">传输通信知识学习助手</span>
             </Link>
           </div>
 
@@ -95,6 +95,18 @@ export function Navbar() {
             >
               <Network className="h-4 w-4" />
               <span>脉络</span>
+            </Link>
+
+            <Link
+              to="/topic-study"
+              className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                isActive('/topic-study')
+                  ? 'bg-blue-900 text-white shadow-md'
+                  : 'text-blue-100 hover:bg-blue-700'
+              }`}
+            >
+              <Layers3 className="h-4 w-4" />
+              <span>专题</span>
             </Link>
 
             <Link
@@ -222,6 +234,19 @@ export function Navbar() {
               >
                 <Network className="h-5 w-5" />
                 <span>知识点脉络</span>
+              </Link>
+
+              <Link
+                to="/topic-study"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                  isActive('/topic-study')
+                    ? 'bg-blue-900 text-white'
+                    : 'text-blue-100 hover:bg-blue-700'
+                }`}
+              >
+                <Layers3 className="h-5 w-5" />
+                <span>专题学习</span>
               </Link>
 
               <Link

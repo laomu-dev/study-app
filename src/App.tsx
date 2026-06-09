@@ -12,6 +12,7 @@ import { MaterialGenerator } from "./pages/MaterialGenerator";
 import { WrongQuestions } from "./pages/WrongQuestions";
 import { AiTutor } from "./pages/AiTutor";
 import { KnowledgeMap } from "./pages/KnowledgeMap";
+import { TopicStudy } from "./pages/TopicStudy";
 
 function ProtectedRoute({ children, requireAdmin = false }: { children: React.ReactNode, requireAdmin?: boolean }) {
   const { user } = useAppStore();
@@ -113,6 +114,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <KnowledgeMap />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/topic-study"
+            element={
+              <ProtectedRoute>
+                <TopicStudy />
               </ProtectedRoute>
             }
           />
