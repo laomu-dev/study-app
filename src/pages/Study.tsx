@@ -25,7 +25,6 @@ export function Study() {
   const [completed, setCompleted] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [answerHistory, setAnswerHistory] = useState<Record<number, AnswerState>>({});
-  const [autoAdvancingQuestionId, setAutoAdvancingQuestionId] = useState<number | null>(null);
   const autoNextTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const categoryId = searchParams.get('categoryId') ? parseInt(searchParams.get('categoryId')!, 10) : undefined;
   const currentCategory = categories.find(category => category.id === categoryId);
@@ -68,7 +67,6 @@ export function Study() {
       setIsSubmitting(false);
       setCompleted(false);
       setAnswerHistory({});
-      setAutoAdvancingQuestionId(null);
     } catch (error) {
       console.error('Failed to load tasks:', error);
     } finally {
@@ -81,7 +79,6 @@ export function Study() {
       clearTimeout(autoNextTimerRef.current);
       autoNextTimerRef.current = null;
     }
-    setAutoAdvancingQuestionId(null);
   };
 
   const restoreQuestionState = (index: number) => {
@@ -136,7 +133,6 @@ export function Study() {
       }));
 
       if (result.isCorrect) {
-        setAutoAdvancingQuestionId(currentTask.question.id);
         autoNextTimerRef.current = setTimeout(handleNext, 650);
       }
     } catch (error) {
@@ -406,21 +402,7 @@ export function Study() {
                 <div className="w-full bg-blue-50 border border-blue-200 text-blue-800 font-medium py-4 px-6 rounded-lg text-center">
                   {isSubmitting ? '正在判定...' : '点击一个选项即可作答'}
                 </div>
-              ) : (
-                <div
-                  className={`w-full border font-medium py-4 px-6 rounded-lg text-center ${
-                    isCorrect
-                      ? 'bg-green-50 border-green-200 text-green-800'
-                      : 'bg-red-50 border-red-200 text-red-800'
-                  }`}
-                >
-                  {isCorrect
-                    ? autoAdvancingQuestionId === currentTask.question.id
-                      ? '回答正确，正在进入下一题...'
-                      : '回答正确'
-                    : '请查看答案与解析，确认后点击下一题'}
-                </div>
-              )}
+              ) : null}
 
               <div className="mt-5 flex items-center justify-between gap-3">
                 <button
