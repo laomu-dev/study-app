@@ -4,8 +4,13 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAppStore } from '../store';
 import { api } from '../lib/api';
 import { Category, DailyTask } from '../../shared/types';
-import { CheckCircle, XCircle, RotateCcw, Home, Trophy } from 'lucide-react';
+import { CheckCircle, ChevronLeft, ChevronRight, XCircle, RotateCcw, Home, Trophy } from 'lucide-react';
 import { DEFAULT_DAILY_LIMIT } from '../../shared/studySettings';
+
+type AnswerState = {
+  selectedAnswer: number | number[];
+  isCorrect: boolean;
+};
 
 export function Study() {
   const navigate = useNavigate();
@@ -19,6 +24,8 @@ export function Study() {
   const [isLoading, setIsLoading] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [answerHistory, setAnswerHistory] = useState<Record<number, AnswerState>>({});
+  const [autoAdvancingQuestionId, setAutoAdvancingQuestionId] = useState<number | null>(null);
   const autoNextTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const categoryId = searchParams.get('categoryId') ? parseInt(searchParams.get('categoryId')!, 10) : undefined;
   const currentCategory = categories.find(category => category.id === categoryId);
@@ -60,6 +67,8 @@ export function Study() {
       setShowResult(false);
       setIsSubmitting(false);
       setCompleted(false);
+      setAnswerHistory({});
+      setAutoAdvancingQuestionId(null);
     } catch (error) {
       console.error('Failed to load tasks:', error);
     } finally {
@@ -67,19 +76,42 @@ export function Study() {
     }
   };
 
-  const handleNext = () => {
+  const clearAutoNext = () => {
     if (autoNextTimerRef.current) {
       clearTimeout(autoNextTimerRef.current);
       autoNextTimerRef.current = null;
     }
+    setAutoAdvancingQuestionId(null);
+  };
+
+  const restoreQuestionState = (index: number) => {
+    const task = todayTasks[index];
+    const previousAnswer = task ? answerHistory[task.question.id] : undefined;
+    setSelectedAnswer(previousAnswer?.selectedAnswer ?? null);
+    setIsCorrect(previousAnswer?.isCorrect ?? false);
+    setShowResult(Boolean(previousAnswer));
+    setIsSubmitting(false);
+  };
+
+  const goToQuestion = (index: number) => {
+    clearAutoNext();
+    setCurrentIndex(index);
+    restoreQuestionState(index);
+  };
+
+  const handleNext = () => {
+    clearAutoNext();
 
     if (currentIndex < todayTasks.length - 1) {
-      setCurrentIndex(index => index + 1);
-      setSelectedAnswer(null);
-      setShowResult(false);
-      setIsSubmitting(false);
+      goToQuestion(currentIndex + 1);
     } else {
       setCompleted(true);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex > 0 && !isSubmitting) {
+      goToQuestion(currentIndex - 1);
     }
   };
 
@@ -94,7 +126,19 @@ export function Study() {
       );
       setIsCorrect(result.isCorrect);
       setShowResult(true);
-      autoNextTimerRef.current = setTimeout(handleNext, result.isCorrect ? 400 : 4000);
+      setIsSubmitting(false);
+      setAnswerHistory(history => ({
+        ...history,
+        [currentTask.question.id]: {
+          selectedAnswer: answer,
+          isCorrect: result.isCorrect,
+        },
+      }));
+
+      if (result.isCorrect) {
+        setAutoAdvancingQuestionId(currentTask.question.id);
+        autoNextTimerRef.current = setTimeout(handleNext, 650);
+      }
     } catch (error) {
       console.error('Failed to submit answer:', error);
       setIsSubmitting(false);
@@ -128,16 +172,19 @@ export function Study() {
   };
 
   const handleRestart = () => {
-    if (autoNextTimerRef.current) {
-      clearTimeout(autoNextTimerRef.current);
-      autoNextTimerRef.current = null;
-    }
+    clearAutoNext();
     setCurrentIndex(0);
     setSelectedAnswer(null);
     setShowResult(false);
     setIsSubmitting(false);
     setCompleted(false);
+    setAnswerHistory({});
     loadTasks();
+  };
+
+  const handleReviewLastQuestion = () => {
+    setCompleted(false);
+    goToQuestion(todayTasks.length - 1);
   };
 
   const handleGoHome = () => {
@@ -184,7 +231,14 @@ export function Study() {
           <p className="text-gray-600 mb-8">
             您已完成今日所有学习任务，继续保持！
           </p>
-          <div className="space-x-4">
+          <div className="flex flex-wrap justify-center gap-3">
+            <button
+              onClick={handleReviewLastQuestion}
+              className="bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center space-x-2"
+            >
+              <ChevronLeft className="h-5 w-5" />
+              <span>回看最后一题</span>
+            </button>
             <button
               onClick={handleRestart}
               className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors inline-flex items-center space-x-2"
@@ -361,10 +415,33 @@ export function Study() {
                   }`}
                 >
                   {isCorrect
-                    ? '回答正确，正在进入下一题...'
-                    : '请查看解析，稍后自动进入下一题...'}
+                    ? autoAdvancingQuestionId === currentTask.question.id
+                      ? '回答正确，正在进入下一题...'
+                      : '回答正确'
+                    : '请查看答案与解析，确认后点击下一题'}
                 </div>
               )}
+
+              <div className="mt-5 flex items-center justify-between gap-3">
+                <button
+                  onClick={handlePrevious}
+                  disabled={currentIndex === 0 || isSubmitting}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 border border-gray-300 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed text-gray-700 font-semibold rounded-lg transition-colors"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                  上一题
+                </button>
+
+                {showResult && (
+                  <button
+                    onClick={handleNext}
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors"
+                  >
+                    {currentIndex === todayTasks.length - 1 ? '完成学习' : '下一题'}
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         )}
